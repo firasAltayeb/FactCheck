@@ -56,162 +56,59 @@ public class moneyTimeMain {
 		//-----------------------------  Jlabels --------------------------------------------------------
 
 
-		final JLabel L100 = new JLabel("100\u00A3");
-		L100.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		L100.setForeground(Color.RED);
-		L100.setBackground(Color.WHITE);
-		L100.setBounds(0, 450, 130, 40);
-		frame.getContentPane().add(L100);
-
-
-		final JLabel L200 = new JLabel("200\u00A3");
-		L200.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		L200.setForeground(Color.RED);
-		L200.setBackground(Color.WHITE);
-		L200.setBounds(0, 420, 130, 40);
-		frame.getContentPane().add(L200);
-
-
-		final JLabel L300 = new JLabel("300\u00A3");
-		L300.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		L300.setForeground(Color.RED);
-		L300.setBackground(Color.WHITE);
-		L300.setBounds(0, 390, 130, 40);
-		frame.getContentPane().add(L300);
-
-
-		final JLabel L500 = new JLabel("500\u00A3");
-		L500.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		L500.setForeground(Color.RED);
-		L500.setBackground(Color.WHITE);
-		L500.setBounds(0, 360, 140, 40);
-		frame.getContentPane().add(L500);
-
-
-		final JLabel L1000 = new JLabel("1000\u00A3");
-		L1000.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		L1000.setForeground(Color.RED);
-		L1000.setBackground(Color.WHITE);
-		L1000.setBounds(0, 330, 130, 40);
-		frame.getContentPane().add(L1000);
-
-
-		final JLabel L2000 = new JLabel("2000\u00A3");
-		L2000.setForeground(Color.RED);
-		L2000.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		L2000.setBackground(Color.WHITE);
-		L2000.setBounds(0, 300, 130, 40);
-		frame.getContentPane().add(L2000);
-
-
-		final JLabel L4000 = new JLabel("4000\u00A3");
-		L4000.setForeground(Color.RED);
-		L4000.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		L4000.setBackground(Color.WHITE);
-		L4000.setBounds(0, 270, 130, 40);
-		frame.getContentPane().add(L4000);
-
-
-		final JLabel L8000 = new JLabel("8000\u00A3");
-		L8000.setForeground(Color.RED);
-		L8000.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		L8000.setBackground(Color.WHITE);
-		L8000.setBounds(0, 240, 130, 40);
-		frame.getContentPane().add(L8000);
-
-
-		final JLabel L16000 = new JLabel("16000\u00A3");
-		L16000.setForeground(Color.RED);
-		L16000.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		L16000.setBackground(Color.WHITE);
-		L16000.setBounds(0, 210, 130, 40);
-		frame.getContentPane().add(L16000);
-
-
-		final JLabel L32000 = new JLabel("32000\u00A3");
-		L32000.setForeground(Color.RED);
-		L32000.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		L32000.setBackground(Color.WHITE);
-		L32000.setBounds(0, 180, 130, 40);
-		frame.getContentPane().add(L32000);
-
-
-		final JLabel L64000 = new JLabel("64000\u00A3");
-		L64000.setForeground(Color.RED);
-		L64000.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		L64000.setBackground(Color.WHITE);
-		L64000.setBounds(0, 150, 130, 40);
-		frame.getContentPane().add(L64000 );
-
-
-		final JLabel L125000 = new JLabel("125000\u00A3");
-		L125000.setForeground(Color.RED);
-		L125000.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		L125000.setBackground(Color.WHITE);
-		L125000.setBounds(0, 120, 130, 40);
-		frame.getContentPane().add(L125000);
-
-
-		final JLabel L250000 = new JLabel("250000\u00A3");
-		L250000.setForeground(Color.RED);
-		L250000.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		L250000.setBackground(Color.WHITE);
-		L250000.setBounds(0, 90, 130, 40);
-		frame.getContentPane().add(L250000);
-
-
-		final JLabel L500000 = new JLabel("500000\u00A3");
-		L500000.setForeground(Color.RED);
-		L500000.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		L500000.setBackground(Color.WHITE);
-		L500000.setBounds(0, 60, 130, 40);
-		frame.getContentPane().add(L500000);
-
-
-		final JLabel L1000000 = new JLabel("1000000\u00A3");
-		L1000000.setForeground(Color.RED);
-		L1000000.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		L1000000.setBackground(Color.WHITE);
-		L1000000.setBounds(0, 30, 130, 40);
-		frame.getContentPane().add(L1000000);
-
-
-		JLabel lblA = new JLabel("a.");
-		lblA.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblA.setForeground(Color.WHITE);
-		lblA.setBounds(96, 323, 49, 59);
-		frame.getContentPane().add(lblA);
-
+		JLabel[] JlabelArray = new JLabel[19];
+		final JLabel L100 = new JLabel("100\u00A3");JlabelArray[0]=L100;
+		final JLabel L200 = new JLabel("200\u00A3");JlabelArray[1]=L200;
+		final JLabel L300 = new JLabel("300\u00A3");JlabelArray[2]=L300;
+		final JLabel L500 = new JLabel("500\u00A3");JlabelArray[3]=L500;
+		final JLabel L1000 = new JLabel("1000\u00A3");JlabelArray[4]=L1000;
+		final JLabel L2000 = new JLabel("2000\u00A3");JlabelArray[5]=L2000;
+		final JLabel L4000 = new JLabel("4000\u00A3");JlabelArray[6]=L4000;
+		final JLabel L8000 = new JLabel("8000\u00A3");JlabelArray[7]=L8000;
+		final JLabel L16000 = new JLabel("16000\u00A3");JlabelArray[8]=L16000;
+		final JLabel L32000 = new JLabel("32000\u00A3");JlabelArray[9]=L32000;
+		final JLabel L64000 = new JLabel("64000\u00A3");JlabelArray[10]=L64000;
+		final JLabel L125000 = new JLabel("125000\u00A3");JlabelArray[11]=L125000;
+		final JLabel L250000 = new JLabel("250000\u00A3");JlabelArray[12]=L250000;
+		final JLabel L500000 = new JLabel("500000\u00A3");JlabelArray[13]=L500000;
+		final JLabel L1000000 = new JLabel("1000000\u00A3");JlabelArray[14]=L1000000;
+		final JLabel LC= new JLabel("c.");JlabelArray[15]=LC;
+		final JLabel LA = new JLabel("a.");JlabelArray[16]=LA;
+		final JLabel QuestionLabel = new JLabel(currentQuestion);JlabelArray[17]=QuestionLabel;
+		final JLabel lblmistakeCounter = new JLabel("MISTAKE COUNTER = 5 ");JlabelArray[18]=lblmistakeCounter;
+		
+		int yAxis = 450;
+		for(int i=0;i<=14;i++)
+		{	
+			JlabelArray[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
+			JlabelArray[i].setForeground(Color.RED);
+			JlabelArray[i].setBounds(0, yAxis, 90, 40);
+			frame.getContentPane().add(JlabelArray[i]);
+			yAxis-=30;
+			
+		}
+	
+		yAxis = 375;
+		for(int i=15;i<=18;i++)
+		{	
+			JlabelArray[i].setFont(new Font("Tahoma", Font.BOLD| Font.ITALIC, 20));
+			JlabelArray[i].setForeground(Color.WHITE);
+			JlabelArray[i].setBounds(108, yAxis, 950, 60);
+			frame.getContentPane().add(JlabelArray[i]);
+			yAxis-=100;
+			
+		}
 		JLabel lblb = new JLabel("b.");
-		lblb.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblb.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblb.setForeground(Color.WHITE);
-		lblb.setBounds(573, 327, 49, 59);
+		lblb.setBounds(570, 275, 50, 60);
 		frame.getContentPane().add(lblb);
-
-		JLabel lblc = new JLabel("c.");
-		lblc.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblc.setForeground(Color.WHITE);
-		lblc.setBounds(96, 451, 49, 51);
-		frame.getContentPane().add(lblc);
-
+		
 		JLabel lblD = new JLabel("d.");
-		lblD.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblD.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblD.setForeground(Color.WHITE);
-		lblD.setBounds(568, 454, 54, 44);
+		lblD.setBounds(568, 375, 50, 60);
 		frame.getContentPane().add(lblD);
-
-		final JLabel QuestionLabel = new JLabel(currentQuestion);
-		QuestionLabel.setForeground(Color.WHITE);
-		QuestionLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		QuestionLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
-		QuestionLabel.setBounds(142, 153, 947, 93);
-		frame.getContentPane().add(QuestionLabel);
-
-		final JLabel lblmistakeCounter = new JLabel("MISTAKE COUNTER = 5 ");
-		lblmistakeCounter.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
-		lblmistakeCounter.setForeground(Color.RED);
-		lblmistakeCounter.setBounds(270, 60, 270, 30);
-		frame.getContentPane().add(lblmistakeCounter);
 
 		//------------------------ Answer buttons variables  ------------------------------------------------
 
@@ -227,7 +124,7 @@ public class moneyTimeMain {
 
 		//------------------------------- Answer button one -------------------------------------------------
 
-		AnswerButtonOne.setBounds(142, 327, 302, 55);
+		AnswerButtonOne.setBounds(140, 280, 300, 50);
 		AnswerButtonOne.setForeground(Color.BLACK);
 		AnswerButtonOne.setBackground(Color.RED);
 		frame.getContentPane().add(AnswerButtonOne);
@@ -259,7 +156,7 @@ public class moneyTimeMain {
 
 		//--------------------------------- Answer button two -----------------------------------------------
 
-		AnswerButtonTwo.setBounds(623, 327, 302, 55);
+		AnswerButtonTwo.setBounds(620, 280, 300, 50);
 		AnswerButtonTwo.setForeground(Color.BLACK);
 		AnswerButtonTwo.setBackground(Color.RED);
 		frame.getContentPane().add(AnswerButtonTwo);
@@ -290,7 +187,7 @@ public class moneyTimeMain {
 
 		//-------------------------------- Answer button three ----------------------------------------------
 
-		AnswerButtonThree.setBounds(142, 447, 302, 51);
+		AnswerButtonThree.setBounds(140, 380, 300, 50);
 		AnswerButtonThree.setForeground(Color.BLACK);
 		AnswerButtonThree.setBackground(Color.RED);
 		frame.getContentPane().add(AnswerButtonThree);
@@ -320,7 +217,7 @@ public class moneyTimeMain {
 
 		//--------------------------------- Answer button four ----------------------------------------------
 
-		AnswerButtonFour.setBounds(623, 447, 302, 51);
+		AnswerButtonFour.setBounds(620, 380, 300, 50);
 		AnswerButtonFour.setForeground(Color.BLACK);
 		AnswerButtonFour.setBackground(Color.RED);
 		frame.getContentPane().add(AnswerButtonFour); 
