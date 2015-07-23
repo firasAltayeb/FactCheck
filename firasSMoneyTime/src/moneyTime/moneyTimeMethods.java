@@ -75,13 +75,13 @@ public class moneyTimeMethods extends moneyTimeMain
 	{
 
 		currentQuestion = qusListArray[r];
-		answersOptions = currentQuestionNumber.getOptions(currentQuestion);
-		correctAnswer = currentQuestionNumber.getAnswer(currentQuestion);
+		answerOptionArray = currentQuestionAnswers.getOptions(currentQuestion);
+		correctAnswer = currentQuestionAnswers.getCorrectAnswer(currentQuestion);
 		QuestionLabel.setText(currentQuestion);
-		AnswerButtonOne.setText(answersOptions[0]);
-		AnswerButtonTwo.setText(answersOptions[1]);
-		AnswerButtonThree.setText(answersOptions[2]);
-		AnswerButtonFour.setText(answersOptions[3]);
+		AnswerButtonOne.setText(answerOptionArray[0]);
+		AnswerButtonTwo.setText(answerOptionArray[1]);
+		AnswerButtonThree.setText(answerOptionArray[2]);
+		AnswerButtonFour.setText(answerOptionArray[3]);
 		AnswerButtonOne.setBackground(Color.RED);
 		AnswerButtonTwo.setBackground(Color.RED);
 		AnswerButtonThree.setBackground(Color.RED);

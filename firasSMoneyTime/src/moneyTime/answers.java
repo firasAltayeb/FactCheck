@@ -4,7 +4,7 @@ public class answers {
 	questionList qusListClass = new questionList();
 	String[] qusList = qusListClass.createArray();
 
-	public String getAnswer(String Question){
+	public String getCorrectAnswer(String Question){
 		
 		String ans1 = "";
 		if (Question.equals(qusList[0])){

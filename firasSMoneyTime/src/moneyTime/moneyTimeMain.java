@@ -1,21 +1,23 @@
 package moneyTime;
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.net.URL;
 import java.util.Random;
 
 
 public class moneyTimeMain {
 
 	static questionList allQuestions = new questionList();
-	static answers currentQuestionNumber = new answers();
+	static answers currentQuestionAnswers = new answers();
 	static moneyTimeAudio audio = new moneyTimeAudio();
 	static Random random = new Random();
 	static String[] qusListArray = allQuestions.createArray();
-	static String[] answersOptions;
+	static String[] answerOptionArray;
 	static String correctAnswer;
 	static String currentQuestion; 
-	static int questionCounter;
+	static int questionCounter = 0;
 	static int mistakeCounter = 5;
 
 
@@ -40,14 +42,12 @@ public class moneyTimeMain {
 		//---------------------------- First Implementation of the values -------------------------------
 		final int r = random.nextInt(3);
 		currentQuestion = qusListArray[r];
-		answersOptions = currentQuestionNumber.getOptions(currentQuestion);
-		correctAnswer = currentQuestionNumber.getAnswer(currentQuestion);
+		answerOptionArray = currentQuestionAnswers.getOptions(currentQuestion);
+		correctAnswer = currentQuestionAnswers.getCorrectAnswer(currentQuestion);
 
 		//---------------------------- JFrame Implementation  -------------------------------------------
 		final JFrame frame = new JFrame();
 		frame.setVisible(true);
-		frame.getContentPane().setBackground(Color.BLACK);
-		frame.getContentPane().setForeground(new Color(255, 0, 0));
 		frame.setMinimumSize(new Dimension(1100, 600));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -56,97 +56,108 @@ public class moneyTimeMain {
 		//-----------------------------  Jlabels --------------------------------------------------------
 
 
-		JLabel[] JlabelArray = new JLabel[19];
-		final JLabel L100 = new JLabel("100\u00A3");JlabelArray[0]=L100;
-		final JLabel L200 = new JLabel("200\u00A3");JlabelArray[1]=L200;
-		final JLabel L300 = new JLabel("300\u00A3");JlabelArray[2]=L300;
-		final JLabel L500 = new JLabel("500\u00A3");JlabelArray[3]=L500;
-		final JLabel L1000 = new JLabel("1000\u00A3");JlabelArray[4]=L1000;
-		final JLabel L2000 = new JLabel("2000\u00A3");JlabelArray[5]=L2000;
-		final JLabel L4000 = new JLabel("4000\u00A3");JlabelArray[6]=L4000;
-		final JLabel L8000 = new JLabel("8000\u00A3");JlabelArray[7]=L8000;
-		final JLabel L16000 = new JLabel("16000\u00A3");JlabelArray[8]=L16000;
-		final JLabel L32000 = new JLabel("32000\u00A3");JlabelArray[9]=L32000;
-		final JLabel L64000 = new JLabel("64000\u00A3");JlabelArray[10]=L64000;
-		final JLabel L125000 = new JLabel("125000\u00A3");JlabelArray[11]=L125000;
-		final JLabel L250000 = new JLabel("250000\u00A3");JlabelArray[12]=L250000;
-		final JLabel L500000 = new JLabel("500000\u00A3");JlabelArray[13]=L500000;
-		final JLabel L1000000 = new JLabel("1000000\u00A3");JlabelArray[14]=L1000000;
-		final JLabel LC= new JLabel("c.");JlabelArray[15]=LC;
-		final JLabel LA = new JLabel("a.");JlabelArray[16]=LA;
-		final JLabel QuestionLabel = new JLabel(currentQuestion);JlabelArray[17]=QuestionLabel;
-		final JLabel lblmistakeCounter = new JLabel("MISTAKE COUNTER = 5 ");JlabelArray[18]=lblmistakeCounter;
+		JLabel[] JlabelArray = new JLabel[22];
+		final JLabel copyRight = new JLabel("@FirasAltayeb");JlabelArray[0]=copyRight;
+		final JLabel L100 = new JLabel("100\u00A3");JlabelArray[1]=L100;
+		final JLabel L200 = new JLabel("200\u00A3");JlabelArray[2]=L200;
+		final JLabel L300 = new JLabel("300\u00A3");JlabelArray[3]=L300;
+		final JLabel L500 = new JLabel("500\u00A3");JlabelArray[4]=L500;
+		final JLabel L1000 = new JLabel("1000\u00A3");JlabelArray[5]=L1000;
+		final JLabel L2000 = new JLabel("2000\u00A3");JlabelArray[6]=L2000;
+		final JLabel L4000 = new JLabel("4000\u00A3");JlabelArray[7]=L4000;
+		final JLabel L8000 = new JLabel("8000\u00A3");JlabelArray[8]=L8000;
+		final JLabel L16000 = new JLabel("16000\u00A3");JlabelArray[9]=L16000;
+		final JLabel L32000 = new JLabel("32000\u00A3");JlabelArray[10]=L32000;
+		final JLabel L64000 = new JLabel("64000\u00A3");JlabelArray[11]=L64000;
+		final JLabel L125000 = new JLabel("125000\u00A3");JlabelArray[12]=L125000;
+		final JLabel L250000 = new JLabel("250000\u00A3");JlabelArray[13]=L250000;
+		final JLabel L500000 = new JLabel("500000\u00A3");JlabelArray[14]=L500000;
+		final JLabel L1000000 = new JLabel("1000000\u00A3");JlabelArray[15]=L1000000;
+		final JLabel LC= new JLabel("c.");JlabelArray[16]=LC;
+		final JLabel LA = new JLabel("a.");JlabelArray[17]=LA;
+		final JLabel QuestionLabel = new JLabel(currentQuestion);JlabelArray[18]=QuestionLabel;
+		final JLabel lblmistakeCounter = new JLabel("MISTAKE COUNTER = 5 ");JlabelArray[19]=lblmistakeCounter;
+		final JLabel LD = new JLabel("d.");JlabelArray[20]=LD;
+		final JLabel LB = new JLabel("b.");JlabelArray[21]=LB;
 		
-		int yAxis = 450;
-		for(int i=0;i<=14;i++)
+		int yAxis = 480;
+		int xAxis;
+		for(int i=0;i<=21;i++)
 		{	
 			JlabelArray[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
 			JlabelArray[i].setForeground(Color.RED);
-			JlabelArray[i].setBounds(0, yAxis, 90, 40);
+			JlabelArray[i].setBounds(0, yAxis, 120, 40);
 			frame.getContentPane().add(JlabelArray[i]);
 			yAxis-=30;
 			
 		}
 	
 		yAxis = 375;
-		for(int i=15;i<=18;i++)
+		xAxis = 108;
+		for(int i=16;i<=21;i++)
 		{	
 			JlabelArray[i].setFont(new Font("Tahoma", Font.BOLD| Font.ITALIC, 20));
 			JlabelArray[i].setForeground(Color.WHITE);
-			JlabelArray[i].setBounds(108, yAxis, 950, 60);
+			JlabelArray[i].setBounds(xAxis, yAxis, 950, 60);
 			frame.getContentPane().add(JlabelArray[i]);
 			yAxis-=100;
-			
+			if(i==19)
+			{	yAxis=375;
+				xAxis=570;		
+			}	
 		}
-		JLabel lblb = new JLabel("b.");
-		lblb.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblb.setForeground(Color.WHITE);
-		lblb.setBounds(570, 275, 50, 60);
-		frame.getContentPane().add(lblb);
-		
-		JLabel lblD = new JLabel("d.");
-		lblD.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblD.setForeground(Color.WHITE);
-		lblD.setBounds(568, 375, 50, 60);
-		frame.getContentPane().add(lblD);
 
 		//------------------------ Answer buttons variables  ------------------------------------------------
 
-		final JButton AnswerButtonOne = new JButton(answersOptions[0]);
-		AnswerButtonOne.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
-		final JButton AnswerButtonTwo = new JButton(answersOptions[1]);
-		AnswerButtonTwo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
-		final JButton AnswerButtonThree = new JButton(answersOptions[2]);
-		AnswerButtonThree.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
-		final JButton AnswerButtonFour = new JButton(answersOptions[3]);		
-		AnswerButtonFour.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
+		final JButton answerButtonOne = new JButton(answerOptionArray[0]);
+		answerButtonOne.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
+		final JButton answerButtonTwo = new JButton(answerOptionArray[1]);
+		answerButtonTwo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
+		final JButton answerButtonThree = new JButton(answerOptionArray[2]);
+		answerButtonThree.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
+		final JButton answerButtonFour = new JButton(answerOptionArray[3]);		
+		answerButtonFour.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
 
 
 		//------------------------------- Answer button one -------------------------------------------------
+		yAxis=280;
+		xAxis=140;
+		JButton[] JButtonArray = new JButton[4];
+		JButtonArray[0] = answerButtonOne;
+		JButtonArray[1] = answerButtonTwo;
+		JButtonArray[2] = answerButtonThree;
+		JButtonArray[3] = answerButtonFour;	
+		for(int i=0;i<=3;i++)
+		{
+			JButtonArray[i].setBounds(xAxis, yAxis, 300, 50);
+			JButtonArray[i].setForeground(Color.BLACK);
+			JButtonArray[i].setBackground(Color.RED);
+			frame.getContentPane().add(JButtonArray[i]);
+			yAxis+=100;
+			if(i==1)
+			{	yAxis=280;
+				xAxis=620;
+			}
+		
+		}
 
-		AnswerButtonOne.setBounds(140, 280, 300, 50);
-		AnswerButtonOne.setForeground(Color.BLACK);
-		AnswerButtonOne.setBackground(Color.RED);
-		frame.getContentPane().add(AnswerButtonOne);
-
-		AnswerButtonOne.addActionListener(new ActionListener()  {
+		answerButtonOne.addActionListener(new ActionListener()  {
 			public void actionPerformed(ActionEvent arg0) {
+				
 
-
-				if (AnswerButtonOne.getText().equals(correctAnswer))
+				if (answerButtonOne.getText().equals(correctAnswer))
 				{	
 					questionCounter++;		
 					int randNum = moneyTimeMethods.colorChanger("yellow",L100, L200, L300, L500,
 							L1000, L2000, L4000, L8000, L16000, L32000
 							,L64000,L125000,L250000, L500000, L1000000);
-					moneyTimeMethods.newQuestion(randNum,AnswerButtonOne,AnswerButtonTwo,AnswerButtonThree,AnswerButtonFour,QuestionLabel);
+					moneyTimeMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
 
 				}
 				else
 				{
 					mistakeCounter--;
 					moneyTimeMethods.mistakeAdujster(lblmistakeCounter);
-
 
 				}
 
@@ -156,23 +167,16 @@ public class moneyTimeMain {
 
 		//--------------------------------- Answer button two -----------------------------------------------
 
-		AnswerButtonTwo.setBounds(620, 280, 300, 50);
-		AnswerButtonTwo.setForeground(Color.BLACK);
-		AnswerButtonTwo.setBackground(Color.RED);
-		frame.getContentPane().add(AnswerButtonTwo);
-
-		AnswerButtonTwo.addActionListener(new ActionListener() {
+		answerButtonTwo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				if (AnswerButtonTwo.getText().equals(correctAnswer))
+				if (answerButtonTwo.getText().equals(correctAnswer))
 				{	
 					questionCounter++;		
 					int randNum = moneyTimeMethods.colorChanger("yellow",L100, L200, L300, L500,
 							L1000, L2000, L4000, L8000, L16000, L32000
 							,L64000,L125000,L250000, L500000, L1000000);
-					moneyTimeMethods.newQuestion(randNum,AnswerButtonOne,AnswerButtonTwo,AnswerButtonThree,AnswerButtonFour,QuestionLabel);
-
-
+					moneyTimeMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
 
 				}
 				else
@@ -187,23 +191,16 @@ public class moneyTimeMain {
 
 		//-------------------------------- Answer button three ----------------------------------------------
 
-		AnswerButtonThree.setBounds(140, 380, 300, 50);
-		AnswerButtonThree.setForeground(Color.BLACK);
-		AnswerButtonThree.setBackground(Color.RED);
-		frame.getContentPane().add(AnswerButtonThree);
-
-		AnswerButtonThree.addActionListener(new ActionListener() {
+		answerButtonThree.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				if (AnswerButtonThree.getText().equals(correctAnswer))
+				if (answerButtonThree.getText().equals(correctAnswer))
 				{	
 					questionCounter++;		
 					int randNum = moneyTimeMethods.colorChanger("yellow",L100, L200, L300, L500,
 							L1000, L2000, L4000, L8000, L16000, L32000
 							,L64000,L125000,L250000, L500000, L1000000);
-					moneyTimeMethods.newQuestion(randNum,AnswerButtonOne,AnswerButtonTwo,AnswerButtonThree,AnswerButtonFour,QuestionLabel);
-
-
+					moneyTimeMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
 				}
 				else
 				{
@@ -217,21 +214,16 @@ public class moneyTimeMain {
 
 		//--------------------------------- Answer button four ----------------------------------------------
 
-		AnswerButtonFour.setBounds(620, 380, 300, 50);
-		AnswerButtonFour.setForeground(Color.BLACK);
-		AnswerButtonFour.setBackground(Color.RED);
-		frame.getContentPane().add(AnswerButtonFour); 
-
-		AnswerButtonFour.addActionListener(new ActionListener() {
+		answerButtonFour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				if (AnswerButtonFour.getText().equals(correctAnswer))
+				if (answerButtonFour.getText().equals(correctAnswer))
 				{	
 					questionCounter++;		
 					int randNum = moneyTimeMethods.colorChanger("yellow",L100, L200, L300, L500,
 							L1000, L2000, L4000, L8000, L16000, L32000
 							,L64000,L125000,L250000, L500000, L1000000);
-					moneyTimeMethods.newQuestion(randNum,AnswerButtonOne,AnswerButtonTwo,AnswerButtonThree,AnswerButtonFour,QuestionLabel);
+					moneyTimeMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
 
 				}
 				else
@@ -285,31 +277,31 @@ public class moneyTimeMain {
 		FiftyFifty.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{	
-				if (AnswerButtonOne.getText().equals(correctAnswer))
+				if (answerButtonOne.getText().equals(correctAnswer))
 				{
-					AnswerButtonOne.setBackground(Color.YELLOW);
-					AnswerButtonFour.setBackground(Color.YELLOW);
+					answerButtonOne.setBackground(Color.YELLOW);
+					answerButtonFour.setBackground(Color.YELLOW);
 				}
 
 
-				else if (AnswerButtonTwo.getText().equals(correctAnswer))
+				else if (answerButtonTwo.getText().equals(correctAnswer))
 				{
-					AnswerButtonTwo.setBackground(Color.YELLOW);
-					AnswerButtonOne.setBackground(Color.YELLOW);
+					answerButtonTwo.setBackground(Color.YELLOW);
+					answerButtonOne.setBackground(Color.YELLOW);
 				}
 
 
-				else if (AnswerButtonThree.getText().equals(correctAnswer))
+				else if (answerButtonThree.getText().equals(correctAnswer))
 				{
-					AnswerButtonThree.setBackground(Color.YELLOW);
-					AnswerButtonFour.setBackground(Color.YELLOW);
+					answerButtonThree.setBackground(Color.YELLOW);
+					answerButtonFour.setBackground(Color.YELLOW);
 				}
 
 
-				else if(AnswerButtonFour.getText().equals(correctAnswer))
+				else if(answerButtonFour.getText().equals(correctAnswer))
 				{
-					AnswerButtonFour.setBackground(Color.YELLOW);
-					AnswerButtonTwo.setBackground(Color.YELLOW);
+					answerButtonFour.setBackground(Color.YELLOW);
+					answerButtonTwo.setBackground(Color.YELLOW);
 				}
 
 				FiftyFifty.setEnabled(false);
@@ -380,7 +372,8 @@ public class moneyTimeMain {
 		pictureLabel.setIcon(new ImageIcon(img));
 		pictureLabel.setBounds(0, 30, 1080, 523);
 		frame.getContentPane().add(pictureLabel);
-
+		
+	
 
 		//-------------------------- JMenu Bar --------------------------------------------------------------
 
@@ -402,7 +395,7 @@ public class moneyTimeMain {
 				int randNum = moneyTimeMethods.colorChanger("red",L100, L200, L300, L500,
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
-				moneyTimeMethods.newQuestion(randNum,AnswerButtonOne,AnswerButtonTwo,AnswerButtonThree,AnswerButtonFour,QuestionLabel);
+				moneyTimeMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
 				lblmistakeCounter.setText("MISTAKE COUNTER = 10 ");
 				FiftyFifty.setEnabled(true);
 				Audience.setEnabled(true);
@@ -424,7 +417,7 @@ public class moneyTimeMain {
 				int randNum = moneyTimeMethods.colorChanger("red",L100, L200, L300, L500,
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
-				moneyTimeMethods.newQuestion(randNum,AnswerButtonOne,AnswerButtonTwo,AnswerButtonThree,AnswerButtonFour,QuestionLabel);
+				moneyTimeMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
 				lblmistakeCounter.setText("MISTAKE COUNTER =3  ");
 				FiftyFifty.setEnabled(true);
 				Audience.setEnabled(true);
@@ -453,7 +446,7 @@ public class moneyTimeMain {
 				int randNum = moneyTimeMethods.colorChanger("red",L100, L200, L300, L500,
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
-				moneyTimeMethods.newQuestion(randNum,AnswerButtonOne,AnswerButtonTwo,AnswerButtonThree,AnswerButtonFour,QuestionLabel);
+				moneyTimeMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
 				lblmistakeCounter.setText("MISTAKE COUNTER = 5 ");
 				FiftyFifty.setEnabled(true);
 				Audience.setEnabled(true);
@@ -469,8 +462,12 @@ public class moneyTimeMain {
 		information.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
-				JOptionPane.showMessageDialog(frame, "<html>For more information please vist "
-						+ "\n http://en.wikipedia.org/wiki/Who_Wants_to_Be_a_Millionaire%3F ");
+				try
+				{
+					Desktop.getDesktop().browse(new URL("http:en.wikipedia.org/wiki/Who_Wants_to_Be_a_Millionaire%3F ").toURI());
+				}
+				catch(Exception e)
+				{}
 			}
 
 		});
@@ -482,7 +479,4 @@ public class moneyTimeMain {
 
 
 	}
-
-
-
 }
