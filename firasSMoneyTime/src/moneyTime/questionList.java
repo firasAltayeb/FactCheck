@@ -1,6 +1,7 @@
 package moneyTime;
 
 public class questionList {
+	// Assigns QuestionsList to all the questions used for the game as strings.
 	public String[] createArray(){
 		String[] QuestionsList = new String[48];
 		QuestionsList[0] = "Which disease devastated livestock across the UK during 2001?";

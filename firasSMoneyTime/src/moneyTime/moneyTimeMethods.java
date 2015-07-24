@@ -8,7 +8,8 @@ import javax.swing.JOptionPane;
 public class moneyTimeMethods extends moneyTimeMain
 {
 	 
-	
+	/*The  colorChanger method  initialises randNum to be either 0,1 or 2 and returns it,  
+	The  colorChanger method also changes all the JLabels which were received as an arguments to the colour which was received as an argument*/
 	public static int colorChanger(String color,JLabel L100,JLabel L200,JLabel L300,JLabel L500,
 			JLabel L1000,JLabel L2000,JLabel L4000,JLabel L8000,JLabel L16000,JLabel L32000
 			,JLabel L64000,JLabel L125000,JLabel L250000,JLabel L500000,JLabel L1000000)
@@ -69,7 +70,10 @@ public class moneyTimeMethods extends moneyTimeMain
 
 	}
 	
-	
+	/*Assigns currentQuestion to a question based on the integer which is received as an argument
+	 and then assigns answerOptionArray and correctAnswer based on the currentQuestion's question,
+	 The newQuestion method also assigns the options to the four answer buttons and colours their 
+	 background to red  */
 	public static void newQuestion(int r,JButton AnswerButtonOne,JButton AnswerButtonTwo,JButton AnswerButtonThree,
 			JButton AnswerButtonFour,JLabel QuestionLabel)
 	{
@@ -89,7 +93,8 @@ public class moneyTimeMethods extends moneyTimeMain
 
 	}
 
-
+	/*The mistakeAdujster method sets lblmistakeCounter text based on the mistakeCounter,
+	  The mistakeAdujster method also exits the game once the mistakeCounter integers reaches 0*/
 	public static void mistakeAdujster(JLabel lblmistakeCounter)
 	{
 		JOptionPane.showMessageDialog(null, "Wrong answer , please try again");

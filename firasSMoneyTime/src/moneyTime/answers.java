@@ -3,159 +3,163 @@ package moneyTime;
 public class answers {
 	questionList qusListClass = new questionList();
 	String[] qusList = qusListClass.createArray();
-
+	/*The getCorrectAnswer method returns the current question's correct answer 
+	 by comparing the current question with the qusList array strings, if the current question
+	 matches a question in the qusList array the matched question's answer is returned as string*/
 	public String getCorrectAnswer(String Question){
-		
-		String ans1 = "";
+		String correctAnswer = "";
 		if (Question.equals(qusList[0])){
-			ans1 = "Foot-and-mouth";
+			correctAnswer = "Foot-and-mouth";
 		} 
 		if (Question.equals(qusList[1])){
-			ans1 = "Anaconda";
+			correctAnswer = "Anaconda";
 		}
 		if (Question.equals(qusList[2])){
-			ans1 = "Frogmen";
+			correctAnswer = "Frogmen";
 		}
 		if (Question.equals(qusList[3])){
-			ans1 = "Cup of tea";
+			correctAnswer = "Cup of tea";
 		}
 		if (Question.equals(qusList[4])){
-			ans1 = "Almost certain";
+			correctAnswer = "Almost certain";
 		}
 		if (Question.equals(qusList[5])){
-			ans1 = "Burrowing";
+			correctAnswer = "Burrowing";
 		}
 		if (Question.equals(qusList[6])){
-			ans1 = "Dashboard";
+			correctAnswer = "Dashboard";
 		}
 		if (Question.equals(qusList[7])){
-			ans1 = "Crash helmet";
+			correctAnswer = "Crash helmet";
 		}
 		if (Question.equals(qusList[8])){
-			ans1 = "On the rocks";
+			correctAnswer = "On the rocks";
 		}
 		if (Question.equals(qusList[9])){
-			ans1 = "Weir";
+			correctAnswer = "Weir";
 		}
 		if (Question.equals(qusList[10])){
-			ans1 = "Puppy love";
+			correctAnswer = "Puppy love";
 		}
 		if (Question.equals(qusList[11])){
-			ans1 = "Ace";
+			correctAnswer = "Ace";
 		}
 		if (Question.equals(qusList[12])){
-			ans1 = "The ice";
+			correctAnswer = "The ice";
 		} 
 		if (Question.equals(qusList[13])){
-			ans1 = "Cheese";
+			correctAnswer = "Cheese";
 		}
 		if (Question.equals(qusList[14])){
-			ans1 = "Crossword";
+			correctAnswer = "Crossword";
 		}
 		if (Question.equals(qusList[15])){
-			ans1 = "Cheese";
+			correctAnswer = "Cheese";
 		}
 		if (Question.equals(qusList[16])){
-			ans1 = "Old Spice";
+			correctAnswer = "Old Spice";
 		} 
 		if (Question.equals(qusList[17])){
-			ans1 = "Victim";
+			correctAnswer = "Victim";
 		}
 		if (Question.equals(qusList[18])){
-			ans1 = "Food blender";
+			correctAnswer = "Food blender";
 		}
 		if (Question.equals(qusList[19])){
-			ans1 = "Blockbuster";
+			correctAnswer = "Blockbuster";
 		} 
 		if (Question.equals(qusList[20])){
-			ans1 = "Muzzle";
+			correctAnswer = "Muzzle";
 		}
 		if (Question.equals(qusList[21])){
-			ans1 = "Ivory";
+			correctAnswer = "Ivory";
 		} 
 		if (Question.equals(qusList[22])){
-			ans1 = "Boil";
+			correctAnswer = "Boil";
 		}
 		if (Question.equals(qusList[23])){
-			ans1 = "Monk";
+			correctAnswer = "Monk";
 		}
 		if (Question.equals(qusList[24])){
-			ans1 = "Finding Nemo";
+			correctAnswer = "Finding Nemo";
 		} 
 		if (Question.equals(qusList[25])){
-			ans1 = "Barry White";
+			correctAnswer = "Barry White";
 		}
 		if (Question.equals(qusList[26])){
-			ans1 = "Justin Timberlake";
+			correctAnswer = "Justin Timberlake";
 		}
 		if (Question.equals(qusList[27])){
-			ans1 = "Clannad";
+			correctAnswer = "Clannad";
 		} 
 		if (Question.equals(qusList[28])){
-			ans1 = "Dynamics";
+			correctAnswer = "Dynamics";
 		}
 		if (Question.equals(qusList[29])){
-			ans1 = "Wilburys";
+			correctAnswer = "Wilburys";
 		}
 		if (Question.equals(qusList[30])){
-			ans1 = "Frigate bird";
+			correctAnswer = "Frigate bird";
 		} 
 		if (Question.equals(qusList[31])){
-			ans1 = "Bruce Almighty";
+			correctAnswer = "Bruce Almighty";
 		}
 		if (Question.equals(qusList[32])){
-			ans1 = "Elton John";
+			correctAnswer = "Elton John";
 		}
 		if (Question.equals(qusList[33])){
-			ans1 = "Bunker Hill";
+			correctAnswer = "Bunker Hill";
 		} 
 		if (Question.equals(qusList[34])){
-			ans1 = "Barry";
+			correctAnswer = "Barry";
 		}
 		if (Question.equals(qusList[35])){
-			ans1 = "Cornwall";
+			correctAnswer = "Cornwall";
 		}
 		if (Question.equals(qusList[36])){
-			ans1 = "Drink it";
+			correctAnswer = "Drink it";
 		}
 		if (Question.equals(qusList[37])){
-			ans1 = "Weightlifting";
+			correctAnswer = "Weightlifting";
 		}
 		if (Question.equals(qusList[38])){ 
-			ans1 = "James II";
+			correctAnswer = "James II";
 		}
 		if (Question.equals(qusList[39])){
-			ans1 = "Mojave Desert";
+			correctAnswer = "Mojave Desert";
 		} 
 		if (Question.equals(qusList[40])){
-			ans1 = "Iowa";
+			correctAnswer = "Iowa";
 		}
 		if (Question.equals(qusList[41])){
-			ans1 = "Arizona";
+			correctAnswer = "Arizona";
 		}
 		if (Question.equals(qusList[42])){
-			ans1 = "Volleyball";
+			correctAnswer = "Volleyball";
 		} 
 		if (Question.equals(qusList[43])){
-			ans1 = "Ring";
+			correctAnswer = "Ring";
 		}
 		if (Question.equals(qusList[44])){
-			ans1 = "Gaelic football";
+			correctAnswer = "Gaelic football";
 		}
 		if (Question.equals(qusList[45])){
-			ans1 = "Dodecanese";
+			correctAnswer = "Dodecanese";
 		} 
 		if (Question.equals(qusList[46])){
-			ans1 = "Venice";
+			correctAnswer = "Venice";
 		}
 		if (Question.equals(qusList[47])){
-			ans1 = "Northumberland";
+			correctAnswer = "Northumberland";
 		}
 
-		return ans1;
+		return correctAnswer;
 
 	}
 	//------------------------------------------------------------------------------------------------------------------------
+	/*The getOptions method returns the current question's options
+	 by comparing the current question with the qusList array strings, if the current question
+	 matches a question in the qusList array the matched question's option is returned as an array*/
 	public String[] getOptions(String Question){
 		String ans1 = "";
 		String ans2 = "";

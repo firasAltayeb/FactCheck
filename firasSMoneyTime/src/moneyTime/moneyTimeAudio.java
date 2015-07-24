@@ -11,6 +11,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class moneyTimeAudio 
 {
+	//Plays the mtLosingSound.wav music file when instructed.
 	public void losingSound()
 	{
 		try {
@@ -33,6 +34,7 @@ public class moneyTimeAudio
 
 	}
 	
+	//Plays the mtWinningSound.wav music file when instructed.
 	public void winningSound()
 	{
 		try {

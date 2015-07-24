@@ -13,11 +13,14 @@ public class moneyTimeMain {
 	static answers currentQuestionAnswers = new answers();
 	static moneyTimeAudio audio = new moneyTimeAudio();
 	static Random random = new Random();
+	// qusListArray is an array that holds the questions provided by the questionList class.
 	static String[] qusListArray = allQuestions.createArray();
 	static String[] answerOptionArray;
 	static String correctAnswer;
-	static String currentQuestion; 
+	static String currentQuestion;
+	// questionCounter stores the progress of the game, the higher questionCounter becomes the closer end game gets.
 	static int questionCounter = 0;
+	//mistakeCounter determine the difficulty of the game, the lower the mistakeCounter becomes the harder the game gets. 
 	static int mistakeCounter = 5;
 
 
@@ -41,8 +44,11 @@ public class moneyTimeMain {
 
 		//---------------------------- First Implementation of the values -------------------------------
 		final int r = random.nextInt(3);
+		// currentQuestion is assign a random question from the three first questions
 		currentQuestion = qusListArray[r];
+		// answerOptionArray is assigned an array which holds the current question's answer options by the using the currentQuestion.
 		answerOptionArray = currentQuestionAnswers.getOptions(currentQuestion);
+		//correctAnswer is assigned a string which holds the current question's correct answer by the using the currentQuestion.
 		correctAnswer = currentQuestionAnswers.getCorrectAnswer(currentQuestion);
 
 		//---------------------------- JFrame Implementation  -------------------------------------------
@@ -55,7 +61,7 @@ public class moneyTimeMain {
 
 		//-----------------------------  Jlabels --------------------------------------------------------
 
-
+		//JlabelArray holds all the labels used in the class to allow the following for loops to print the labels using less repetitive code.
 		JLabel[] JlabelArray = new JLabel[22];
 		final JLabel copyRight = new JLabel("@FirasAltayeb");JlabelArray[0]=copyRight;
 		final JLabel L100 = new JLabel("100\u00A3");JlabelArray[1]=L100;
@@ -82,7 +88,8 @@ public class moneyTimeMain {
 		
 		int yAxis = 480;
 		int xAxis;
-		for(int i=0;i<=21;i++)
+		//the following for loop prints the first 16 labels in the JlabelArray with the same font and foreground but with different bounds.
+		for(int i=0;i<=16;i++)
 		{	
 			JlabelArray[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
 			JlabelArray[i].setForeground(Color.RED);
@@ -94,6 +101,7 @@ public class moneyTimeMain {
 	
 		yAxis = 375;
 		xAxis = 108;
+		//the following for loop prints the last 5 labels in the JlabelArray with the same font and foreground but with different bounds.
 		for(int i=16;i<=21;i++)
 		{	
 			JlabelArray[i].setFont(new Font("Tahoma", Font.BOLD| Font.ITALIC, 20));
@@ -122,11 +130,13 @@ public class moneyTimeMain {
 		//------------------------------- Answer button one -------------------------------------------------
 		yAxis=280;
 		xAxis=140;
+		//JButtonArray holds the four similar buttons mentioned above to allow the following for loops to print the buttons using less repetitive code.
 		JButton[] JButtonArray = new JButton[4];
 		JButtonArray[0] = answerButtonOne;
 		JButtonArray[1] = answerButtonTwo;
 		JButtonArray[2] = answerButtonThree;
 		JButtonArray[3] = answerButtonFour;	
+		//the following for loop prints the buttons in the JButtonArray with the same background and foreground but with different bounds.
 		for(int i=0;i<=3;i++)
 		{
 			JButtonArray[i].setBounds(xAxis, yAxis, 300, 50);
@@ -237,18 +247,33 @@ public class moneyTimeMain {
 
 
 		//------------------------------  Extra buttons -----------------------------------------------------
+	
 		JButton CollectCashButton = new JButton("Collect Cash");
-		CollectCashButton.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
-		CollectCashButton.setBounds(810, 0, 270, 30);
-		frame.getContentPane().add(CollectCashButton);
+		final JButton FiftyFifty = new JButton("50/50");
+		final JButton Audience = new JButton("Audience");
+		JButton ExitB = new JButton("Exit");
+		
+	
+		xAxis=810;
+		//JButtonArray2 holds the four similar buttons mentioned above to allow the following for loops to print the buttons using less repetitive code.
+		JButton[] JButtonArray2 = new JButton[4];
+		JButtonArray2[0] = CollectCashButton;
+		JButtonArray2[1] = FiftyFifty;
+		JButtonArray2[2] = Audience;
+		JButtonArray2[3] = ExitB;
+		//the following for loop prints the buttons in the JButtonArray2 with the same background and foreground but with different bounds.
+		for(int i=0;i<=3;i++){
+			JButtonArray2[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
+			JButtonArray2[i].setBounds(xAxis, 0, 270, 30);
+			frame.getContentPane().add(JButtonArray2[i]);
+			xAxis-=270;
+		}
+		// Allows the user to exit the game with the current amount of money the user has gained using questionCounter
 		CollectCashButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
-
 				audio.winningSound();
 
 				switch (questionCounter){
-
 				case 1:	JOptionPane.showMessageDialog(null, "You won 100£");System.exit(0);
 				case 2:	JOptionPane.showMessageDialog(null, "You won 200£");System.exit(0);
 				case 3:	JOptionPane.showMessageDialog(null, "You won 300£");System.exit(0);
@@ -264,16 +289,13 @@ public class moneyTimeMain {
 				case 13: JOptionPane.showMessageDialog(null, "You won 250000£");System.exit(0);
 				case 14: JOptionPane.showMessageDialog(null, "You won 500000£");System.exit(0);	
 				case 15: JOptionPane.showMessageDialog(null, "You won 1000000£");System.exit(0);
-
 				}
 
 			}
 		});
-
-		final JButton FiftyFifty = new JButton("50/50");
-		FiftyFifty.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
-		FiftyFifty.setBounds(270, 0, 270, 30);
-		frame.getContentPane().add(FiftyFifty);
+		
+		/*Changes the background of the current question's correct answer to yellow plus one other random button,
+		after the button is used the button becomes disabled*/
 		FiftyFifty.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{	
@@ -283,20 +305,17 @@ public class moneyTimeMain {
 					answerButtonFour.setBackground(Color.YELLOW);
 				}
 
-
 				else if (answerButtonTwo.getText().equals(correctAnswer))
 				{
 					answerButtonTwo.setBackground(Color.YELLOW);
 					answerButtonOne.setBackground(Color.YELLOW);
 				}
 
-
 				else if (answerButtonThree.getText().equals(correctAnswer))
 				{
 					answerButtonThree.setBackground(Color.YELLOW);
 					answerButtonFour.setBackground(Color.YELLOW);
 				}
-
 
 				else if(answerButtonFour.getText().equals(correctAnswer))
 				{
@@ -307,12 +326,8 @@ public class moneyTimeMain {
 				FiftyFifty.setEnabled(false);
 			}
 		});
-
-
-		final JButton Audience = new JButton("Audience");
-		Audience.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
-		Audience.setBounds(540, 0, 270, 30);
-		frame.getContentPane().add(Audience);
+		
+		
 		Audience.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{	
@@ -341,12 +356,8 @@ public class moneyTimeMain {
 
 			}
 		});
-
-
-		JButton ExitB = new JButton("Exit");
-		ExitB.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
-		ExitB.setBounds(0, 0, 270, 30);
-		frame.getContentPane().add(ExitB);
+		/*When ExitB is clicked the game promotes a frame asking the user if he wants to quit or not
+		if the user chose yes the game will close and if the user chose no nothing will happen.*/
 		ExitB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
@@ -366,6 +377,7 @@ public class moneyTimeMain {
 			}
 		});
 
+		//pictureLabel stores the background picture of the game and prints it.
 		JLabel pictureLabel = new JLabel("");
 		pictureLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		Image img = new ImageIcon(this.getClass().getResource("/WM.jpg")).getImage();
@@ -375,7 +387,7 @@ public class moneyTimeMain {
 		
 	
 
-		//-------------------------- JMenu Bar --------------------------------------------------------------
+		//-------------------------- JMenuBar --------------------------------------------------------------
 
 		JMenuBar menuBar = new JMenuBar();
 		
@@ -383,10 +395,34 @@ public class moneyTimeMain {
 		difficulty.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 18));
 		difficulty.setMnemonic(KeyEvent.VK_A);
 		
+		JMenu help = new JMenu("Help");
+		help.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 18));
+		help.setMnemonic(KeyEvent.VK_A);
+		
 		JMenuItem easy = new JMenuItem("easy");
-		easy.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 18));
-		easy.setAccelerator(KeyStroke.getKeyStroke
-				(KeyEvent.VK_1,ActionEvent.ALT_MASK));
+		JMenuItem hard = new JMenuItem("Hard");
+		JMenuItem restart = new JMenuItem("Restart");
+		JMenuItem information = new JMenuItem("Information");
+		
+		//JMenuItemArray holds four  JMenuItem mentioned above to allow the following for loops to print the buttons using less repetitive code.
+		JMenuItem[] JMenuItemArray = new JMenuItem[4];
+		JMenuItemArray[0] = easy;
+		JMenuItemArray[1] = hard;
+		JMenuItemArray[2] = restart;
+		JMenuItemArray[3] = information;
+		//the following for loop prints the JMenuItems in the JMenuItemArray with the same font and accelerator but with different bounds.
+		for(int i=0;i<=3;i++){
+			JMenuItemArray[i].setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 18));
+			JMenuItemArray[i].setAccelerator(KeyStroke.getKeyStroke
+				(KeyEvent.VK_1,ActionEvent.ALT_MASK));	
+		}
+		
+		
+		/*The easy menuItem restarts the game with easier difficulty by assigning mistakeCounter to 10 and by
+		 assigning the questionCounter to 0, all the labels which are recoloured to yellow return to
+		 normal by sending them as an argument to the colorChanger method which will colour all
+		 the labels to red and assign randNum to either 0 or 1 or 2 which will be used to assign a new
+		 question to questionLabel and options to the answer buttons  */
 		easy.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
@@ -403,12 +439,12 @@ public class moneyTimeMain {
 			}
 
 		});
-
-
-		JMenuItem hard = new JMenuItem("Hard");
-		hard.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 18));
-		hard.setAccelerator(KeyStroke.getKeyStroke
-				(KeyEvent.VK_1,ActionEvent.ALT_MASK));
+		
+		/*The hard menuItem restarts the game with harder difficulty by assigning mistakeCounter to 3 and by
+		 assigning the questionCounter to 0, all the labels which are recoloured to yellow return to
+		 normal by sending them as an argument to the colorChanger method which will colour all
+		 the labels to red and assign randNum to either 0 or 1 or 2 which will be used to assign a new
+		 question to questionLabel and options to the answer buttons  */
 		hard.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
@@ -425,19 +461,12 @@ public class moneyTimeMain {
 			}
 
 		});
-
-		difficulty.add(easy);
-		difficulty.add(hard);
-		menuBar.add(difficulty);
-
-		JMenu help = new JMenu("Help");
-		help.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 18));
-		help.setMnemonic(KeyEvent.VK_A);
 		
-		JMenuItem restart = new JMenuItem("Restart");
-		restart.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 18));
-		restart.setAccelerator(KeyStroke.getKeyStroke
-				(KeyEvent.VK_1,ActionEvent.ALT_MASK));
+		/*The restart menuItem restarts the game with the same difficulty by assigning mistakeCounter to 5 and by
+		 assigning the questionCounter to 0, all the labels which are recoloured to yellow return to
+		 normal by sending them as an argument to the colorChanger method which will colour all
+		 the labels to red and assign randNum to either 0 or 1 or 2 which will be used to assign a new
+		 question to questionLabel and options to the answer buttons  */
 		restart.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
@@ -454,11 +483,7 @@ public class moneyTimeMain {
 			}
 
 		});
-
-		JMenuItem information = new JMenuItem("Information");
-		information.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 18));
-		information.setAccelerator(KeyStroke.getKeyStroke
-				(KeyEvent.VK_1,ActionEvent.ALT_MASK));
+		// Opens the user's browser to a URL page which shows information about the game.
 		information.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
@@ -472,11 +497,13 @@ public class moneyTimeMain {
 
 		});
 
+		difficulty.add(easy);
+		difficulty.add(hard);
 		help.add(restart);
 		help.add(information);
+		menuBar.add(difficulty);
 		menuBar.add(help);
 		frame.setJMenuBar(menuBar);
-
-
+		
 	}
 }
