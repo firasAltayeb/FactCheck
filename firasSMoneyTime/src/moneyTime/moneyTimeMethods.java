@@ -1,12 +1,18 @@
 package moneyTime;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-public class moneyTimeMethods extends moneyTimeMain
+
+public class moneyTimeMethods extends moneyTimeMain // implements ActionListener
 {
+
+	
 	 
 	/*The  colorChanger method  initialises randNum to be either 0,1 or 2 and returns it,  
 	The  colorChanger method also changes all the JLabels which were received as an arguments to the colour which was received as an argument*/
@@ -114,9 +120,28 @@ public class moneyTimeMethods extends moneyTimeMain
 		case 9: lblmistakeCounter.setText("MISTAKE COUNTER =9 ");break;
 		case 10: lblmistakeCounter.setText("MISTAKE COUNTER =10 ");}
 	}
-	
-	
 
-	
-	
+	/*public moneyTimeMethods(String SentActionNumber){
+		ActionNumber = SentActionNumber;
+	};
+	public void actionPerformed(ActionEvent e) {
+
+		if (ActionNumber.equals(correctAnswer))
+		{	
+			questionCounter++;		
+			int randNum = moneyTimeMethods.colorChanger("yellow",L100, L200, L300, L500,
+					L1000, L2000, L4000, L8000, L16000, L32000
+					,L64000,L125000,L250000, L500000, L1000000);
+			moneyTimeMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
+
+		}
+		else
+		{
+			mistakeCounter--;
+			moneyTimeMethods.mistakeAdujster(lblmistakeCounter);
+
+		}
+	}*/
+
+
 }
