@@ -1,19 +1,39 @@
 package moneyTime;
-
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import java.util.Random;
 
-
-public class moneyTimeMethods extends moneyTimeMain // implements ActionListener
+public class moneyTimeMethods // implements ActionListener
 {
 
-	
-	 
+	static questionList allQuestions = new questionList();
+	static answers currentQuestionAnswers = new answers();
+	static moneyTimeAudio audio = new moneyTimeAudio();
+	static Random random = new Random();
+	// qusListArray is an array that holds the questions provided by the questionList class.
+	static String[] qusListArray = allQuestions.createArray();
+	static String[] answerOptionArray;
+	static String correctAnswer;
+	static String currentQuestion;
+	// questionCounter stores the progress of the game, the higher questionCounter becomes the closer end game gets.
+	static int questionCounter = 0;
+	//mistakeCounter determine the difficulty of the game, the lower the mistakeCounter becomes the harder the game gets. 
+	static int mistakeCounter = 5;
+
+	public moneyTimeMethods()
+	{
+		int r = random.nextInt(3);
+		// currentQuestion is assign a random question from the three first questions
+		currentQuestion = qusListArray[r];
+		// answerOptionArray is assigned an array which holds the current question's answer options by the using the currentQuestion.
+		answerOptionArray = currentQuestionAnswers.getOptions(currentQuestion);
+		//correctAnswer is assigned a string which holds the current question's correct answer by the using the currentQuestion.
+		correctAnswer = currentQuestionAnswers.getCorrectAnswer(currentQuestion);
+	}
+
+
 	/*The  colorChanger method  initialises randNum to be either 0,1 or 2 and returns it,  
 	The  colorChanger method also changes all the JLabels which were received as an arguments to the colour which was received as an argument*/
 	public static int colorChanger(String color,JLabel L100,JLabel L200,JLabel L300,JLabel L500,
@@ -26,8 +46,8 @@ public class moneyTimeMethods extends moneyTimeMain // implements ActionListener
 		{
 
 			JOptionPane.showMessageDialog(null, "Correct answer");
-		
-		
+
+
 			audio.winningSound();
 
 			switch (questionCounter){	
@@ -75,7 +95,7 @@ public class moneyTimeMethods extends moneyTimeMain // implements ActionListener
 		return randNum;
 
 	}
-	
+
 	/*Assigns currentQuestion to a question based on the integer which is received as an argument
 	 and then assigns answerOptionArray and correctAnswer based on the currentQuestion's question,
 	 The newQuestion method also assigns the options to the four answer buttons and colours their 
@@ -104,7 +124,7 @@ public class moneyTimeMethods extends moneyTimeMain // implements ActionListener
 	public static void mistakeAdujster(JLabel lblmistakeCounter)
 	{
 		JOptionPane.showMessageDialog(null, "Wrong answer , please try again");
-		
+
 		audio.losingSound();
 		switch (mistakeCounter){	
 		case 0: lblmistakeCounter.setText("MISTAKE COUNTER =0 ");JOptionPane.showMessageDialog

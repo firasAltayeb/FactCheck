@@ -7,52 +7,26 @@ import java.net.URL;
 import java.util.Random;
 
 
-public class moneyTimeMain implements ActionListener{
+public class moneyTimeMain //implements ActionListener
+{
 
-	static questionList allQuestions = new questionList();
-	static answers currentQuestionAnswers = new answers();
-	static moneyTimeAudio audio = new moneyTimeAudio();
-	static Random random = new Random();
-	// qusListArray is an array that holds the questions provided by the questionList class.
-	static String[] qusListArray = allQuestions.createArray();
-	static String[] answerOptionArray;
-	static String correctAnswer;
-	static String currentQuestion;
-	// questionCounter stores the progress of the game, the higher questionCounter becomes the closer end game gets.
-	static int questionCounter = 0;
-	//mistakeCounter determine the difficulty of the game, the lower the mistakeCounter becomes the harder the game gets. 
-	static int mistakeCounter = 5;
+	Random random = new Random();
 	JLabel copyRight;JLabel L100;JLabel L200;JLabel L300;JLabel L500;JLabel L1000;JLabel L2000;JLabel L4000;
 	JLabel L8000;JLabel L16000;JLabel L32000;JLabel L64000;JLabel L125000;JLabel L250000;JLabel L500000;
 	JLabel L1000000;JLabel LC;JLabel LA;JLabel QuestionLabel;JLabel lblmistakeCounter;JLabel LD;JLabel LB;
 	JButton answerButtonOne;JButton answerButtonTwo;JButton answerButtonThree;JButton answerButtonFour;		
-	String ActionNumber;
+	
 
-	public static void main(String[] args){
+	public moneyTimeMain(final moneyTimeMethods MM){
 
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-
-				new moneyTimeMain();
-
-			}
-		});
-	}
-
-
-
-
-
-	public moneyTimeMain(){
-
-		//---------------------------- First Implementation of the values -------------------------------
+		/*---------------------------- First Implementation of the values -------------------------------
 		final int r = random.nextInt(3);
 		// currentQuestion is assign a random question from the three first questions
 		currentQuestion = qusListArray[r];
 		// answerOptionArray is assigned an array which holds the current question's answer options by the using the currentQuestion.
 		answerOptionArray = currentQuestionAnswers.getOptions(currentQuestion);
 		//correctAnswer is assigned a string which holds the current question's correct answer by the using the currentQuestion.
-		correctAnswer = currentQuestionAnswers.getCorrectAnswer(currentQuestion);
+		correctAnswer = currentQuestionAnswers.getCorrectAnswer(currentQuestion);*/
 
 		//---------------------------- JFrame Implementation  -------------------------------------------
 		final JFrame frame = new JFrame();
@@ -84,7 +58,7 @@ public class moneyTimeMain implements ActionListener{
 		L1000000 = new JLabel("1000000\u00A3");JlabelArray[15]=L1000000;
 		LC= new JLabel("c.");JlabelArray[16]=LC;
 		LA = new JLabel("a.");JlabelArray[17]=LA;
-		QuestionLabel = new JLabel(currentQuestion);JlabelArray[18]=QuestionLabel;
+		QuestionLabel = new JLabel(MM.currentQuestion);JlabelArray[18]=QuestionLabel;
 		lblmistakeCounter = new JLabel("MISTAKE COUNTER = 5 ");JlabelArray[19]=lblmistakeCounter;
 		LD = new JLabel("d.");JlabelArray[20]=LD;
 		LB = new JLabel("b.");JlabelArray[21]=LB;
@@ -120,10 +94,10 @@ public class moneyTimeMain implements ActionListener{
 
 		//------------------------ Answer buttons variables  ------------------------------------------------
 
-		answerButtonOne = new JButton(answerOptionArray[0]);
-		answerButtonTwo = new JButton(answerOptionArray[1]);
-		answerButtonThree = new JButton(answerOptionArray[2]);
-		answerButtonFour = new JButton(answerOptionArray[3]);		
+		answerButtonOne = new JButton(MM.answerOptionArray[0]);
+		answerButtonTwo = new JButton(MM.answerOptionArray[1]);
+		answerButtonThree = new JButton(MM.answerOptionArray[2]);
+		answerButtonFour = new JButton(MM.answerOptionArray[3]);		
 	
 		yAxis=280;
 		xAxis=140;
@@ -150,10 +124,10 @@ public class moneyTimeMain implements ActionListener{
 		}
 		
 		
-		answerButtonOne.addActionListener(this);
+		/*answerButtonOne.addActionListener(this);
 		answerButtonTwo.addActionListener(this);
 		answerButtonThree.addActionListener(this);
-		answerButtonFour.addActionListener(this);
+		answerButtonFour.addActionListener(this);*/
 
 		//------------------------------  Extra buttons -----------------------------------------------------
 	
@@ -162,7 +136,6 @@ public class moneyTimeMain implements ActionListener{
 		final JButton Audience = new JButton("Audience");
 		JButton ExitB = new JButton("Exit");
 		
-	
 		xAxis=810;
 		//JButtonArray2 holds the four similar buttons mentioned above to allow the following for loops to print the buttons using less repetitive code.
 		JButton[] JButtonArray2 = new JButton[4];
@@ -180,9 +153,8 @@ public class moneyTimeMain implements ActionListener{
 		// Allows the user to exit the game with the current amount of money the user has gained using questionCounter
 		CollectCashButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				audio.winningSound();
-
-				switch (questionCounter){
+			
+				switch (MM.questionCounter){
 				case 1:	JOptionPane.showMessageDialog(null, "You won 100£");System.exit(0);
 				case 2:	JOptionPane.showMessageDialog(null, "You won 200£");System.exit(0);
 				case 3:	JOptionPane.showMessageDialog(null, "You won 300£");System.exit(0);
@@ -208,25 +180,25 @@ public class moneyTimeMain implements ActionListener{
 		FiftyFifty.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{	
-				if (answerButtonOne.getText().equals(correctAnswer))
+				if (answerButtonOne.getText().equals(MM.correctAnswer))
 				{
 					answerButtonOne.setBackground(Color.YELLOW);
 					answerButtonFour.setBackground(Color.YELLOW);
 				}
 
-				else if (answerButtonTwo.getText().equals(correctAnswer))
+				else if (answerButtonTwo.getText().equals(MM.correctAnswer))
 				{
 					answerButtonTwo.setBackground(Color.YELLOW);
 					answerButtonOne.setBackground(Color.YELLOW);
 				}
 
-				else if (answerButtonThree.getText().equals(correctAnswer))
+				else if (answerButtonThree.getText().equals(MM.correctAnswer))
 				{
 					answerButtonThree.setBackground(Color.YELLOW);
 					answerButtonFour.setBackground(Color.YELLOW);
 				}
 
-				else if(answerButtonFour.getText().equals(correctAnswer))
+				else if(answerButtonFour.getText().equals(MM.correctAnswer))
 				{
 					answerButtonFour.setBackground(Color.YELLOW);
 					answerButtonTwo.setBackground(Color.YELLOW);
@@ -236,11 +208,9 @@ public class moneyTimeMain implements ActionListener{
 			}
 		});
 		
-		
 		Audience.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{	
-
 
 				JFrame AudienceFrame = new JFrame();
 				AudienceFrame.setSize(400, 300);
@@ -286,13 +256,17 @@ public class moneyTimeMain implements ActionListener{
 			}
 		});
 
-		//pictureLabel stores the background picture of the game and prints it.
+		ImageIcon picture = new ImageIcon("WM.jpg");
+		JLabel img = new JLabel(picture);
+		img.setBounds(0, 30, 1080, 523);
+		frame.getContentPane().add(img);
+		/*pictureLabel stores the background picture of the game and prints it.
 		JLabel pictureLabel = new JLabel("");
 		pictureLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		Image img = new ImageIcon(this.getClass().getResource("/WM.jpg")).getImage();
 		pictureLabel.setIcon(new ImageIcon(img));
 		pictureLabel.setBounds(0, 30, 1080, 523);
-		frame.getContentPane().add(pictureLabel);
+		frame.getContentPane().add(pictureLabel);*/
 		
 	
 
@@ -335,8 +309,8 @@ public class moneyTimeMain implements ActionListener{
 		easy.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
-				mistakeCounter = 10;
-				questionCounter = 0;
+				MM.mistakeCounter = 10;
+				MM.questionCounter = 0;
 				int randNum = moneyTimeMethods.colorChanger("red",L100, L200, L300, L500,
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
@@ -357,8 +331,8 @@ public class moneyTimeMain implements ActionListener{
 		hard.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
-				mistakeCounter = 3;
-				questionCounter = 0;
+				MM.mistakeCounter = 3;
+				MM.questionCounter = 0;
 				int randNum = moneyTimeMethods.colorChanger("red",L100, L200, L300, L500,
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
@@ -379,8 +353,8 @@ public class moneyTimeMain implements ActionListener{
 		restart.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
-				questionCounter = 0;
-				mistakeCounter = 5;
+				MM.questionCounter = 0;
+				MM.mistakeCounter = 5;
 				int randNum = moneyTimeMethods.colorChanger("red",L100, L200, L300, L500,
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
@@ -416,7 +390,7 @@ public class moneyTimeMain implements ActionListener{
 		
 	}
 
-	public void actionPerformed(ActionEvent e) {
+	/*public void actionPerformed(ActionEvent e) {
 		
 		System.out.println(e.getActionCommand());
 		
@@ -435,6 +409,5 @@ public class moneyTimeMain implements ActionListener{
 			moneyTimeMethods.mistakeAdujster(lblmistakeCounter);
 
 		}
-	
-	}
+	}*/
 }
