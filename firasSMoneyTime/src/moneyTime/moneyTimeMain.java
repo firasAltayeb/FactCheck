@@ -7,7 +7,7 @@ import java.net.URL;
 import java.util.Random;
 
 
-public class moneyTimeMain //implements ActionListener
+public class moneyTimeMain implements ActionListener
 {
 
 	Random random = new Random();
@@ -15,19 +15,11 @@ public class moneyTimeMain //implements ActionListener
 	JLabel L8000;JLabel L16000;JLabel L32000;JLabel L64000;JLabel L125000;JLabel L250000;JLabel L500000;
 	JLabel L1000000;JLabel LC;JLabel LA;JLabel QuestionLabel;JLabel lblmistakeCounter;JLabel LD;JLabel LB;
 	JButton answerButtonOne;JButton answerButtonTwo;JButton answerButtonThree;JButton answerButtonFour;		
-	
+	moneyTimeMethods MTM;
 
-	public moneyTimeMain(final moneyTimeMethods MM){
-
-		/*---------------------------- First Implementation of the values -------------------------------
-		final int r = random.nextInt(3);
-		// currentQuestion is assign a random question from the three first questions
-		currentQuestion = qusListArray[r];
-		// answerOptionArray is assigned an array which holds the current question's answer options by the using the currentQuestion.
-		answerOptionArray = currentQuestionAnswers.getOptions(currentQuestion);
-		//correctAnswer is assigned a string which holds the current question's correct answer by the using the currentQuestion.
-		correctAnswer = currentQuestionAnswers.getCorrectAnswer(currentQuestion);*/
-
+	public moneyTimeMain(final moneyTimeMethods shortCut){
+		
+		MTM = shortCut;
 		//---------------------------- JFrame Implementation  -------------------------------------------
 		final JFrame frame = new JFrame();
 		frame.setVisible(true);
@@ -58,7 +50,7 @@ public class moneyTimeMain //implements ActionListener
 		L1000000 = new JLabel("1000000\u00A3");JlabelArray[15]=L1000000;
 		LC= new JLabel("c.");JlabelArray[16]=LC;
 		LA = new JLabel("a.");JlabelArray[17]=LA;
-		QuestionLabel = new JLabel(MM.currentQuestion);JlabelArray[18]=QuestionLabel;
+		QuestionLabel = new JLabel(MTM.currentQuestion);JlabelArray[18]=QuestionLabel;
 		lblmistakeCounter = new JLabel("MISTAKE COUNTER = 5 ");JlabelArray[19]=lblmistakeCounter;
 		LD = new JLabel("d.");JlabelArray[20]=LD;
 		LB = new JLabel("b.");JlabelArray[21]=LB;
@@ -94,10 +86,10 @@ public class moneyTimeMain //implements ActionListener
 
 		//------------------------ Answer buttons variables  ------------------------------------------------
 
-		answerButtonOne = new JButton(MM.answerOptionArray[0]);
-		answerButtonTwo = new JButton(MM.answerOptionArray[1]);
-		answerButtonThree = new JButton(MM.answerOptionArray[2]);
-		answerButtonFour = new JButton(MM.answerOptionArray[3]);		
+		answerButtonOne = new JButton(MTM.answerOptionArray[0]);
+		answerButtonTwo = new JButton(MTM.answerOptionArray[1]);
+		answerButtonThree = new JButton(MTM.answerOptionArray[2]);
+		answerButtonFour = new JButton(MTM.answerOptionArray[3]);		
 	
 		yAxis=280;
 		xAxis=140;
@@ -122,12 +114,11 @@ public class moneyTimeMain //implements ActionListener
 			}
 		
 		}
-		
-		
-		/*answerButtonOne.addActionListener(this);
+	
+		answerButtonOne.addActionListener(this);
 		answerButtonTwo.addActionListener(this);
 		answerButtonThree.addActionListener(this);
-		answerButtonFour.addActionListener(this);*/
+		answerButtonFour.addActionListener(this);
 
 		//------------------------------  Extra buttons -----------------------------------------------------
 	
@@ -154,7 +145,7 @@ public class moneyTimeMain //implements ActionListener
 		CollectCashButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
-				switch (MM.questionCounter){
+				switch (MTM.questionCounter){
 				case 1:	JOptionPane.showMessageDialog(null, "You won 100£");System.exit(0);
 				case 2:	JOptionPane.showMessageDialog(null, "You won 200£");System.exit(0);
 				case 3:	JOptionPane.showMessageDialog(null, "You won 300£");System.exit(0);
@@ -180,25 +171,25 @@ public class moneyTimeMain //implements ActionListener
 		FiftyFifty.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{	
-				if (answerButtonOne.getText().equals(MM.correctAnswer))
+				if (answerButtonOne.getText().equals(MTM.correctAnswer))
 				{
 					answerButtonOne.setBackground(Color.YELLOW);
 					answerButtonFour.setBackground(Color.YELLOW);
 				}
 
-				else if (answerButtonTwo.getText().equals(MM.correctAnswer))
+				else if (answerButtonTwo.getText().equals(MTM.correctAnswer))
 				{
 					answerButtonTwo.setBackground(Color.YELLOW);
 					answerButtonOne.setBackground(Color.YELLOW);
 				}
 
-				else if (answerButtonThree.getText().equals(MM.correctAnswer))
+				else if (answerButtonThree.getText().equals(MTM.correctAnswer))
 				{
 					answerButtonThree.setBackground(Color.YELLOW);
 					answerButtonFour.setBackground(Color.YELLOW);
 				}
 
-				else if(answerButtonFour.getText().equals(MM.correctAnswer))
+				else if(answerButtonFour.getText().equals(MTM.correctAnswer))
 				{
 					answerButtonFour.setBackground(Color.YELLOW);
 					answerButtonTwo.setBackground(Color.YELLOW);
@@ -256,18 +247,12 @@ public class moneyTimeMain //implements ActionListener
 			}
 		});
 
+		//pictureLabel stores the background picture of the game and prints it.
 		ImageIcon picture = new ImageIcon("WM.jpg");
 		JLabel img = new JLabel(picture);
+		img.setHorizontalAlignment(SwingConstants.LEFT);
 		img.setBounds(0, 30, 1080, 523);
 		frame.getContentPane().add(img);
-		/*pictureLabel stores the background picture of the game and prints it.
-		JLabel pictureLabel = new JLabel("");
-		pictureLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		Image img = new ImageIcon(this.getClass().getResource("/WM.jpg")).getImage();
-		pictureLabel.setIcon(new ImageIcon(img));
-		pictureLabel.setBounds(0, 30, 1080, 523);
-		frame.getContentPane().add(pictureLabel);*/
-		
 	
 
 		//-------------------------- JMenuBar --------------------------------------------------------------
@@ -309,8 +294,8 @@ public class moneyTimeMain //implements ActionListener
 		easy.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
-				MM.mistakeCounter = 10;
-				MM.questionCounter = 0;
+				MTM.mistakeCounter = 10;
+				MTM.questionCounter = 0;
 				int randNum = moneyTimeMethods.colorChanger("red",L100, L200, L300, L500,
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
@@ -331,8 +316,8 @@ public class moneyTimeMain //implements ActionListener
 		hard.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
-				MM.mistakeCounter = 3;
-				MM.questionCounter = 0;
+				MTM.mistakeCounter = 3;
+				MTM.questionCounter = 0;
 				int randNum = moneyTimeMethods.colorChanger("red",L100, L200, L300, L500,
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
@@ -353,8 +338,8 @@ public class moneyTimeMain //implements ActionListener
 		restart.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
-				MM.questionCounter = 0;
-				MM.mistakeCounter = 5;
+				MTM.questionCounter = 0;
+				MTM.mistakeCounter = 5;
 				int randNum = moneyTimeMethods.colorChanger("red",L100, L200, L300, L500,
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
@@ -387,16 +372,19 @@ public class moneyTimeMain //implements ActionListener
 		menuBar.add(difficulty);
 		menuBar.add(help);
 		frame.setJMenuBar(menuBar);
+		frame.pack();
 		
 	}
-
-	/*public void actionPerformed(ActionEvent e) {
+	/*This action compares the String within the calling button with the correctAnswer String by using .getActionCommand() and .equals, 
+	  if the answer within the calling button equals the correct answer all the labels foreground turn yellow and the questionCounter is 
+	  increased to indicate the clearing of the level and then a new question with it's answers are fetched using the .newQuestion method.
+ 	  if the answer within the calling button does not equals the correct answer mistakeCounter is decreased to indicate the decrease in 
+ 	  attempts and then the .mistakeAdujster method rewrite the label to match the remaining attempt/mistakes number. */
+	public void actionPerformed(ActionEvent e) {
 		
-		System.out.println(e.getActionCommand());
-		
-		if (e.getActionCommand().equals(correctAnswer))
+		if (e.getActionCommand().equals(MTM.correctAnswer))
 		{	
-			questionCounter++;		
+			MTM.questionCounter++;		
 			int randNum = moneyTimeMethods.colorChanger("yellow",L100, L200, L300, L500,
 					L1000, L2000, L4000, L8000, L16000, L32000
 					,L64000,L125000,L250000, L500000, L1000000);
@@ -405,9 +393,9 @@ public class moneyTimeMain //implements ActionListener
 		}
 		else
 		{
-			mistakeCounter--;
+			MTM.mistakeCounter--;
 			moneyTimeMethods.mistakeAdujster(lblmistakeCounter);
 
 		}
-	}*/
+	}
 }

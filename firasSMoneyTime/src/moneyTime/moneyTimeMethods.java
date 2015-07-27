@@ -1,13 +1,16 @@
 package moneyTime;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+
 import java.util.Random;
 
-public class moneyTimeMethods // implements ActionListener
+public class moneyTimeMethods 
 {
-
 	static questionList allQuestions = new questionList();
 	static answers currentQuestionAnswers = new answers();
 	static moneyTimeAudio audio = new moneyTimeAudio();
@@ -31,6 +34,7 @@ public class moneyTimeMethods // implements ActionListener
 		answerOptionArray = currentQuestionAnswers.getOptions(currentQuestion);
 		//correctAnswer is assigned a string which holds the current question's correct answer by the using the currentQuestion.
 		correctAnswer = currentQuestionAnswers.getCorrectAnswer(currentQuestion);
+		System.out.println("cats");
 	}
 
 
@@ -140,28 +144,4 @@ public class moneyTimeMethods // implements ActionListener
 		case 9: lblmistakeCounter.setText("MISTAKE COUNTER =9 ");break;
 		case 10: lblmistakeCounter.setText("MISTAKE COUNTER =10 ");}
 	}
-
-	/*public moneyTimeMethods(String SentActionNumber){
-		ActionNumber = SentActionNumber;
-	};
-	public void actionPerformed(ActionEvent e) {
-
-		if (ActionNumber.equals(correctAnswer))
-		{	
-			questionCounter++;		
-			int randNum = moneyTimeMethods.colorChanger("yellow",L100, L200, L300, L500,
-					L1000, L2000, L4000, L8000, L16000, L32000
-					,L64000,L125000,L250000, L500000, L1000000);
-			moneyTimeMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
-
-		}
-		else
-		{
-			mistakeCounter--;
-			moneyTimeMethods.mistakeAdujster(lblmistakeCounter);
-
-		}
-	}*/
-
-
 }
