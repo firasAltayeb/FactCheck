@@ -1,6 +1,6 @@
 package moneyTime;
 
-public class MoneyTimeMain 
+public class moneyTimeMain 
 {
 	public static void main(String[] args) {
 	
