@@ -1,6 +1,5 @@
 package moneyTime;
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.net.URL;
@@ -10,20 +9,19 @@ import java.util.Random;
 public class MTOfflineWindow implements ActionListener
 {
 
-	Random random = new Random();
+	Random random = new Random();MTMethods MTM;
 	JLabel copyRight;JLabel L100;JLabel L200;JLabel L300;JLabel L500;JLabel L1000;JLabel L2000;JLabel L4000;
 	JLabel L8000;JLabel L16000;JLabel L32000;JLabel L64000;JLabel L125000;JLabel L250000;JLabel L500000;
 	JLabel L1000000;JLabel LC;JLabel LA;JLabel QuestionLabel;JLabel lblmistakeCounter;JLabel LD;JLabel LB;
 	JButton answerButtonOne;JButton answerButtonTwo;JButton answerButtonThree;JButton answerButtonFour;		
-	MTMethods MTM;
 
 	public MTOfflineWindow(final MTMethods shortCut){
-		
+
 		MTM = shortCut;
 		//---------------------------- JFrame Implementation  -------------------------------------------
 		final JFrame frame = new JFrame();
 		frame.setVisible(true);
-		frame.setMinimumSize(new Dimension(1100, 600));
+		frame.setMinimumSize(new Dimension(1900, 1000));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -54,34 +52,33 @@ public class MTOfflineWindow implements ActionListener
 		lblmistakeCounter = new JLabel("MISTAKE COUNTER = 5 ");JlabelArray[19]=lblmistakeCounter;
 		LD = new JLabel("d.");JlabelArray[20]=LD;
 		LB = new JLabel("b.");JlabelArray[21]=LB;
-		
-		int yAxis = 480;
+
+		int yAxis = 650;
 		int xAxis;
 		//the following for loop prints the first 16 labels in the JlabelArray with the same font and foreground but with different bounds.
 		for(int i=0;i<=16;i++)
 		{	
-			JlabelArray[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
+			JlabelArray[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
 			JlabelArray[i].setForeground(Color.RED);
-			JlabelArray[i].setBounds(0, yAxis, 120, 40);
+			JlabelArray[i].setBounds(0, yAxis, 500, 500);
 			frame.getContentPane().add(JlabelArray[i]);
-			yAxis-=30;
-			
+			yAxis-=55;
+
 		}
-	
-		yAxis = 375;
-		xAxis = 108;
+
+		yAxis = 600;
+		xAxis = 400;
 		//the following for loop prints the last 5 labels in the JlabelArray with the same font and foreground but with different bounds.
 		for(int i=16;i<=21;i++)
 		{	
-			JlabelArray[i].setFont(new Font("Tahoma", Font.BOLD| Font.ITALIC, 20));
+			JlabelArray[i].setFont(new Font("Tahoma", Font.BOLD| Font.ITALIC, 25));
 			JlabelArray[i].setForeground(Color.WHITE);
-			JlabelArray[i].setBounds(xAxis, yAxis, 950, 60);
+			JlabelArray[i].setBounds(xAxis, yAxis, 1500, 300);
 			frame.getContentPane().add(JlabelArray[i]);
-			yAxis-=100;
+			yAxis-=220;
 			if(i==19)
-			{	yAxis=375;
-				xAxis=570;		
-			}	
+			{yAxis=600;
+			xAxis=1000;}	
 		}
 
 		//------------------------ Answer buttons variables  ------------------------------------------------
@@ -90,9 +87,9 @@ public class MTOfflineWindow implements ActionListener
 		answerButtonTwo = new JButton(MTM.answerOptionArray[1]);
 		answerButtonThree = new JButton(MTM.answerOptionArray[2]);
 		answerButtonFour = new JButton(MTM.answerOptionArray[3]);		
-	
-		yAxis=280;
-		xAxis=140;
+
+		yAxis=700;
+		xAxis=440;
 		//JButtonArray holds the four similar buttons mentioned above to allow the following for loops to print the buttons using less repetitive code.
 		JButton[] JButtonArray = new JButton[4];
 		JButtonArray[0] = answerButtonOne;
@@ -103,31 +100,30 @@ public class MTOfflineWindow implements ActionListener
 		for(int i=0;i<=3;i++)
 		{
 			JButtonArray[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
-			JButtonArray[i].setBounds(xAxis, yAxis, 300, 50);
+			JButtonArray[i].setBounds(xAxis, yAxis, 400, 75);
 			JButtonArray[i].setForeground(Color.BLACK);
 			JButtonArray[i].setBackground(Color.RED);
 			frame.getContentPane().add(JButtonArray[i]);
-			yAxis+=100;
+			yAxis-=220;
 			if(i==1)
-			{	yAxis=280;
-				xAxis=620;
-			}
-		
+			{yAxis=700;
+			 xAxis=1040;}
+
 		}
-	
+
 		answerButtonOne.addActionListener(this);
 		answerButtonTwo.addActionListener(this);
 		answerButtonThree.addActionListener(this);
 		answerButtonFour.addActionListener(this);
 
 		//------------------------------  Extra buttons -----------------------------------------------------
-	
+
 		JButton CollectCashButton = new JButton("Collect Cash");
 		final JButton FiftyFifty = new JButton("50/50");
 		final JButton Audience = new JButton("Audience");
 		JButton ExitB = new JButton("Exit");
-		
-		xAxis=810;
+
+		xAxis=0;
 		//JButtonArray2 holds the four similar buttons mentioned above to allow the following for loops to print the buttons using less repetitive code.
 		JButton[] JButtonArray2 = new JButton[4];
 		JButtonArray2[0] = CollectCashButton;
@@ -137,14 +133,14 @@ public class MTOfflineWindow implements ActionListener
 		//the following for loop prints the buttons in the JButtonArray2 with the same background and foreground but with different bounds.
 		for(int i=0;i<=3;i++){
 			JButtonArray2[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
-			JButtonArray2[i].setBounds(xAxis, 0, 270, 30);
+			JButtonArray2[i].setBounds(xAxis, 0, 480, 40);
 			frame.getContentPane().add(JButtonArray2[i]);
-			xAxis-=270;
+			xAxis+=468;
 		}
 		// Allows the user to exit the game with the current amount of money the user has gained using questionCounter
 		CollectCashButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			
+
 				switch (MTM.questionCounter){
 				case 1:	JOptionPane.showMessageDialog(null, "You won 100£");System.exit(0);
 				case 2:	JOptionPane.showMessageDialog(null, "You won 200£");System.exit(0);
@@ -165,7 +161,7 @@ public class MTOfflineWindow implements ActionListener
 
 			}
 		});
-		
+
 		/*Changes the background of the current question's correct answer to yellow plus one other random button,
 		after the button is used the button becomes disabled*/
 		FiftyFifty.addActionListener(new ActionListener() {
@@ -198,7 +194,7 @@ public class MTOfflineWindow implements ActionListener
 				FiftyFifty.setEnabled(false);
 			}
 		});
-		
+
 		/*The Audience actions button opens a new frame with a chart indicating the possible answer,
 		  if the player has not reached the eighth question yet the chart has a 75% chance of providing
 		  the correct answer and if the player has passed the eighth question the chart has a 50%
@@ -206,7 +202,6 @@ public class MTOfflineWindow implements ActionListener
 		Audience.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{	
-
 				JFrame AudienceFrame = new JFrame();
 				AudienceFrame.setSize(400, 300);
 				AudienceFrame.setVisible(true);
@@ -218,74 +213,60 @@ public class MTOfflineWindow implements ActionListener
 				names[3] = "D";
 				if(MTMethods.questionCounter<=8)
 				{
+					values[0] = random.nextInt(5);
+					values[1] = random.nextInt(5);
+					values[2] = random.nextInt(5);
+					values[3] = random.nextInt(5);
+
 					if(MTMethods.correctAnswer.equals(MTMethods.answerOptionArray[0]))
 					{
-				values[0] = random.nextInt(15);
-				values[1] = random.nextInt(5);
-				values[2] = random.nextInt(5);
-				values[3] = random.nextInt(5);
+						values[0] = random.nextInt(15);
 					}
 					else if(MTMethods.correctAnswer.equals(MTMethods.answerOptionArray[1]))
 					{
-				values[0] = random.nextInt(5);
-				values[1] = random.nextInt(15);
-				values[2] = random.nextInt(5);
-				values[3] = random.nextInt(5);
+						values[1] = random.nextInt(15);
 					}
 					else if(MTMethods.correctAnswer.equals(MTMethods.answerOptionArray[2]))
 					{
-				values[0] = random.nextInt(5);
-				values[1] = random.nextInt(5);
-				values[2] = random.nextInt(15);
-				values[3] = random.nextInt(5);
+						values[2] = random.nextInt(15);
 					}
 					else
 					{
-				values[0] = random.nextInt(5);
-				values[1] = random.nextInt(5);
-				values[2] = random.nextInt(5);
-				values[3] = random.nextInt(15);
+						values[3] = random.nextInt(15);
 					}
-				
+
 				}
 				else 
 				{
+					values[0] = random.nextInt(5);
+					values[1] = random.nextInt(5);
+					values[2] = random.nextInt(5);
+					values[3] = random.nextInt(5);
+
 					if(MTMethods.correctAnswer.equals(MTMethods.answerOptionArray[0]))
 					{
-				values[0] = random.nextInt(10);
-				values[1] = random.nextInt(5);
-				values[2] = random.nextInt(5);
-				values[3] = random.nextInt(5);
+						values[0] = random.nextInt(10);
 					}
 					else if(MTMethods.correctAnswer.equals(MTMethods.answerOptionArray[1]))
 					{
-				values[0] = random.nextInt(5);
-				values[1] = random.nextInt(10);
-				values[2] = random.nextInt(5);
-				values[3] = random.nextInt(5);
+						values[1] = random.nextInt(10);
 					}
 					else if(MTMethods.correctAnswer.equals(MTMethods.answerOptionArray[2]))
 					{
-				values[0] = random.nextInt(5);
-				values[1] = random.nextInt(5);
-				values[2] = random.nextInt(10);
-				values[3] = random.nextInt(5);
+						values[2] = random.nextInt(10);
 					}
 					else 
 					{
-				values[0] = random.nextInt(5);
-				values[1] = random.nextInt(5);
-				values[2] = random.nextInt(5);
-				values[3] = random.nextInt(10);
+						values[3] = random.nextInt(10);
 					}
-				
+
 				}
 				AudienceFrame.getContentPane().add(new MTAudienceFrame(values, names, "Audience"));
 				Audience.setEnabled(false);
 			}
 		});
-		
-		
+
+
 		/*When ExitB is clicked the game promotes a frame asking the user if he wants to quit or not
 		if the user chose yes the game will close and if the user chose no nothing will happen.*/
 		ExitB.addActionListener(new ActionListener() {
@@ -308,30 +289,30 @@ public class MTOfflineWindow implements ActionListener
 		});
 
 		//pictureLabel stores the background picture of the game and prints it.
-		ImageIcon picture = new ImageIcon("WM.jpg");
+		ImageIcon picture = new ImageIcon("WM2.jpg");
 		JLabel img = new JLabel(picture);
-		img.setHorizontalAlignment(SwingConstants.LEFT);
-		img.setBounds(0, 30, 1080, 523);
+		//img.setHorizontalAlignment(SwingConstants.LEFT);
+		img.setBounds(0, 0, 1900, 1100);
 		frame.getContentPane().add(img);
-	
+
 
 		//-------------------------- JMenuBar --------------------------------------------------------------
 
 		JMenuBar menuBar = new JMenuBar();
-		
+
 		JMenu difficulty = new JMenu("Difficulty");
-		difficulty.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 18));
+		difficulty.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 20));
 		difficulty.setMnemonic(KeyEvent.VK_A);
-		
+
 		JMenu help = new JMenu("Help");
-		help.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 18));
+		help.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 20));
 		help.setMnemonic(KeyEvent.VK_A);
-		
+
 		JMenuItem easy = new JMenuItem("easy");
 		JMenuItem hard = new JMenuItem("Hard");
 		JMenuItem restart = new JMenuItem("Restart");
 		JMenuItem information = new JMenuItem("Information");
-		
+
 		//JMenuItemArray holds four  JMenuItem mentioned above to allow the following for loops to print the buttons using less repetitive code.
 		JMenuItem[] JMenuItemArray = new JMenuItem[4];
 		JMenuItemArray[0] = easy;
@@ -340,12 +321,12 @@ public class MTOfflineWindow implements ActionListener
 		JMenuItemArray[3] = information;
 		//the following for loop prints the JMenuItems in the JMenuItemArray with the same font and accelerator but with different bounds.
 		for(int i=0;i<=3;i++){
-			JMenuItemArray[i].setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 18));
+			JMenuItemArray[i].setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 20));
 			JMenuItemArray[i].setAccelerator(KeyStroke.getKeyStroke
-				(KeyEvent.VK_1,ActionEvent.ALT_MASK));	
+					(KeyEvent.VK_1,ActionEvent.ALT_MASK));	
 		}
-		
-		
+
+
 		/*The easy menuItem restarts the game with easier difficulty by assigning mistakeCounter to 10 and by
 		 assigning the questionCounter to 0, all the labels which are recoloured to yellow return to
 		 normal by sending them as an argument to the colorChanger method which will colour all
@@ -363,11 +344,11 @@ public class MTOfflineWindow implements ActionListener
 				lblmistakeCounter.setText("MISTAKE COUNTER = 10 ");
 				FiftyFifty.setEnabled(true);
 				Audience.setEnabled(true);
-			
+
 			}
 
 		});
-		
+
 		/*The hard menuItem restarts the game with harder difficulty by assigning mistakeCounter to 3 and by
 		 assigning the questionCounter to 0, all the labels which are recoloured to yellow return to
 		 normal by sending them as an argument to the colorChanger method which will colour all
@@ -385,11 +366,11 @@ public class MTOfflineWindow implements ActionListener
 				lblmistakeCounter.setText("MISTAKE COUNTER =3  ");
 				FiftyFifty.setEnabled(true);
 				Audience.setEnabled(true);
-				
+
 			}
 
 		});
-		
+
 		/*The restart menuItem restarts the game with the same difficulty by assigning mistakeCounter to 5 and by
 		 assigning the questionCounter to 0, all the labels which are recoloured to yellow return to
 		 normal by sending them as an argument to the colorChanger method which will colour all
@@ -433,7 +414,7 @@ public class MTOfflineWindow implements ActionListener
 		menuBar.add(help);
 		frame.setJMenuBar(menuBar);
 		frame.pack();
-		
+
 	}
 	/*This action compares the String within the calling button with the correctAnswer String by using .getActionCommand() and .equals, 
 	  if the answer within the calling button equals the correct answer all the labels foreground turn yellow and the questionCounter is 
@@ -441,7 +422,7 @@ public class MTOfflineWindow implements ActionListener
  	  if the answer within the calling button does not equals the correct answer mistakeCounter is decreased to indicate the decrease in 
  	  attempts and then the .mistakeAdujster method rewrite the label to match the remaining attempt/mistakes number. */
 	public void actionPerformed(ActionEvent e) {
-		
+
 		if (e.getActionCommand().equals(MTM.correctAnswer))
 		{	
 			MTM.questionCounter++;		
