@@ -1,5 +1,6 @@
 package moneyTime;
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.net.URL;
@@ -86,9 +87,9 @@ public class MTOfflineWindow implements ActionListener
 		answerButtonOne = new JButton(MTM.answerOptionArray[0]);
 		answerButtonTwo = new JButton(MTM.answerOptionArray[1]);
 		answerButtonThree = new JButton(MTM.answerOptionArray[2]);
-		answerButtonFour = new JButton(MTM.answerOptionArray[3]);		
-
-		yAxis=700;
+		answerButtonFour = new JButton(MTM.answerOptionArray[3]);
+		
+		yAxis=480;
 		xAxis=440;
 		//JButtonArray holds the four similar buttons mentioned above to allow the following for loops to print the buttons using less repetitive code.
 		JButton[] JButtonArray = new JButton[4];
@@ -104,11 +105,12 @@ public class MTOfflineWindow implements ActionListener
 			JButtonArray[i].setForeground(Color.BLACK);
 			JButtonArray[i].setBackground(Color.RED);
 			frame.getContentPane().add(JButtonArray[i]);
-			yAxis-=220;
+			if(i==0){xAxis=1040;}
 			if(i==1)
-			{yAxis=700;
-			 xAxis=1040;}
-
+			{xAxis=440;
+			yAxis=700;}
+			if(i==2){xAxis=1040;}
+	
 		}
 
 		answerButtonOne.addActionListener(this);
@@ -203,7 +205,7 @@ public class MTOfflineWindow implements ActionListener
 			public void actionPerformed(ActionEvent arg0) 
 			{	
 				JFrame AudienceFrame = new JFrame();
-				AudienceFrame.setSize(400, 300);
+				AudienceFrame.setSize(700, 500);
 				AudienceFrame.setVisible(true);
 				double[] values = new double[4];
 				String[] names = new String[4];
@@ -220,19 +222,19 @@ public class MTOfflineWindow implements ActionListener
 
 					if(MTMethods.correctAnswer.equals(MTMethods.answerOptionArray[0]))
 					{
-						values[0] = random.nextInt(15);
+						values[0] += 3;
 					}
 					else if(MTMethods.correctAnswer.equals(MTMethods.answerOptionArray[1]))
 					{
-						values[1] = random.nextInt(15);
+						values[1] += 3;
 					}
 					else if(MTMethods.correctAnswer.equals(MTMethods.answerOptionArray[2]))
 					{
-						values[2] = random.nextInt(15);
+						values[2] += 3;
 					}
 					else
 					{
-						values[3] = random.nextInt(15);
+						values[3] += 3;
 					}
 
 				}
@@ -245,19 +247,19 @@ public class MTOfflineWindow implements ActionListener
 
 					if(MTMethods.correctAnswer.equals(MTMethods.answerOptionArray[0]))
 					{
-						values[0] = random.nextInt(10);
+						values[0] += 2;
 					}
 					else if(MTMethods.correctAnswer.equals(MTMethods.answerOptionArray[1]))
 					{
-						values[1] = random.nextInt(10);
+						values[1] += 2;
 					}
 					else if(MTMethods.correctAnswer.equals(MTMethods.answerOptionArray[2]))
 					{
-						values[2] = random.nextInt(10);
+						values[2] += 2;
 					}
 					else 
 					{
-						values[3] = random.nextInt(10);
+						values[3] += 2;
 					}
 
 				}
@@ -289,11 +291,14 @@ public class MTOfflineWindow implements ActionListener
 		});
 
 		//pictureLabel stores the background picture of the game and prints it.
-		ImageIcon picture = new ImageIcon("WM2.jpg");
-		JLabel img = new JLabel(picture);
-		//img.setHorizontalAlignment(SwingConstants.LEFT);
+		JLabel img = new JLabel( new ImageIcon("WM2.jpg"));
 		img.setBounds(0, 0, 1900, 1100);
 		frame.getContentPane().add(img);
+		/*JLabel pictureLabel = new JLabel(""); 
+		Image img = new ImageIcon(this.getClass().getResource("/WM2.jpg")).getImage(); 
+		pictureLabel.setIcon(new ImageIcon(img)); 
+		pictureLabel.setBounds(0, 0, 1900, 1100); 
+		frame.getContentPane().add(pictureLabel);*/ 
 
 
 		//-------------------------- JMenuBar --------------------------------------------------------------

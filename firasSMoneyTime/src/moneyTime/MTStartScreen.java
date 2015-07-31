@@ -11,12 +11,9 @@ public class MTStartScreen
 	{
 		final JFrame frame = new JFrame();
 		frame.setVisible(true);
-		frame.setMinimumSize(new Dimension(500, 500));
+		frame.setMinimumSize(new Dimension(400, 400));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ImageIcon picture = new ImageIcon("WM2.jpg");
-		JLabel img = new JLabel(picture);
-		img.setBounds(0, 0, 500 ,500);
-		frame.setContentPane(img);
+		frame.getContentPane().setLayout(null);
 		
 		JButton offlineMode = new JButton("Offline Mode");
 		offlineMode.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
@@ -42,7 +39,21 @@ public class MTStartScreen
 		onlineMode.setContentAreaFilled(false);
 		onlineMode.setBorderPainted(false);
 		frame.getContentPane().add(onlineMode);
-		frame.pack();
+		
+		
+		JLabel img = new JLabel(new ImageIcon("WM2.jpg"));
+		img.setBounds(0, 0, 500 ,500);
+		frame.getContentPane().add(img);
+		
+		/*JLabel pictureLabel = new JLabel(""); 
+		Image img = new ImageIcon(this.getClass().getResource("/WM2.jpg")).getImage(); 
+		pictureLabel.setHorizontalAlignment(SwingConstants.CENTER); 
+		pictureLabel.setIcon(new ImageIcon(img)); 
+		pictureLabel.setBounds(0, 0, 500, 500); 
+		frame.getContentPane().add(pictureLabel); */
+		frame.setSize(500,500);
+		
+
 	}
 	
 	

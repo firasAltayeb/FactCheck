@@ -44,7 +44,8 @@ public class MTAudienceFrame extends JPanel {
     // height of the frame
     int frameHeight = frameDimension.height;
     System.out.println("frameHeight = "+frameHeight);
-    //width of the frame divided by the number of integers in the values array which is 4
+    /*barWidth is equal to width of the frame divided by the number of integers in the values array
+     barWidth is used to draw the rectangles and allow all the rectangles to have the same width*/
     int barWidth = frameWidth / values.length;
     System.out.println("barWidth = "+barWidth);
 
@@ -52,7 +53,7 @@ public class MTAudienceFrame extends JPanel {
     //titleFontMetrics contains the three angles of the font descent,height and ascent
     FontMetrics titleFontMetrics = g.getFontMetrics(titleFont);
     System.out.println("titleFontMetrics = "+titleFontMetrics);
-    Font labelFont = new Font("SansSerif", Font.PLAIN, 10);
+    Font labelFont = new Font("SansSerif", Font.PLAIN, 20);
     FontMetrics labelFontMetrics = g.getFontMetrics(labelFont);
     //labelFontMetrics contains the three angles of the font descent,height and ascent
     System.out.println("labelFontMetrics ="+labelFontMetrics);
@@ -81,6 +82,9 @@ public class MTAudienceFrame extends JPanel {
     // bottom is equal to the height of the label
     int bottom = labelFontMetrics.getHeight();
     System.out.println("bottom =" +bottom);
+    /*scale is used to allow the rectangles to fill the their given space 
+     no matter what their number is, scale is also allow used to prevent the rectangles
+     from being to big for the frame*/
     double scale = (frameHeight - top - bottom) / (maxValue - minValue);
     System.out.println("scale =" +scale);
     /*y is equal to the  frameHeight minus labelFontMetrics.getDescent() because
@@ -91,13 +95,19 @@ public class MTAudienceFrame extends JPanel {
 
     for (int i = 0; i < values.length; i++) 
     {
+      //valueX is the X-axis point which the rectangles are drawn from in the frame
       int valueX = i * barWidth + 1;
+      //valueY is the Y-axis point which the rectangles are drawn from in the frame
       int valueY = top;
+      //height is the Y-axis end point in which the rectangles will be drawn to
       int height = (int) (values[i] * scale);
       valueY += (int) ((maxValue - values[i]) * scale);
       g.setColor(Color.red);
+      /*"g.fillRect" uses valueX and valueY points and draws rectangles
+       which fill all up to "barWidth - 2" and height points)*/
       g.fillRect(valueX, valueY, barWidth - 2, height);
       g.setColor(Color.black);
+      //draws a black line around the rectangles
       g.drawRect(valueX, valueY, barWidth - 2, height);
       
       int labelWidth = labelFontMetrics.stringWidth(names[i]);
