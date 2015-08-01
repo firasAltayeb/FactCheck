@@ -59,7 +59,7 @@ public class MTOfflineWindow implements ActionListener
 		//the following for loop prints the first 16 labels in the JlabelArray with the same font and foreground but with different bounds.
 		for(int i=0;i<=16;i++)
 		{	
-			JlabelArray[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
+			JlabelArray[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 30));
 			JlabelArray[i].setForeground(Color.RED);
 			JlabelArray[i].setBounds(0, yAxis, 500, 500);
 			frame.getContentPane().add(JlabelArray[i]);
@@ -72,7 +72,7 @@ public class MTOfflineWindow implements ActionListener
 		//the following for loop prints the last 5 labels in the JlabelArray with the same font and foreground but with different bounds.
 		for(int i=16;i<=21;i++)
 		{	
-			JlabelArray[i].setFont(new Font("Tahoma", Font.BOLD| Font.ITALIC, 25));
+			JlabelArray[i].setFont(new Font("Tahoma", Font.BOLD| Font.ITALIC, 30));
 			JlabelArray[i].setForeground(Color.WHITE);
 			JlabelArray[i].setBounds(xAxis, yAxis, 1500, 300);
 			frame.getContentPane().add(JlabelArray[i]);
@@ -291,14 +291,14 @@ public class MTOfflineWindow implements ActionListener
 		});
 
 		//pictureLabel stores the background picture of the game and prints it.
-		JLabel img = new JLabel( new ImageIcon("WM2.jpg"));
+		/*JLabel img = new JLabel( new ImageIcon("WM2.jpg"));
 		img.setBounds(0, 0, 1900, 1100);
-		frame.getContentPane().add(img);
-		/*JLabel pictureLabel = new JLabel(""); 
+		frame.getContentPane().add(img);*/
+		JLabel pictureLabel = new JLabel(""); 
 		Image img = new ImageIcon(this.getClass().getResource("/WM2.jpg")).getImage(); 
 		pictureLabel.setIcon(new ImageIcon(img)); 
 		pictureLabel.setBounds(0, 0, 1900, 1100); 
-		frame.getContentPane().add(pictureLabel);*/ 
+		frame.getContentPane().add(pictureLabel); 
 
 
 		//-------------------------- JMenuBar --------------------------------------------------------------
