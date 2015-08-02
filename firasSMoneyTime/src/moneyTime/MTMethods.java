@@ -48,7 +48,7 @@ public class MTMethods
 		if(color.equalsIgnoreCase("yellow"))
 		{
 
-			JOptionPane.showMessageDialog(null, "Correct answer");
+			//JOptionPane.showMessageDialog(null, "Correct answer");
 
 
 			audio.winningSound();
@@ -126,7 +126,7 @@ public class MTMethods
 	  The mistakeAdujster method also exits the game once the mistakeCounter integers reaches 0*/
 	public static void mistakeAdujster(JLabel lblmistakeCounter)
 	{
-		JOptionPane.showMessageDialog(null, "Wrong answer , please try again");
+		//JOptionPane.showMessageDialog(null, "Wrong answer , please try again");
 
 		audio.losingSound();
 		switch (mistakeCounter){	

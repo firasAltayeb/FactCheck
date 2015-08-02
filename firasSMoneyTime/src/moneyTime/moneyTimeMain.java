@@ -15,10 +15,12 @@ public class MoneyTimeMain
 		URL kclLink = new URL("http://www.gamefaqs.com/gba/582399-who-wants-to-be-a-millionaire/faqs/40043");
 		Scanner in = new Scanner(new BufferedReader(new InputStreamReader(kclLink.openStream(), "ISO-8859-1")));
 		
-		//UMData stands for unmodified Data
+		/*UMData stands for unmodified Data, the unmodified data is the data which
+		  contains all the lines in the URL*/
 		ArrayList<String> UMData = new ArrayList<String>();
-		for(int i=0;i<505;i++)
+		for(int i=0;i<807;i++)
 		{
+			//System.out.println(in.nextLine());
 			if(i<305)
 			{
 				in.nextLine();
@@ -29,31 +31,48 @@ public class MoneyTimeMain
 			}
 		}
 		
-		
-		//System.out.println(UMData.get(20).substring(7,UMData.get(20).indexOf("?")+1));
-	
+		/*MQuestions stands for "modified questions", modified questions are the question
+		  that do not have the "#####" code in their start */
 		ArrayList<String> MQuestions = new ArrayList<String>();
 		for(int i=0;i<=UMData.size();i+=10)
 		{
-			System.out.println(UMData.get(i));
-			MQuestions.add(UMData.get(i).substring(7,UMData.get(i).indexOf("?")+1));
+			try{
+				MQuestions.add(UMData.get(i).substring(7,UMData.get(i).indexOf("?")+1));
+			}
+			catch(Exception e)
+			{
+				MQuestions.add(UMData.get(i).substring(7,UMData.get(i).length())+UMData.get(i+1).substring(6, UMData.get(i+1).indexOf("?")+1));
+				i++;
+			}
 			
 		}
 		
-		//System.out.println(MQuestions.get(1));
-		//System.out.println(MQuestions.get(2));
-		//String answerOption = UMData.get(3);
-		//String correctAnswer= " *"+UMData.get(7).substring(UMData.get(7).indexOf(' ')+1, UMData.get(7).length());
-		
-		/*System.out.println(answerOption);
-		System.out.println(correctAnswer);
-		
-		if(correctAnswer.equals(answerOption))
+		/*MCorreectAnswers stands for "modified CorreectAnswers", modified CorreectAnswers are the CorreectAnswers
+		  that do not have the "Answer: " String in their start */
+		ArrayList<String> MCorreectAnswers = new ArrayList<String>();
+		try{for(int i=7;i<=UMData.size();i+=10)
 		{
-			System.out.println("equal");
-		}*/
+			if(UMData.get(i).isEmpty())
+			{
+				i++;
+				MCorreectAnswers.add(" *"+UMData.get(i).substring(UMData.get(i).indexOf(' ')+1, UMData.get(i).length()));
+			}
+			else
+			{
+				MCorreectAnswers.add(" *"+UMData.get(i).substring(UMData.get(i).indexOf(' ')+1, UMData.get(i).length()));
+			}
+		}}
+		catch(Exception e){}
 		
 		
+		for(int i=0;i<MQuestions.size();i++)
+		{
+			System.out.println(i+" "+MQuestions.get(i));
+		}
+		for(int i=0;i<MCorreectAnswers.size();i++)
+		{
+			System.out.println(i+" "+MCorreectAnswers.get(i));
+		}
 		
 		//MTMethods MTM = new MTMethods();
 		//new MTStartScreen(MTM);

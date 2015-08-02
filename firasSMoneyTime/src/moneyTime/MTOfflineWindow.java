@@ -1,15 +1,31 @@
 package moneyTime;
-import javax.swing.*;
-
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Desktop;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.util.Random;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 
 
 public class MTOfflineWindow implements ActionListener
 {
-
+	
 	Random random = new Random();MTMethods MTM;
 	JLabel copyRight;JLabel L100;JLabel L200;JLabel L300;JLabel L500;JLabel L1000;JLabel L2000;JLabel L4000;
 	JLabel L8000;JLabel L16000;JLabel L32000;JLabel L64000;JLabel L125000;JLabel L250000;JLabel L500000;
@@ -306,13 +322,26 @@ public class MTOfflineWindow implements ActionListener
 		JMenuBar menuBar = new JMenuBar();
 
 		JMenu difficulty = new JMenu("Difficulty");
-		difficulty.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 20));
+		difficulty.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 25));
 		difficulty.setMnemonic(KeyEvent.VK_A);
 
 		JMenu help = new JMenu("Help");
-		help.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 20));
+		help.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 25));
 		help.setMnemonic(KeyEvent.VK_A);
+		
+		
+		JMenu titleScreen = new JMenu("TitleScreen");
+		titleScreen.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 25));
+		titleScreen.setMnemonic(KeyEvent.VK_A);
+		titleScreen.addMenuListener(new MenuListener() {
+		        public void menuSelected(MenuEvent e) {
+		        	new MTStartScreen(MTM);
+		        	frame.dispose();}
+		        public void menuDeselected(MenuEvent e){}
+		        public void menuCanceled(MenuEvent e){}
+		    });
 
+		
 		JMenuItem easy = new JMenuItem("easy");
 		JMenuItem hard = new JMenuItem("Hard");
 		JMenuItem restart = new JMenuItem("Restart");
@@ -403,7 +432,7 @@ public class MTOfflineWindow implements ActionListener
 			{
 				try
 				{
-					Desktop.getDesktop().browse(new URL("http:en.wikipedia.org/wiki/Who_Wants_to_Be_a_Millionaire%3F ").toURI());
+					Desktop.getDesktop().browse(new URL("http://www.gamefaqs.com/gba/582399-who-wants-to-be-a-millionaire/faqs/40043").toURI());
 				}
 				catch(Exception e)
 				{}
@@ -417,6 +446,7 @@ public class MTOfflineWindow implements ActionListener
 		help.add(information);
 		menuBar.add(difficulty);
 		menuBar.add(help);
+		menuBar.add(titleScreen);
 		frame.setJMenuBar(menuBar);
 		frame.pack();
 
