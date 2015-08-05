@@ -78,7 +78,7 @@ public class MoneyTimeMain
 			
 		}
 		
-		for(int i=0;i<MQuestions.size();i++)
+		/*for(int i=0;i<MQuestions.size();i++)
 		{
 			System.out.println(i+" "+MQuestions.get(i));
 		}
@@ -89,11 +89,11 @@ public class MoneyTimeMain
 		for(int i=0;i<MCorreectAnswers.size();i++)
 		{
 			System.out.println(i+" "+MCorreectAnswers.get(i));
-		}
+		}*/
 		
-		//MTOMethods MTOM = new MTOMethods(MQuestions,MCorreectAnswers,MAnswersOptions);
-		//MTMethods MTM = new MTMethods();
-		//new MTStartScreen(MTM);
+		MTOMethods MTOM = new MTOMethods(MQuestions,MCorreectAnswers,MAnswersOptions);
+		MTMethods MTM = new MTMethods();
+		new MTStartScreen(MTM,MTOM);
 
 
 	}

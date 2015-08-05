@@ -23,19 +23,19 @@ import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
 
-public class MTOfflineWindow implements ActionListener
+public class MTOnlineWindow implements ActionListener
 {
 	
-	Random random = new Random();MTMethods MTM;MTOMethods MTOM;
+	Random random = new Random();MTOMethods MTOM;MTMethods MTM;
 	JLabel copyRight;JLabel L100;JLabel L200;JLabel L300;JLabel L500;JLabel L1000;JLabel L2000;JLabel L4000;
 	JLabel L8000;JLabel L16000;JLabel L32000;JLabel L64000;JLabel L125000;JLabel L250000;JLabel L500000;
 	JLabel L1000000;JLabel LC;JLabel LA;JLabel QuestionLabel;JLabel lblmistakeCounter;JLabel LD;JLabel LB;
 	JButton answerButtonOne;JButton answerButtonTwo;JButton answerButtonThree;JButton answerButtonFour;		
 
-	public MTOfflineWindow(final MTMethods shortCut,final MTOMethods shortCut2){
+	public MTOnlineWindow(final MTOMethods shortCut,final MTMethods shortCut2){
 
-		MTM = shortCut;
-		MTOM = shortCut2;
+		MTOM = shortCut;
+		MTM = shortCut2;
 		//---------------------------- JFrame Implementation  -------------------------------------------
 		final JFrame frame = new JFrame();
 		frame.setVisible(true);
@@ -66,7 +66,7 @@ public class MTOfflineWindow implements ActionListener
 		L1000000 = new JLabel("1000000\u00A3");JlabelArray[15]=L1000000;
 		LC= new JLabel("c.");JlabelArray[16]=LC;
 		LA = new JLabel("a.");JlabelArray[17]=LA;
-		QuestionLabel = new JLabel(MTM.currentQuestion);JlabelArray[18]=QuestionLabel;
+		QuestionLabel = new JLabel(MTOM.currentQuestion);JlabelArray[18]=QuestionLabel;
 		lblmistakeCounter = new JLabel("MISTAKE COUNTER = 5 ");JlabelArray[19]=lblmistakeCounter;
 		LD = new JLabel("d.");JlabelArray[20]=LD;
 		LB = new JLabel("b.");JlabelArray[21]=LB;
@@ -101,10 +101,10 @@ public class MTOfflineWindow implements ActionListener
 
 		//------------------------ Answer buttons variables  ------------------------------------------------
 
-		answerButtonOne = new JButton(MTM.answerOptionArray[0]);
-		answerButtonTwo = new JButton(MTM.answerOptionArray[1]);
-		answerButtonThree = new JButton(MTM.answerOptionArray[2]);
-		answerButtonFour = new JButton(MTM.answerOptionArray[3]);
+		answerButtonOne = new JButton(MTOM.answerOptionArray[0]);
+		answerButtonTwo = new JButton(MTOM.answerOptionArray[1]);
+		answerButtonThree = new JButton(MTOM.answerOptionArray[2]);
+		answerButtonFour = new JButton(MTOM.answerOptionArray[3]);
 		
 		yAxis=480;
 		xAxis=440;
@@ -160,7 +160,7 @@ public class MTOfflineWindow implements ActionListener
 		CollectCashButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				switch (MTM.questionCounter){
+				switch (MTOM.questionCounter){
 				case 1:	JOptionPane.showMessageDialog(null, "You won 100£");System.exit(0);
 				case 2:	JOptionPane.showMessageDialog(null, "You won 200£");System.exit(0);
 				case 3:	JOptionPane.showMessageDialog(null, "You won 300£");System.exit(0);
@@ -186,25 +186,25 @@ public class MTOfflineWindow implements ActionListener
 		FiftyFifty.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{	
-				if (answerButtonOne.getText().equals(MTM.correctAnswer))
+				if (answerButtonOne.getText().equals(MTOM.correctAnswer))
 				{
 					answerButtonOne.setBackground(Color.YELLOW);
 					answerButtonFour.setBackground(Color.YELLOW);
 				}
 
-				else if (answerButtonTwo.getText().equals(MTM.correctAnswer))
+				else if (answerButtonTwo.getText().equals(MTOM.correctAnswer))
 				{
 					answerButtonTwo.setBackground(Color.YELLOW);
 					answerButtonOne.setBackground(Color.YELLOW);
 				}
 
-				else if (answerButtonThree.getText().equals(MTM.correctAnswer))
+				else if (answerButtonThree.getText().equals(MTOM.correctAnswer))
 				{
 					answerButtonThree.setBackground(Color.YELLOW);
 					answerButtonFour.setBackground(Color.YELLOW);
 				}
 
-				else if(answerButtonFour.getText().equals(MTM.correctAnswer))
+				else if(answerButtonFour.getText().equals(MTOM.correctAnswer))
 				{
 					answerButtonFour.setBackground(Color.YELLOW);
 					answerButtonTwo.setBackground(Color.YELLOW);
@@ -230,22 +230,22 @@ public class MTOfflineWindow implements ActionListener
 				names[1] = "B";
 				names[2] = "C";
 				names[3] = "D";
-				if(MTMethods.questionCounter<=8)
+				if(MTOMethods.questionCounter<=8)
 				{
 					values[0] = random.nextInt(5);
 					values[1] = random.nextInt(5);
 					values[2] = random.nextInt(5);
 					values[3] = random.nextInt(5);
 
-					if(MTMethods.correctAnswer.equals(MTMethods.answerOptionArray[0]))
+					if(MTOMethods.correctAnswer.equals(MTOMethods.answerOptionArray[0]))
 					{
 						values[0] += 3;
 					}
-					else if(MTMethods.correctAnswer.equals(MTMethods.answerOptionArray[1]))
+					else if(MTOMethods.correctAnswer.equals(MTOMethods.answerOptionArray[1]))
 					{
 						values[1] += 3;
 					}
-					else if(MTMethods.correctAnswer.equals(MTMethods.answerOptionArray[2]))
+					else if(MTOMethods.correctAnswer.equals(MTOMethods.answerOptionArray[2]))
 					{
 						values[2] += 3;
 					}
@@ -262,15 +262,15 @@ public class MTOfflineWindow implements ActionListener
 					values[2] = random.nextInt(5);
 					values[3] = random.nextInt(5);
 
-					if(MTMethods.correctAnswer.equals(MTMethods.answerOptionArray[0]))
+					if(MTOMethods.correctAnswer.equals(MTOMethods.answerOptionArray[0]))
 					{
 						values[0] += 2;
 					}
-					else if(MTMethods.correctAnswer.equals(MTMethods.answerOptionArray[1]))
+					else if(MTOMethods.correctAnswer.equals(MTOMethods.answerOptionArray[1]))
 					{
 						values[1] += 2;
 					}
-					else if(MTMethods.correctAnswer.equals(MTMethods.answerOptionArray[2]))
+					else if(MTOMethods.correctAnswer.equals(MTOMethods.answerOptionArray[2]))
 					{
 						values[2] += 2;
 					}
@@ -335,7 +335,7 @@ public class MTOfflineWindow implements ActionListener
 		titleScreen.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 25));
 		titleScreen.setMnemonic(KeyEvent.VK_A);
 		titleScreen.addMenuListener(new MenuListener() {
-		        public void menuSelected(MenuEvent e) {
+		        public void menuSelected(MenuEvent e){
 		        	new MTStartScreen(MTM,MTOM);
 		        	frame.dispose();}
 		        public void menuDeselected(MenuEvent e){}
@@ -370,12 +370,12 @@ public class MTOfflineWindow implements ActionListener
 		easy.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
-				MTM.mistakeCounter = 10;
-				MTM.questionCounter = 0;
-				int randNum = MTMethods.colorChanger("red",L100, L200, L300, L500,
+				MTOM.mistakeCounter = 10;
+				MTOM.questionCounter = 0;
+				int randNum = MTOMethods.colorChanger("red",L100, L200, L300, L500,
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
-				MTMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
+				MTOMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
 				lblmistakeCounter.setText("MISTAKE COUNTER = 10 ");
 				FiftyFifty.setEnabled(true);
 				Audience.setEnabled(true);
@@ -392,12 +392,12 @@ public class MTOfflineWindow implements ActionListener
 		hard.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
-				MTM.mistakeCounter = 3;
-				MTM.questionCounter = 0;
-				int randNum = MTMethods.colorChanger("red",L100, L200, L300, L500,
+				MTOM.mistakeCounter = 3;
+				MTOM.questionCounter = 0;
+				int randNum = MTOMethods.colorChanger("red",L100, L200, L300, L500,
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
-				MTMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
+				MTOMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
 				lblmistakeCounter.setText("MISTAKE COUNTER =3  ");
 				FiftyFifty.setEnabled(true);
 				Audience.setEnabled(true);
@@ -414,12 +414,12 @@ public class MTOfflineWindow implements ActionListener
 		restart.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
-				MTM.questionCounter = 0;
-				MTM.mistakeCounter = 5;
-				int randNum = MTMethods.colorChanger("red",L100, L200, L300, L500,
+				MTOM.questionCounter = 0;
+				MTOM.mistakeCounter = 5;
+				int randNum = MTOMethods.colorChanger("red",L100, L200, L300, L500,
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
-				MTMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
+				MTOMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
 				lblmistakeCounter.setText("MISTAKE COUNTER = 5 ");
 				FiftyFifty.setEnabled(true);
 				Audience.setEnabled(true);
@@ -459,19 +459,19 @@ public class MTOfflineWindow implements ActionListener
  	  attempts and then the .mistakeAdujster method rewrite the label to match the remaining attempt/mistakes number. */
 	public void actionPerformed(ActionEvent e) {
 
-		if (e.getActionCommand().equals(MTM.correctAnswer))
+		if (e.getActionCommand().equals(MTOM.correctAnswer))
 		{	
-			MTM.questionCounter++;		
-			int randNum = MTMethods.colorChanger("yellow",L100, L200, L300, L500,
+			MTOM.questionCounter++;		
+			int randNum = MTOMethods.colorChanger("yellow",L100, L200, L300, L500,
 					L1000, L2000, L4000, L8000, L16000, L32000
 					,L64000,L125000,L250000, L500000, L1000000);
-			MTMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
+			MTOMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
 
 		}
 		else
 		{
-			MTM.mistakeCounter--;
-			MTMethods.mistakeAdujster(lblmistakeCounter);
+			MTOM.mistakeCounter--;
+			MTOMethods.mistakeAdujster(lblmistakeCounter);
 
 		}
 	}

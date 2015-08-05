@@ -7,7 +7,7 @@ import java.awt.event.*;
 
 public class MTStartScreen
 {
-	MTStartScreen(final MTMethods MTM )
+	MTStartScreen(final MTMethods MTM,final MTOMethods MTOM)
 	{
 		final JFrame frame = new JFrame();
 		frame.setVisible(true);
@@ -26,7 +26,7 @@ public class MTStartScreen
 		offlineMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				new MTOfflineWindow(MTM);
+				new MTOfflineWindow(MTM,MTOM);
 				frame.dispose();
 			}
 		});
@@ -39,7 +39,13 @@ public class MTStartScreen
 		onlineMode.setContentAreaFilled(false);
 		onlineMode.setBorderPainted(false);
 		frame.getContentPane().add(onlineMode);
-		
+		onlineMode.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				new MTOnlineWindow(MTOM,MTM);
+				frame.dispose();
+			}
+		});
 		
 		/*JLabel img = new JLabel(new ImageIcon("WM2.jpg"));
 		img.setBounds(0, 0, 500 ,500);

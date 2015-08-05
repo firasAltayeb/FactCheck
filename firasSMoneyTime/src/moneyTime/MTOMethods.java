@@ -25,16 +25,26 @@ public class MTOMethods {
 	MTOMethods(ArrayList<String> MQ,ArrayList<String> MCA,ArrayList<String> MAO)
 	{
 		int r = random.nextInt(5);
-		ArrayList<String> MQuestions = MQ;
-		ArrayList<String> MCorreectAnswers = MCA;
-		ArrayList<String> MAnswersOptions =MAO;
+		MQuestions = MQ;
+		MCorreectAnswers = MCA;
+		MAnswersOptions =MAO;
 		currentQuestion = MQuestions.get(r);
-		answerOptionArray[0] =  MAnswersOptions.get(r*4-4);
-		answerOptionArray[1] =  MAnswersOptions.get(r*4-3);
-		answerOptionArray[2] =  MAnswersOptions.get(r*4-2);
-		answerOptionArray[3] =  MAnswersOptions.get(r*4-1);
+		if(r == 0)
+		{
+			answerOptionArray[0] =  MAnswersOptions.get(0);
+			answerOptionArray[1] =  MAnswersOptions.get(1);
+			answerOptionArray[2] =  MAnswersOptions.get(2);
+			answerOptionArray[3] =  MAnswersOptions.get(3);
+		}
+		else
+		{
+			answerOptionArray[0] =  MAnswersOptions.get(r*4-4);
+			answerOptionArray[1] =  MAnswersOptions.get(r*4-3);
+			answerOptionArray[2] =  MAnswersOptions.get(r*4-2);
+			answerOptionArray[3] =  MAnswersOptions.get(r*4-1);
+		}
 		correctAnswer = MCorreectAnswers.get(r);
-		
+
 	}
 
 	/*The  colorChanger method  initialises randNum to be either 0,1 or 2 and returns it,  
@@ -87,16 +97,26 @@ public class MTOMethods {
 		}
 		return randNum;
 	}
-	
+
 	public static void newQuestion(int r,JButton AnswerButtonOne,JButton AnswerButtonTwo,JButton AnswerButtonThree,
 			JButton AnswerButtonFour,JLabel QuestionLabel)
 	{
 
 		currentQuestion = MQuestions.get(r);
-		answerOptionArray[0] =  MAnswersOptions.get(r*4-4);
-		answerOptionArray[1] =  MAnswersOptions.get(r*4-3);
-		answerOptionArray[2] =  MAnswersOptions.get(r*4-2);
-		answerOptionArray[3] =  MAnswersOptions.get(r*4-1);
+		if(r == 0)
+		{
+			answerOptionArray[0] =  MAnswersOptions.get(0);
+			answerOptionArray[1] =  MAnswersOptions.get(1);
+			answerOptionArray[2] =  MAnswersOptions.get(2);
+			answerOptionArray[3] =  MAnswersOptions.get(3);
+		}
+		else
+		{
+			answerOptionArray[0] =  MAnswersOptions.get(r*4-4);
+			answerOptionArray[1] =  MAnswersOptions.get(r*4-3);
+			answerOptionArray[2] =  MAnswersOptions.get(r*4-2);
+			answerOptionArray[3] =  MAnswersOptions.get(r*4-1);
+		}
 		correctAnswer = MCorreectAnswers.get(r);
 		QuestionLabel.setText(currentQuestion);
 		AnswerButtonOne.setText(answerOptionArray[0]);
@@ -109,7 +129,7 @@ public class MTOMethods {
 		AnswerButtonFour.setBackground(Color.RED);
 
 	}
-	
+
 	/*The mistakeAdujster method sets lblmistakeCounter text based on the mistakeCounter,
 	  The mistakeAdujster method also exits the game once the mistakeCounter integers reaches 0*/
 	public static void mistakeAdujster(JLabel lblmistakeCounter)
@@ -131,6 +151,6 @@ public class MTOMethods {
 		case 9: lblmistakeCounter.setText("MISTAKE COUNTER =9 ");break;
 		case 10: lblmistakeCounter.setText("MISTAKE COUNTER =10 ");}
 	}
-	
-	
+
+
 }	
