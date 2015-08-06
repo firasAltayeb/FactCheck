@@ -13,47 +13,78 @@ public class MTAudio
 {
 	//Plays the mtLosingSound.wav music file when instructed.
 	public void losingSound()
-	{
-		try {
-
+	{try {
 			URL url1 = this.getClass().getClassLoader().getResource("mtLosingSound.wav");
 			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url1);
-
 			Clip clip = AudioSystem.getClip();
-
 			clip.open(audioIn);
 			clip.start();
-
-		} catch (UnsupportedAudioFileException f) {
-			f.printStackTrace();
-		} catch (IOException f) {
-			f.printStackTrace();
-		} catch (LineUnavailableException f) {
-			f.printStackTrace();
-		}
-
+		} catch (UnsupportedAudioFileException f) {f.printStackTrace();} 
+		catch (IOException f) {f.printStackTrace();} 
+		catch (LineUnavailableException f) {f.printStackTrace();}
 	}
 	
 	//Plays the mtWinningSound.wav music file when instructed.
 	public void winningSound()
-	{
-		try {
-
+	{try {
 			URL url1 = this.getClass().getClassLoader().getResource("mtWinningSound.wav");
 			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url1);
-
 			Clip clip = AudioSystem.getClip();
-
 			clip.open(audioIn);
 			clip.start();
-
-		} catch (UnsupportedAudioFileException f) {
-			f.printStackTrace();
-		} catch (IOException f) {
-			f.printStackTrace();
-		} catch (LineUnavailableException f) {
-			f.printStackTrace();
-		}
-		
+		} catch (UnsupportedAudioFileException f) {f.printStackTrace();} 
+		catch (IOException f) {f.printStackTrace();} 
+		catch (LineUnavailableException f) {f.printStackTrace();}
 	}
+	
+	public void applauseSound1()
+	{try {
+			URL url1 = this.getClass().getClassLoader().getResource("applause1.wav");
+			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url1);
+			Clip clip = AudioSystem.getClip();
+			clip.open(audioIn);
+			clip.start();
+		} catch (UnsupportedAudioFileException f) {f.printStackTrace();} 
+		catch (IOException f) {f.printStackTrace();} 
+		catch (LineUnavailableException f) {f.printStackTrace();}
+	}
+	
+	public void applauseSound2()
+	{try {
+			URL url1 = this.getClass().getClassLoader().getResource("applause3.wav");
+			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url1);
+			Clip clip = AudioSystem.getClip();
+			clip.open(audioIn);
+			clip.start();
+		} catch (UnsupportedAudioFileException f) {f.printStackTrace();} 
+		catch (IOException f) {f.printStackTrace();} 
+		catch (LineUnavailableException f) {f.printStackTrace();}
+	}
+	
+	public void buzzerSound1()
+	{try {
+			URL url1 = this.getClass().getClassLoader().getResource("buzzer1.wav");
+			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url1);
+			Clip clip = AudioSystem.getClip();
+			clip.open(audioIn);
+			clip.start();
+		} catch (UnsupportedAudioFileException f) {f.printStackTrace();} 
+		catch (IOException f) {f.printStackTrace();} 
+		catch (LineUnavailableException f) {f.printStackTrace();}
+	}
+	
+	public void buzzerSound2()
+	{try {
+			URL url1 = this.getClass().getClassLoader().getResource("buzzer2.wav");
+			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url1);
+			Clip clip = AudioSystem.getClip();
+			clip.open(audioIn);
+			clip.start();
+		} catch (UnsupportedAudioFileException f) {f.printStackTrace();} 
+		catch (IOException f) {f.printStackTrace();} 
+		catch (LineUnavailableException f) {f.printStackTrace();}
+	}
+	
+	
+	
 }

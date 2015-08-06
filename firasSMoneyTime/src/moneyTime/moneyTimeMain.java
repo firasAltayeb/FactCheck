@@ -18,7 +18,7 @@ public class MoneyTimeMain
 		/*UMData stands for unmodified Data, the unmodified data is the data which
 		  contains all the lines in the URL*/
 		ArrayList<String> UMData = new ArrayList<String>();
-		for(int i=0;i<1070;i++)
+		for(int i=0;i<1120;i++)
 		{
 			if(i<305)
 			{

@@ -38,8 +38,9 @@ public class MTMethods
 	}
 
 
-	/*The  colorChanger method  initialises randNum to be either 0,1 or 2 and returns it,  
-	The  colorChanger method also changes all the JLabels which were received as an arguments to the colour which was received as an argument*/
+	/*The  colorChanger method  initialises randNum to be either 0,1 or 2 and then multiplies it with the questionCounter so that new
+	  answer options, questions and correct answers will be assigned to the frame using the new question method The colorChanger method
+	  also changes all the JLabels which were received as an arguments to the colour which was received as an argument*/
 	public static int colorChanger(String color,JLabel L100,JLabel L200,JLabel L300,JLabel L500,
 			JLabel L1000,JLabel L2000,JLabel L4000,JLabel L8000,JLabel L16000,JLabel L32000
 			,JLabel L64000,JLabel L125000,JLabel L250000,JLabel L500000,JLabel L1000000)

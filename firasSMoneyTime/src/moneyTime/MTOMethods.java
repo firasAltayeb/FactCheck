@@ -38,17 +38,18 @@ public class MTOMethods {
 		}
 		else
 		{
-			answerOptionArray[0] =  MAnswersOptions.get(r*4-4);
-			answerOptionArray[1] =  MAnswersOptions.get(r*4-3);
-			answerOptionArray[2] =  MAnswersOptions.get(r*4-2);
-			answerOptionArray[3] =  MAnswersOptions.get(r*4-1);
+			answerOptionArray[0] =  MAnswersOptions.get((r+1)*4-4);
+			answerOptionArray[1] =  MAnswersOptions.get((r+1)*4-3);
+			answerOptionArray[2] =  MAnswersOptions.get((r+1)*4-2);
+			answerOptionArray[3] =  MAnswersOptions.get((r+1)*4-1);
 		}
 		correctAnswer = MCorreectAnswers.get(r);
 
 	}
 
-	/*The  colorChanger method  initialises randNum to be either 0,1 or 2 and returns it,  
-	The  colorChanger method also changes all the JLabels which were received as an arguments to the colour which was received as an argument*/
+	/*The  colorChanger method  initialises randNum to be either 0,1,2,3,4 or 5 and then multiplies it with the questionCounter so that new
+	  answer options, questions and correct answers will be assigned to the frame using the new question method,The  colorChanger method 
+	  also changes all the JLabels which were received as an arguments to the colour which was received as an argument*/
 	public static int colorChanger(String color,JLabel L100,JLabel L200,JLabel L300,JLabel L500,
 			JLabel L1000,JLabel L2000,JLabel L4000,JLabel L8000,JLabel L16000,JLabel L32000
 			,JLabel L64000,JLabel L125000,JLabel L250000,JLabel L500000,JLabel L1000000)
@@ -59,21 +60,21 @@ public class MTOMethods {
 			//JOptionPane.showMessageDialog(null, "Correct answer");
 			audio.winningSound();
 			switch (questionCounter){	
-			case 1: L100.setForeground(Color.YELLOW); randNum = random.nextInt(3)+3;break;
-			case 2: L200.setForeground(Color.YELLOW); randNum = random.nextInt(3)+6;break;
-			case 3: L300.setForeground(Color.YELLOW);randNum = random.nextInt(3)+9;break;
-			case 4: L500.setForeground(Color.YELLOW);randNum = random.nextInt(3)+12;break;
-			case 5: L1000.setForeground(Color.YELLOW);randNum = random.nextInt(3)+15;break;
-			case 6: L2000.setForeground(Color.YELLOW);randNum = random.nextInt(3)+18;break;
-			case 7: L4000.setForeground(Color.YELLOW);randNum = random.nextInt(3)+21;break;
-			case 8: L8000.setForeground(Color.YELLOW);randNum = random.nextInt(3)+24;break;
-			case 9: L16000.setForeground(Color.YELLOW);randNum = random.nextInt(3)+27;break;
-			case 10: L32000.setForeground(Color.YELLOW);randNum = random.nextInt(3)+30;break;
-			case 11: L64000.setForeground(Color.YELLOW);randNum = random.nextInt(3)+33;break;
-			case 12: L125000.setForeground(Color.YELLOW);randNum = random.nextInt(3)+36;break;
-			case 13: L250000.setForeground(Color.YELLOW);randNum = random.nextInt(3)+39;break;
-			case 14: L500000.setForeground(Color.YELLOW);randNum = random.nextInt(3)+42;break;
-			case 15: L1000000.setForeground(Color.YELLOW);randNum = random.nextInt(3)+45;break;
+			case 1: L100.setForeground(Color.YELLOW); randNum = random.nextInt(5)+5;break;
+			case 2: L200.setForeground(Color.YELLOW); randNum = random.nextInt(5)+10;break;
+			case 3: L300.setForeground(Color.YELLOW);randNum = random.nextInt(5)+15;break;
+			case 4: L500.setForeground(Color.YELLOW);randNum = random.nextInt(5)+20;break;
+			case 5: L1000.setForeground(Color.YELLOW);randNum = random.nextInt(5)+25;break;
+			case 6: L2000.setForeground(Color.YELLOW);randNum = random.nextInt(5)+30;break;
+			case 7: L4000.setForeground(Color.YELLOW);randNum = random.nextInt(5)+35;break;
+			case 8: L8000.setForeground(Color.YELLOW);randNum = random.nextInt(5)+40;break;
+			case 9: L16000.setForeground(Color.YELLOW);randNum = random.nextInt(5)+45;break;
+			case 10: L32000.setForeground(Color.YELLOW);randNum = random.nextInt(5)+50;break;
+			case 11: L64000.setForeground(Color.YELLOW);randNum = random.nextInt(5)+55;break;
+			case 12: L125000.setForeground(Color.YELLOW);randNum = random.nextInt(5)+60;break;
+			case 13: L250000.setForeground(Color.YELLOW);randNum = random.nextInt(5)+65;break;
+			case 14: L500000.setForeground(Color.YELLOW);randNum = random.nextInt(5)+70;break;
+			case 15: L1000000.setForeground(Color.YELLOW);randNum = random.nextInt(5)+75;break;
 			case 16: L1000000.setForeground(Color.YELLOW);
 			JOptionPane.showMessageDialog(null, "You won 1000000£");System.exit(0);}
 		}
@@ -112,10 +113,10 @@ public class MTOMethods {
 		}
 		else
 		{
-			answerOptionArray[0] =  MAnswersOptions.get(r*4-4);
-			answerOptionArray[1] =  MAnswersOptions.get(r*4-3);
-			answerOptionArray[2] =  MAnswersOptions.get(r*4-2);
-			answerOptionArray[3] =  MAnswersOptions.get(r*4-1);
+			answerOptionArray[0] =  MAnswersOptions.get((r+1)*4-4);
+			answerOptionArray[1] =  MAnswersOptions.get((r+1)*4-3);
+			answerOptionArray[2] =  MAnswersOptions.get((r+1)*4-2);
+			answerOptionArray[3] =  MAnswersOptions.get((r+1)*4-1);
 		}
 		correctAnswer = MCorreectAnswers.get(r);
 		QuestionLabel.setText(currentQuestion);

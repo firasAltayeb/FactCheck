@@ -239,19 +239,19 @@ public class MTOnlineWindow implements ActionListener
 
 					if(MTOMethods.correctAnswer.equals(MTOMethods.answerOptionArray[0]))
 					{
-						values[0] += 3;
+						values[0] += 10;
 					}
 					else if(MTOMethods.correctAnswer.equals(MTOMethods.answerOptionArray[1]))
 					{
-						values[1] += 3;
+						values[1] += 10;
 					}
 					else if(MTOMethods.correctAnswer.equals(MTOMethods.answerOptionArray[2]))
 					{
-						values[2] += 3;
+						values[2] += 10;
 					}
 					else
 					{
-						values[3] += 3;
+						values[3] += 10;
 					}
 
 				}
@@ -336,6 +336,8 @@ public class MTOnlineWindow implements ActionListener
 		titleScreen.setMnemonic(KeyEvent.VK_A);
 		titleScreen.addMenuListener(new MenuListener() {
 		        public void menuSelected(MenuEvent e){
+		        	MTOM.mistakeCounter = 5;
+					MTOM.questionCounter = 0;
 		        	new MTStartScreen(MTM,MTOM);
 		        	frame.dispose();}
 		        public void menuDeselected(MenuEvent e){}

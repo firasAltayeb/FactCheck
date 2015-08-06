@@ -336,6 +336,8 @@ public class MTOfflineWindow implements ActionListener
 		titleScreen.setMnemonic(KeyEvent.VK_A);
 		titleScreen.addMenuListener(new MenuListener() {
 		        public void menuSelected(MenuEvent e) {
+		        	MTM.mistakeCounter = 5;
+					MTM.questionCounter = 0;
 		        	new MTStartScreen(MTM,MTOM);
 		        	frame.dispose();}
 		        public void menuDeselected(MenuEvent e){}
