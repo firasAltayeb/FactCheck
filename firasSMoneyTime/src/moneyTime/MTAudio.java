@@ -11,10 +11,10 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class MTAudio 
 {
-	//Plays the mtLosingSound.wav music file when instructed.
+	//losingSound is played when you answer incorrectly.
 	public void losingSound()
 	{try {
-			URL url1 = this.getClass().getClassLoader().getResource("mtLosingSound.wav");
+			URL url1 = this.getClass().getClassLoader().getResource("losingSound.wav");
 			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url1);
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioIn);
@@ -24,10 +24,10 @@ public class MTAudio
 		catch (LineUnavailableException f) {f.printStackTrace();}
 	}
 	
-	//Plays the mtWinningSound.wav music file when instructed.
-	public void winningSound()
+	//enteringSound is played when the user clicks on either online mode or offline mode buttons
+	public void enteringSound()
 	{try {
-			URL url1 = this.getClass().getClassLoader().getResource("mtWinningSound.wav");
+			URL url1 = this.getClass().getClassLoader().getResource("enteringSound.wav");
 			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url1);
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioIn);
@@ -37,6 +37,7 @@ public class MTAudio
 		catch (LineUnavailableException f) {f.printStackTrace();}
 	}
 	
+	//appaluseSound is played when the user answers the given question correctly.
 	public void applauseSound1()
 	{try {
 			URL url1 = this.getClass().getClassLoader().getResource("applause1.wav");
@@ -49,6 +50,8 @@ public class MTAudio
 		catch (LineUnavailableException f) {f.printStackTrace();}
 	}
 	
+	/*appaluseSound2 is played when the user clicks on collect money 
+	  or when the user answers the final question correctly*/
 	public void applauseSound2()
 	{try {
 			URL url1 = this.getClass().getClassLoader().getResource("applause3.wav");
@@ -61,18 +64,7 @@ public class MTAudio
 		catch (LineUnavailableException f) {f.printStackTrace();}
 	}
 	
-	public void buzzerSound1()
-	{try {
-			URL url1 = this.getClass().getClassLoader().getResource("buzzer1.wav");
-			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url1);
-			Clip clip = AudioSystem.getClip();
-			clip.open(audioIn);
-			clip.start();
-		} catch (UnsupportedAudioFileException f) {f.printStackTrace();} 
-		catch (IOException f) {f.printStackTrace();} 
-		catch (LineUnavailableException f) {f.printStackTrace();}
-	}
-	
+	//buzzerSound2 is played when the user exhaust all his attempts
 	public void buzzerSound2()
 	{try {
 			URL url1 = this.getClass().getClassLoader().getResource("buzzer2.wav");
@@ -85,6 +77,31 @@ public class MTAudio
 		catch (LineUnavailableException f) {f.printStackTrace();}
 	}
 	
+	//chargeSound is played when the user clicks the audience button
+	public void chargeSound()
+	{try {
+			URL url1 = this.getClass().getClassLoader().getResource("charge.wav");
+			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url1);
+			Clip clip = AudioSystem.getClip();
+			clip.open(audioIn);
+			clip.start();
+		} catch (UnsupportedAudioFileException f) {f.printStackTrace();} 
+		catch (IOException f) {f.printStackTrace();} 
+		catch (LineUnavailableException f) {f.printStackTrace();}
+	}
+	
+	//camera2 is played when the user clicks the 50/50 button
+	public void camera2Sound()
+	{try {
+			URL url1 = this.getClass().getClassLoader().getResource("camera2.wav");
+			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url1);
+			Clip clip = AudioSystem.getClip();
+			clip.open(audioIn);
+			clip.start();
+		} catch (UnsupportedAudioFileException f) {f.printStackTrace();} 
+		catch (IOException f) {f.printStackTrace();} 
+		catch (LineUnavailableException f) {f.printStackTrace();}
+	}
 	
 	
 }

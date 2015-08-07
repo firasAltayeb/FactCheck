@@ -48,9 +48,14 @@ public class MTMethods
 		int randNum = random.nextInt(3);
 		if(color.equalsIgnoreCase("yellow"))
 		{
-			//JOptionPane.showMessageDialog(null, "Correct answer");
-			audio.winningSound();
-			
+			if(questionCounter <= 15)
+			{
+				audio.applauseSound1();
+			}
+			else
+			{
+				audio.applauseSound2();
+			}
 			switch (questionCounter){	
 			case 1: L100.setForeground(Color.YELLOW); randNum = random.nextInt(3)+3;break;
 			case 2: L200.setForeground(Color.YELLOW); randNum = random.nextInt(3)+6;break;
@@ -98,7 +103,6 @@ public class MTMethods
 	public static void newQuestion(int r,JButton AnswerButtonOne,JButton AnswerButtonTwo,JButton AnswerButtonThree,
 			JButton AnswerButtonFour,JLabel QuestionLabel)
 	{
-
 		currentQuestion = qusListArray[r];
 		answerOptionArray = currentQuestionAnswers.getOptions(currentQuestion);
 		correctAnswer = currentQuestionAnswers.getCorrectAnswer(currentQuestion);
@@ -111,16 +115,20 @@ public class MTMethods
 		AnswerButtonTwo.setBackground(Color.RED);
 		AnswerButtonThree.setBackground(Color.RED);
 		AnswerButtonFour.setBackground(Color.RED);
-
 	}
 
 	/*The mistakeAdujster method sets lblmistakeCounter text based on the mistakeCounter,
 	  The mistakeAdujster method also exits the game once the mistakeCounter integers reaches 0*/
 	public static void mistakeAdujster(JLabel lblmistakeCounter)
 	{
-		//JOptionPane.showMessageDialog(null, "Wrong answer , please try again");
-
-		audio.losingSound();
+		if(mistakeCounter == 0)
+		{
+			audio.buzzerSound2();
+		}
+		else
+		{
+			audio.losingSound();
+		}
 		switch (mistakeCounter){	
 		case 0: lblmistakeCounter.setText("MISTAKE COUNTER =0 ");JOptionPane.showMessageDialog
 		(null, "You have reached the maxium amount of mistakes");System.exit(0);

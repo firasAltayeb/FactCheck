@@ -24,7 +24,7 @@ public class MTOMethods {
 
 	MTOMethods(ArrayList<String> MQ,ArrayList<String> MCA,ArrayList<String> MAO)
 	{
-		int r = random.nextInt(5);
+		int r = random.nextInt(10);
 		MQuestions = MQ;
 		MCorreectAnswers = MCA;
 		MAnswersOptions =MAO;
@@ -57,24 +57,30 @@ public class MTOMethods {
 		int randNum = random.nextInt(5);
 		if(color.equalsIgnoreCase("yellow"))
 		{
-			//JOptionPane.showMessageDialog(null, "Correct answer");
-			audio.winningSound();
+			if(questionCounter <= 15)
+			{
+				audio.applauseSound1();;
+			}
+			else
+			{
+				audio.applauseSound2();
+			}
 			switch (questionCounter){	
-			case 1: L100.setForeground(Color.YELLOW); randNum = random.nextInt(5)+5;break;
-			case 2: L200.setForeground(Color.YELLOW); randNum = random.nextInt(5)+10;break;
-			case 3: L300.setForeground(Color.YELLOW);randNum = random.nextInt(5)+15;break;
-			case 4: L500.setForeground(Color.YELLOW);randNum = random.nextInt(5)+20;break;
-			case 5: L1000.setForeground(Color.YELLOW);randNum = random.nextInt(5)+25;break;
-			case 6: L2000.setForeground(Color.YELLOW);randNum = random.nextInt(5)+30;break;
-			case 7: L4000.setForeground(Color.YELLOW);randNum = random.nextInt(5)+35;break;
-			case 8: L8000.setForeground(Color.YELLOW);randNum = random.nextInt(5)+40;break;
-			case 9: L16000.setForeground(Color.YELLOW);randNum = random.nextInt(5)+45;break;
-			case 10: L32000.setForeground(Color.YELLOW);randNum = random.nextInt(5)+50;break;
-			case 11: L64000.setForeground(Color.YELLOW);randNum = random.nextInt(5)+55;break;
-			case 12: L125000.setForeground(Color.YELLOW);randNum = random.nextInt(5)+60;break;
-			case 13: L250000.setForeground(Color.YELLOW);randNum = random.nextInt(5)+65;break;
-			case 14: L500000.setForeground(Color.YELLOW);randNum = random.nextInt(5)+70;break;
-			case 15: L1000000.setForeground(Color.YELLOW);randNum = random.nextInt(5)+75;break;
+			case 1: L100.setForeground(Color.YELLOW); randNum = random.nextInt(10)+10;break;
+			case 2: L200.setForeground(Color.YELLOW); randNum = random.nextInt(10)+20;break;
+			case 3: L300.setForeground(Color.YELLOW);randNum = random.nextInt(10)+30;break;
+			case 4: L500.setForeground(Color.YELLOW);randNum = random.nextInt(10)+40;break;
+			case 5: L1000.setForeground(Color.YELLOW);randNum = random.nextInt(10)+50;break;
+			case 6: L2000.setForeground(Color.YELLOW);randNum = random.nextInt(10)+60;break;
+			case 7: L4000.setForeground(Color.YELLOW);randNum = random.nextInt(10)+70;break;
+			case 8: L8000.setForeground(Color.YELLOW);randNum = random.nextInt(10)+80;break;
+			case 9: L16000.setForeground(Color.YELLOW);randNum = random.nextInt(10)+90;break;
+			case 10: L32000.setForeground(Color.YELLOW);randNum = random.nextInt(10)+100;break;
+			case 11: L64000.setForeground(Color.YELLOW);randNum = random.nextInt(10)+110;break;
+			case 12: L125000.setForeground(Color.YELLOW);randNum = random.nextInt(10)+120;break;
+			case 13: L250000.setForeground(Color.YELLOW);randNum = random.nextInt(10)+130;break;
+			case 14: L500000.setForeground(Color.YELLOW);randNum = random.nextInt(10)+140;break;
+			case 15: L1000000.setForeground(Color.YELLOW);randNum = random.nextInt(10)+150;break;
 			case 16: L1000000.setForeground(Color.YELLOW);
 			JOptionPane.showMessageDialog(null, "You won 1000000£");System.exit(0);}
 		}
@@ -99,6 +105,9 @@ public class MTOMethods {
 		return randNum;
 	}
 
+	/*Assigns currentQuestion,answerOptionArray and correctAnswer to a question,correct answer
+	 and answer options based on the integer which is received as an argument,The newQuestion method
+     also assigns the options to the four answer buttons and colours their background to red  */
 	public static void newQuestion(int r,JButton AnswerButtonOne,JButton AnswerButtonTwo,JButton AnswerButtonThree,
 			JButton AnswerButtonFour,JLabel QuestionLabel)
 	{
@@ -135,9 +144,14 @@ public class MTOMethods {
 	  The mistakeAdujster method also exits the game once the mistakeCounter integers reaches 0*/
 	public static void mistakeAdujster(JLabel lblmistakeCounter)
 	{
-		//JOptionPane.showMessageDialog(null, "Wrong answer , please try again");
-
-		audio.losingSound();
+		if(mistakeCounter == 0)
+		{
+			audio.buzzerSound2();
+		}
+		else
+		{
+			audio.losingSound();
+		}
 		switch (mistakeCounter){	
 		case 0: lblmistakeCounter.setText("MISTAKE COUNTER =0 ");JOptionPane.showMessageDialog
 		(null, "You have reached the maxium amount of mistakes");System.exit(0);

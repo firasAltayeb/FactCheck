@@ -26,7 +26,7 @@ import javax.swing.event.MenuListener;
 public class MTOnlineWindow implements ActionListener
 {
 	
-	Random random = new Random();MTOMethods MTOM;MTMethods MTM;
+	Random random = new Random();MTOMethods MTOM;MTMethods MTM;final MTAudio audio = new MTAudio();
 	JLabel copyRight;JLabel L100;JLabel L200;JLabel L300;JLabel L500;JLabel L1000;JLabel L2000;JLabel L4000;
 	JLabel L8000;JLabel L16000;JLabel L32000;JLabel L64000;JLabel L125000;JLabel L250000;JLabel L500000;
 	JLabel L1000000;JLabel LC;JLabel LA;JLabel QuestionLabel;JLabel lblmistakeCounter;JLabel LD;JLabel LB;
@@ -160,6 +160,7 @@ public class MTOnlineWindow implements ActionListener
 		CollectCashButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
+				audio.applauseSound2();
 				switch (MTOM.questionCounter){
 				case 1:	JOptionPane.showMessageDialog(null, "You won 100£");System.exit(0);
 				case 2:	JOptionPane.showMessageDialog(null, "You won 200£");System.exit(0);
@@ -175,8 +176,7 @@ public class MTOnlineWindow implements ActionListener
 				case 12: JOptionPane.showMessageDialog(null, "You won 125000£");System.exit(0);
 				case 13: JOptionPane.showMessageDialog(null, "You won 250000£");System.exit(0);
 				case 14: JOptionPane.showMessageDialog(null, "You won 500000£");System.exit(0);	
-				case 15: JOptionPane.showMessageDialog(null, "You won 1000000£");System.exit(0);
-				}
+				case 15: JOptionPane.showMessageDialog(null, "You won 1000000£");System.exit(0);}
 
 			}
 		});
@@ -186,6 +186,7 @@ public class MTOnlineWindow implements ActionListener
 		FiftyFifty.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{	
+				audio.camera2Sound();
 				if (answerButtonOne.getText().equals(MTOM.correctAnswer))
 				{
 					answerButtonOne.setBackground(Color.YELLOW);
@@ -221,6 +222,7 @@ public class MTOnlineWindow implements ActionListener
 		Audience.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{	
+				audio.chargeSound();
 				JFrame AudienceFrame = new JFrame();
 				AudienceFrame.setSize(700, 500);
 				AudienceFrame.setVisible(true);
@@ -291,7 +293,7 @@ public class MTOnlineWindow implements ActionListener
 		ExitB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-
+				audio.buzzerSound2();
 				Object[] options = { "YES", "NO" };
 				int optionButton = JOptionPane.showOptionDialog(frame,
 						"Are you sure you wish to quit?", null,
@@ -312,7 +314,7 @@ public class MTOnlineWindow implements ActionListener
 		img.setBounds(0, 0, 1900, 1100);
 		frame.getContentPane().add(img);*/
 		JLabel pictureLabel = new JLabel(""); 
-		Image img = new ImageIcon(this.getClass().getResource("/WM2.jpg")).getImage(); 
+		Image img = new ImageIcon(this.getClass().getResource("/WM.jpg")).getImage(); 
 		pictureLabel.setIcon(new ImageIcon(img)); 
 		pictureLabel.setBounds(0, 0, 1900, 1100); 
 		frame.getContentPane().add(pictureLabel); 
@@ -429,7 +431,7 @@ public class MTOnlineWindow implements ActionListener
 			}
 
 		});
-		// Opens the user's browser to a URL page which shows information about the game.
+		// Opens the user's browser to a URL page which shows all the question, correctAnswers and answer options in the game.
 		information.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
@@ -452,29 +454,26 @@ public class MTOnlineWindow implements ActionListener
 		menuBar.add(titleScreen);
 		frame.setJMenuBar(menuBar);
 		frame.pack();
-
 	}
+	
 	/*This action compares the String within the calling button with the correctAnswer String by using .getActionCommand() and .equals, 
 	  if the answer within the calling button equals the correct answer all the labels foreground turn yellow and the questionCounter is 
 	  increased to indicate the clearing of the level and then a new question with it's answers are fetched using the .newQuestion method.
  	  if the answer within the calling button does not equals the correct answer mistakeCounter is decreased to indicate the decrease in 
  	  attempts and then the .mistakeAdujster method rewrite the label to match the remaining attempt/mistakes number. */
 	public void actionPerformed(ActionEvent e) {
-
-		if (e.getActionCommand().equals(MTOM.correctAnswer))
-		{	
+		if (e.getActionCommand().equals(MTOM.correctAnswer)){	
 			MTOM.questionCounter++;		
 			int randNum = MTOMethods.colorChanger("yellow",L100, L200, L300, L500,
 					L1000, L2000, L4000, L8000, L16000, L32000
 					,L64000,L125000,L250000, L500000, L1000000);
 			MTOMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
-
 		}
-		else
-		{
+		else{
 			MTOM.mistakeCounter--;
 			MTOMethods.mistakeAdujster(lblmistakeCounter);
-
 		}
 	}
+	
+	
 }

@@ -18,7 +18,7 @@ public class MoneyTimeMain
 		/*UMData stands for unmodified Data, the unmodified data is the data which
 		  contains all the lines in the URL*/
 		ArrayList<String> UMData = new ArrayList<String>();
-		for(int i=0;i<1120;i++)
+		for(int i=0;i<1934;i++)
 		{
 			if(i<305)
 			{
@@ -63,7 +63,6 @@ public class MoneyTimeMain
 			}
 		}
 		
-		//System.out.println(UMData.size());
 		/*MAnswersOptions stands for "modified answersOptions", modified answersOptions arrayList contains
 		  the answersOptions which are taken from the UNData arrayList */
 		ArrayList<String> MAnswersOptions = new ArrayList<String>();
