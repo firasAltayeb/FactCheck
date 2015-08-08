@@ -25,6 +25,7 @@ public class MTMethods
 	static int questionCounter = 0;
 	//mistakeCounter determine the difficulty of the game, the lower the mistakeCounter becomes the harder the game gets. 
 	static int mistakeCounter = 5;
+	static boolean oneUp;
 
 	public MTMethods()
 	{
@@ -99,22 +100,22 @@ public class MTMethods
 	/*Assigns currentQuestion to a question based on the integer which is received as an argument
 	 and then assigns answerOptionArray and correctAnswer based on the currentQuestion's question,
 	 The newQuestion method also assigns the options to the four answer buttons and colours their 
-	 background to red  */
-	public static void newQuestion(int r,JButton AnswerButtonOne,JButton AnswerButtonTwo,JButton AnswerButtonThree,
-			JButton AnswerButtonFour,JLabel QuestionLabel)
+	 background to red to clear the effect of the 50/50 button   */
+	public static void newQuestion(int r,JButton answerButtonOne,JButton answerButtonTwo,JButton answerButtonThree,
+			JButton answerButtonFour,JLabel QuestionLabel)
 	{
 		currentQuestion = qusListArray[r];
 		answerOptionArray = currentQuestionAnswers.getOptions(currentQuestion);
 		correctAnswer = currentQuestionAnswers.getCorrectAnswer(currentQuestion);
 		QuestionLabel.setText(currentQuestion);
-		AnswerButtonOne.setText(answerOptionArray[0]);
-		AnswerButtonTwo.setText(answerOptionArray[1]);
-		AnswerButtonThree.setText(answerOptionArray[2]);
-		AnswerButtonFour.setText(answerOptionArray[3]);
-		AnswerButtonOne.setBackground(Color.RED);
-		AnswerButtonTwo.setBackground(Color.RED);
-		AnswerButtonThree.setBackground(Color.RED);
-		AnswerButtonFour.setBackground(Color.RED);
+		answerButtonOne.setText(answerOptionArray[0]);
+		answerButtonTwo.setText(answerOptionArray[1]);
+		answerButtonThree.setText(answerOptionArray[2]);
+		answerButtonFour.setText(answerOptionArray[3]);
+		answerButtonOne.setBackground(Color.RED);
+		answerButtonTwo.setBackground(Color.RED);
+		answerButtonThree.setBackground(Color.RED);
+		answerButtonFour.setBackground(Color.RED);
 	}
 
 	/*The mistakeAdujster method sets lblmistakeCounter text based on the mistakeCounter,
@@ -124,10 +125,6 @@ public class MTMethods
 		if(mistakeCounter == 0)
 		{
 			audio.buzzerSound2();
-		}
-		else
-		{
-			audio.losingSound();
 		}
 		switch (mistakeCounter){	
 		case 0: lblmistakeCounter.setText("MISTAKE COUNTER =0 ");JOptionPane.showMessageDialog
@@ -141,6 +138,31 @@ public class MTMethods
 		case 7: lblmistakeCounter.setText("MISTAKE COUNTER =7 ");break;
 		case 8: lblmistakeCounter.setText("MISTAKE COUNTER =8 ");break;
 		case 9: lblmistakeCounter.setText("MISTAKE COUNTER =9 ");break;
-		case 10: lblmistakeCounter.setText("MISTAKE COUNTER =10 ");}
+		case 10:lblmistakeCounter.setText("MISTAKE COUNTER =10 ");break;
+		case 11:lblmistakeCounter.setText("MISTAKE COUNTER =11 ");}
 	}
+	
+	/*Sets one up as true to indicate that "1-up question" button is pressed and assigns currentQuestion 
+	 to one of the last five  questions and then assigns answerOptionArray and correctAnswer based on the 
+	 currentQuestion's question, The newQuestion method also assigns the options to the four answer buttons
+	 and colours their background to red to clear the effect of the 50/50 button  */
+	public static void oneUpQuestion(JButton answerButtonOne,JButton answerButtonTwo,JButton answerButtonThree,
+			JButton answerButtonFour,JLabel QuestionLabel)
+	{
+		oneUp = true;
+		int r = random.nextInt(5)+43;
+		currentQuestion = qusListArray[r];
+		answerOptionArray = currentQuestionAnswers.getOptions(currentQuestion);
+		correctAnswer = currentQuestionAnswers.getCorrectAnswer(currentQuestion);
+		QuestionLabel.setText(currentQuestion);
+		answerButtonOne.setText(answerOptionArray[0]);
+		answerButtonTwo.setText(answerOptionArray[1]);
+		answerButtonThree.setText(answerOptionArray[2]);
+		answerButtonFour.setText(answerOptionArray[3]);
+		answerButtonOne.setBackground(Color.RED);
+		answerButtonTwo.setBackground(Color.RED);
+		answerButtonThree.setBackground(Color.RED);
+		answerButtonFour.setBackground(Color.RED);
+	}
+	
 }

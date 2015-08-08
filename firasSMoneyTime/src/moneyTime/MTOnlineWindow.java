@@ -140,7 +140,7 @@ public class MTOnlineWindow implements ActionListener
 		JButton CollectCashButton = new JButton("Collect Cash");
 		final JButton FiftyFifty = new JButton("50/50");
 		final JButton Audience = new JButton("Audience");
-		JButton ExitB = new JButton("Exit");
+		final JButton oneUpQuestion = new JButton("1-UP Question");
 
 		xAxis=0;
 		//JButtonArray2 holds the four similar buttons mentioned above to allow the following for loops to print the buttons using less repetitive code.
@@ -148,7 +148,7 @@ public class MTOnlineWindow implements ActionListener
 		JButtonArray2[0] = CollectCashButton;
 		JButtonArray2[1] = FiftyFifty;
 		JButtonArray2[2] = Audience;
-		JButtonArray2[3] = ExitB;
+		JButtonArray2[3] = oneUpQuestion;
 		//the following for loop prints the buttons in the JButtonArray2 with the same background and foreground but with different bounds.
 		for(int i=0;i<=3;i++){
 			JButtonArray2[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
@@ -186,7 +186,7 @@ public class MTOnlineWindow implements ActionListener
 		FiftyFifty.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{	
-				audio.camera2Sound();
+				audio.cameraSound2();
 				if (answerButtonOne.getText().equals(MTOM.correctAnswer))
 				{
 					answerButtonOne.setBackground(Color.YELLOW);
@@ -288,23 +288,12 @@ public class MTOnlineWindow implements ActionListener
 		});
 
 
-		/*When ExitB is clicked the game promotes a frame asking the user if he wants to quit or not
-		if the user chose yes the game will close and if the user chose no nothing will happen.*/
-		ExitB.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) 
+		oneUpQuestion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent q) 
 			{
-				audio.buzzerSound2();
-				Object[] options = { "YES", "NO" };
-				int optionButton = JOptionPane.showOptionDialog(frame,
-						"Are you sure you wish to quit?", null,
-						JOptionPane.PLAIN_MESSAGE,
-						JOptionPane.QUESTION_MESSAGE, null, options,
-						options[1]);
-
-				if (optionButton == JOptionPane.YES_OPTION) {
-					System.exit(0);
-				}
-
+				audio.cameraSound1();
+				MTOM.oneUpQuestion(answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
+				oneUpQuestion.setEnabled(false);
 
 			}
 		});
@@ -314,7 +303,7 @@ public class MTOnlineWindow implements ActionListener
 		img.setBounds(0, 0, 1900, 1100);
 		frame.getContentPane().add(img);*/
 		JLabel pictureLabel = new JLabel(""); 
-		Image img = new ImageIcon(this.getClass().getResource("/WM.jpg")).getImage(); 
+		Image img = new ImageIcon(this.getClass().getResource("/onlineM.jpg")).getImage(); 
 		pictureLabel.setIcon(new ImageIcon(img)); 
 		pictureLabel.setBounds(0, 0, 1900, 1100); 
 		frame.getContentPane().add(pictureLabel); 
@@ -332,7 +321,11 @@ public class MTOnlineWindow implements ActionListener
 		help.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 25));
 		help.setMnemonic(KeyEvent.VK_A);
 		
-		
+		/*allows the user to return to the title screen where the user can chose
+		  to play either the online mode or the offline mode,MTM and MTOM are passed
+		  as arguments because they are required to open either the online or offline 
+		  modes and then the current frame is disposed to not allow multiple frame to
+		  be open in the same time.*/
 		JMenu titleScreen = new JMenu("TitleScreen");
 		titleScreen.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 25));
 		titleScreen.setMnemonic(KeyEvent.VK_A);
@@ -346,6 +339,29 @@ public class MTOnlineWindow implements ActionListener
 		        public void menuCanceled(MenuEvent e){}
 		    });
 
+		/*When exit is clicked the game promotes a frame asking the user if he wants to quit or not
+		if the user chose yes the game will close and if the user chose no nothing will happen.*/
+		JMenu exit = new JMenu("Exit");
+		exit.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 25));
+		exit.setMnemonic(KeyEvent.VK_A);
+		exit.addMenuListener(new MenuListener() {
+			public void menuSelected(MenuEvent e) {
+				audio.buzzerSound2();
+				Object[] options = { "YES", "NO" };
+				int optionButton = JOptionPane.showOptionDialog(frame,
+						"Are you sure you wish to quit?", null,
+						JOptionPane.PLAIN_MESSAGE,
+						JOptionPane.QUESTION_MESSAGE, null, options,
+						options[1]);
+
+				if (optionButton == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				}
+
+			}
+			public void menuDeselected(MenuEvent e){}
+			public void menuCanceled(MenuEvent e){}
+		});
 		
 		JMenuItem easy = new JMenuItem("easy");
 		JMenuItem hard = new JMenuItem("Hard");
@@ -383,6 +399,7 @@ public class MTOnlineWindow implements ActionListener
 				lblmistakeCounter.setText("MISTAKE COUNTER = 10 ");
 				FiftyFifty.setEnabled(true);
 				Audience.setEnabled(true);
+				oneUpQuestion.setEnabled(true);
 
 			}
 
@@ -405,6 +422,7 @@ public class MTOnlineWindow implements ActionListener
 				lblmistakeCounter.setText("MISTAKE COUNTER =3  ");
 				FiftyFifty.setEnabled(true);
 				Audience.setEnabled(true);
+				oneUpQuestion.setEnabled(true);
 
 			}
 
@@ -427,6 +445,7 @@ public class MTOnlineWindow implements ActionListener
 				lblmistakeCounter.setText("MISTAKE COUNTER = 5 ");
 				FiftyFifty.setEnabled(true);
 				Audience.setEnabled(true);
+				oneUpQuestion.setEnabled(true);
 
 			}
 
@@ -452,26 +471,42 @@ public class MTOnlineWindow implements ActionListener
 		menuBar.add(difficulty);
 		menuBar.add(help);
 		menuBar.add(titleScreen);
+		menuBar.add(exit);
 		frame.setJMenuBar(menuBar);
 		frame.pack();
 	}
 	
-	/*This action compares the String within the calling button with the correctAnswer String by using .getActionCommand() and .equals, 
-	  if the answer within the calling button equals the correct answer all the labels foreground turn yellow and the questionCounter is 
-	  increased to indicate the clearing of the level and then a new question with it's answers are fetched using the .newQuestion method.
- 	  if the answer within the calling button does not equals the correct answer mistakeCounter is decreased to indicate the decrease in 
- 	  attempts and then the .mistakeAdujster method rewrite the label to match the remaining attempt/mistakes number. */
+	/*This action compares the calling button text with the correctAnswer by using both "e.getActionCommand()" and ".equals" methods,
+	  if oneUp is set as true and the user correctly answers the current question the user gains an attempt by increasing his mistakeCounter 
+	  and then all the labels foreground turn yellow by using the ".colorChanger" method after that a new question with it's answers are fetched 
+	  using the ".newQuestion" method and oneUp is set as false to allow the game to run normally. when oneUp is set as false and the user correctly 
+	  answers the current question all the labels foreground turn yellow by using the ".colorChanger" method and then a new question with 
+	  it's answers are fetched using the ".newQuestion" method and the questionCounter is increased to indicate the clearing of the level.
+	  if the answer within the calling button does not equals the correct answer mistakeCounter is decreased to indicate the decrease in 
+	  attempts and then the ".mistakeAdujster" method rewrite the label to match the remaining attempts number. */
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals(MTOM.correctAnswer)){	
+		if (e.getActionCommand().equals(MTOM.correctAnswer)){
+			if(MTOM.oneUp){
+				System.out.println("yeah");
+				MTOM.mistakeCounter++;
+				MTOM.mistakeAdujster(lblmistakeCounter);
+				int randNum = MTOM.colorChanger("yellow",L100, L200, L300, L500,
+						L1000, L2000, L4000, L8000, L16000, L32000
+						,L64000,L125000,L250000, L500000, L1000000);
+				MTOM.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
+				MTOM.oneUp = false;
+			}
+			else{
 			MTOM.questionCounter++;		
-			int randNum = MTOMethods.colorChanger("yellow",L100, L200, L300, L500,
+			int randNum = MTOM.colorChanger("yellow",L100, L200, L300, L500,
 					L1000, L2000, L4000, L8000, L16000, L32000
 					,L64000,L125000,L250000, L500000, L1000000);
-			MTOMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
+			MTOM.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);}
 		}
 		else{
+			audio.losingSound();
 			MTOM.mistakeCounter--;
-			MTOMethods.mistakeAdujster(lblmistakeCounter);
+			MTOM.mistakeAdujster(lblmistakeCounter);
 		}
 	}
 	

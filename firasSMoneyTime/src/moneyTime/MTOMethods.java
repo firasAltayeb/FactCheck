@@ -3,6 +3,7 @@ package moneyTime;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -21,6 +22,7 @@ public class MTOMethods {
 	static int questionCounter = 0;
 	//mistakeCounter determine the difficulty of the game, the lower the mistakeCounter becomes the harder the game gets. 
 	static int mistakeCounter = 5;
+	static boolean oneUp;
 
 	MTOMethods(ArrayList<String> MQ,ArrayList<String> MCA,ArrayList<String> MAO)
 	{
@@ -148,10 +150,6 @@ public class MTOMethods {
 		{
 			audio.buzzerSound2();
 		}
-		else
-		{
-			audio.losingSound();
-		}
 		switch (mistakeCounter){	
 		case 0: lblmistakeCounter.setText("MISTAKE COUNTER =0 ");JOptionPane.showMessageDialog
 		(null, "You have reached the maxium amount of mistakes");System.exit(0);
@@ -164,8 +162,34 @@ public class MTOMethods {
 		case 7: lblmistakeCounter.setText("MISTAKE COUNTER =7 ");break;
 		case 8: lblmistakeCounter.setText("MISTAKE COUNTER =8 ");break;
 		case 9: lblmistakeCounter.setText("MISTAKE COUNTER =9 ");break;
-		case 10: lblmistakeCounter.setText("MISTAKE COUNTER =10 ");}
+		case 10:lblmistakeCounter.setText("MISTAKE COUNTER =10 ");break;
+		case 11:lblmistakeCounter.setText("MISTAKE COUNTER =11 ");}
 	}
 
+	/*Sets one up as true to indicate that "1-up question" button is pressed and assigns currentQuestion 
+	 to one of the last ten questions and then assigns answerOptionArray and correctAnswer based on the 
+	 currentQuestion's question, The newQuestion method also assigns the options to the four answer buttons
+	 and colours their background to red to clear the effect of the 50/50 button  */
+	public static void oneUpQuestion(JButton answerButtonOne,JButton answerButtonTwo,JButton answerButtonThree,
+			JButton answerButtonFour,JLabel QuestionLabel)
+	{
+		oneUp = true;
+		int r = random.nextInt(10)+150;
+		currentQuestion = MQuestions.get(r);
+		answerOptionArray[0] =  MAnswersOptions.get((r+1)*4-4);
+		answerOptionArray[1] =  MAnswersOptions.get((r+1)*4-3);
+		answerOptionArray[2] =  MAnswersOptions.get((r+1)*4-2);
+		answerOptionArray[3] =  MAnswersOptions.get((r+1)*4-1);
+		correctAnswer = MCorreectAnswers.get(r);
+		QuestionLabel.setText(currentQuestion);
+		answerButtonOne.setText(answerOptionArray[0]);
+		answerButtonTwo.setText(answerOptionArray[1]);
+		answerButtonThree.setText(answerOptionArray[2]);
+		answerButtonFour.setText(answerOptionArray[3]);
+		answerButtonOne.setBackground(Color.RED);
+		answerButtonTwo.setBackground(Color.RED);
+		answerButtonThree.setBackground(Color.RED);
+		answerButtonFour.setBackground(Color.RED);
+	}
 
 }	

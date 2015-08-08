@@ -54,7 +54,7 @@ public class MTStartScreen
 		img.setBounds(0, 0, 500 ,500);
 		frame.getContentPane().add(img);*/
 		JLabel pictureLabel = new JLabel(""); 
-		Image img = new ImageIcon(this.getClass().getResource("/WM2.jpg")).getImage(); 
+		Image img = new ImageIcon(this.getClass().getResource("/titleScreen.jpg")).getImage(); 
 		//pictureLabel.setHorizontalAlignment(SwingConstants.CENTER); 
 		pictureLabel.setIcon(new ImageIcon(img)); 
 		pictureLabel.setBounds(0, 0, 1900, 1100); 
