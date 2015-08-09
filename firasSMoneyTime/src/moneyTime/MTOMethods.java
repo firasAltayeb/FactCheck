@@ -110,8 +110,8 @@ public class MTOMethods {
 	/*Assigns currentQuestion,answerOptionArray and correctAnswer to a question,correct answer
 	 and answer options based on the integer which is received as an argument,The newQuestion method
      also assigns the options to the four answer buttons and colours their background to red  */
-	public static void newQuestion(int r,JButton AnswerButtonOne,JButton AnswerButtonTwo,JButton AnswerButtonThree,
-			JButton AnswerButtonFour,JLabel QuestionLabel)
+	public static void newQuestion(int r,JButton answerButtonOne,JButton answerButtonTwo,JButton answerButtonThree,
+			JButton answerButtonFour,JLabel QuestionLabel)
 	{
 
 		currentQuestion = MQuestions.get(r);
@@ -131,14 +131,14 @@ public class MTOMethods {
 		}
 		correctAnswer = MCorreectAnswers.get(r);
 		QuestionLabel.setText(currentQuestion);
-		AnswerButtonOne.setText(answerOptionArray[0]);
-		AnswerButtonTwo.setText(answerOptionArray[1]);
-		AnswerButtonThree.setText(answerOptionArray[2]);
-		AnswerButtonFour.setText(answerOptionArray[3]);
-		AnswerButtonOne.setBackground(Color.RED);
-		AnswerButtonTwo.setBackground(Color.RED);
-		AnswerButtonThree.setBackground(Color.RED);
-		AnswerButtonFour.setBackground(Color.RED);
+		answerButtonOne.setText(answerOptionArray[0]);
+		answerButtonTwo.setText(answerOptionArray[1]);
+		answerButtonThree.setText(answerOptionArray[2]);
+		answerButtonFour.setText(answerOptionArray[3]);
+		answerButtonOne.setEnabled(true);
+		answerButtonTwo.setEnabled(true);
+		answerButtonThree.setEnabled(true);
+		answerButtonFour.setEnabled(true);
 
 	}
 
@@ -191,5 +191,5 @@ public class MTOMethods {
 		answerButtonThree.setBackground(Color.RED);
 		answerButtonFour.setBackground(Color.RED);
 	}
-
+	
 }	

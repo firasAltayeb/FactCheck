@@ -1,7 +1,5 @@
 package moneyTime;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -102,20 +100,20 @@ public class MTMethods
 	 The newQuestion method also assigns the options to the four answer buttons and colours their 
 	 background to red to clear the effect of the 50/50 button   */
 	public static void newQuestion(int r,JButton answerButtonOne,JButton answerButtonTwo,JButton answerButtonThree,
-			JButton answerButtonFour,JLabel QuestionLabel)
+			JButton answerButtonFour,JLabel questionLabel)
 	{
 		currentQuestion = qusListArray[r];
 		answerOptionArray = currentQuestionAnswers.getOptions(currentQuestion);
 		correctAnswer = currentQuestionAnswers.getCorrectAnswer(currentQuestion);
-		QuestionLabel.setText(currentQuestion);
+		questionLabel.setText(currentQuestion);
 		answerButtonOne.setText(answerOptionArray[0]);
 		answerButtonTwo.setText(answerOptionArray[1]);
 		answerButtonThree.setText(answerOptionArray[2]);
 		answerButtonFour.setText(answerOptionArray[3]);
-		answerButtonOne.setBackground(Color.RED);
-		answerButtonTwo.setBackground(Color.RED);
-		answerButtonThree.setBackground(Color.RED);
-		answerButtonFour.setBackground(Color.RED);
+		answerButtonOne.setEnabled(true);
+		answerButtonTwo.setEnabled(true);
+		answerButtonThree.setEnabled(true);
+		answerButtonFour.setEnabled(true);
 	}
 
 	/*The mistakeAdujster method sets lblmistakeCounter text based on the mistakeCounter,
@@ -147,14 +145,14 @@ public class MTMethods
 	 currentQuestion's question, The newQuestion method also assigns the options to the four answer buttons
 	 and colours their background to red to clear the effect of the 50/50 button  */
 	public static void oneUpQuestion(JButton answerButtonOne,JButton answerButtonTwo,JButton answerButtonThree,
-			JButton answerButtonFour,JLabel QuestionLabel)
+			JButton answerButtonFour,JLabel questionLabel)
 	{
 		oneUp = true;
 		int r = random.nextInt(5)+43;
 		currentQuestion = qusListArray[r];
 		answerOptionArray = currentQuestionAnswers.getOptions(currentQuestion);
 		correctAnswer = currentQuestionAnswers.getCorrectAnswer(currentQuestion);
-		QuestionLabel.setText(currentQuestion);
+		questionLabel.setText(currentQuestion);
 		answerButtonOne.setText(answerOptionArray[0]);
 		answerButtonTwo.setText(answerOptionArray[1]);
 		answerButtonThree.setText(answerOptionArray[2]);

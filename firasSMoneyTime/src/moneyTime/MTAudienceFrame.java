@@ -3,7 +3,12 @@ import java.awt.*;
 import javax.swing.JPanel;
 
 public class MTAudienceFrame extends JPanel {
-  private double[] values;
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1069797476258006395L;
+
+private double[] values;
 
   private String[] names;
 

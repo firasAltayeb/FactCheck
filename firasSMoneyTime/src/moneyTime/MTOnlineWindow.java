@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.util.Random;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,17 +24,15 @@ import javax.swing.event.MenuListener;
 
 public class MTOnlineWindow implements ActionListener
 {
-	
-	Random random = new Random();MTOMethods MTOM;MTMethods MTM;final MTAudio audio = new MTAudio();
+
+	Random random = new Random();MTMethods MTM;final MTAudio audio = new MTAudio();
 	JLabel copyRight;JLabel L100;JLabel L200;JLabel L300;JLabel L500;JLabel L1000;JLabel L2000;JLabel L4000;
 	JLabel L8000;JLabel L16000;JLabel L32000;JLabel L64000;JLabel L125000;JLabel L250000;JLabel L500000;
 	JLabel L1000000;JLabel LC;JLabel LA;JLabel QuestionLabel;JLabel lblmistakeCounter;JLabel LD;JLabel LB;
 	JButton answerButtonOne;JButton answerButtonTwo;JButton answerButtonThree;JButton answerButtonFour;		
 
-	public MTOnlineWindow(final MTOMethods shortCut,final MTMethods shortCut2){
+	public MTOnlineWindow(){
 
-		MTOM = shortCut;
-		MTM = shortCut2;
 		//---------------------------- JFrame Implementation  -------------------------------------------
 		final JFrame frame = new JFrame();
 		frame.setVisible(true);
@@ -66,7 +63,7 @@ public class MTOnlineWindow implements ActionListener
 		L1000000 = new JLabel("1000000\u00A3");JlabelArray[15]=L1000000;
 		LC= new JLabel("c.");JlabelArray[16]=LC;
 		LA = new JLabel("a.");JlabelArray[17]=LA;
-		QuestionLabel = new JLabel(MTOM.currentQuestion);JlabelArray[18]=QuestionLabel;
+		QuestionLabel = new JLabel(MTOMethods.currentQuestion);JlabelArray[18]=QuestionLabel;
 		lblmistakeCounter = new JLabel("MISTAKE COUNTER = 5 ");JlabelArray[19]=lblmistakeCounter;
 		LD = new JLabel("d.");JlabelArray[20]=LD;
 		LB = new JLabel("b.");JlabelArray[21]=LB;
@@ -101,10 +98,10 @@ public class MTOnlineWindow implements ActionListener
 
 		//------------------------ Answer buttons variables  ------------------------------------------------
 
-		answerButtonOne = new JButton(MTOM.answerOptionArray[0]);
-		answerButtonTwo = new JButton(MTOM.answerOptionArray[1]);
-		answerButtonThree = new JButton(MTOM.answerOptionArray[2]);
-		answerButtonFour = new JButton(MTOM.answerOptionArray[3]);
+		answerButtonOne = new JButton(MTOMethods.answerOptionArray[0]);
+		answerButtonTwo = new JButton(MTOMethods.answerOptionArray[1]);
+		answerButtonThree = new JButton(MTOMethods.answerOptionArray[2]);
+		answerButtonFour = new JButton(MTOMethods.answerOptionArray[3]);
 		
 		yAxis=480;
 		xAxis=440;
@@ -158,57 +155,39 @@ public class MTOnlineWindow implements ActionListener
 		}
 		// Allows the user to exit the game with the current amount of money the user has gained using questionCounter
 		CollectCashButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-				audio.applauseSound2();
-				switch (MTOM.questionCounter){
-				case 1:	JOptionPane.showMessageDialog(null, "You won 100£");System.exit(0);
-				case 2:	JOptionPane.showMessageDialog(null, "You won 200£");System.exit(0);
-				case 3:	JOptionPane.showMessageDialog(null, "You won 300£");System.exit(0);
-				case 4: JOptionPane.showMessageDialog(null, "You won 500£");System.exit(0);
-				case 5:	JOptionPane.showMessageDialog(null, "You won 1000£");System.exit(0);
-				case 6:	JOptionPane.showMessageDialog(null, "You won 2000£");System.exit(0);
-				case 7:	JOptionPane.showMessageDialog(null, "You won 4000£");System.exit(0);
-				case 8:	JOptionPane.showMessageDialog(null, "You won 8000£");System.exit(0);
-				case 9:	JOptionPane.showMessageDialog(null, "You won 16000£");System.exit(0);
-				case 10: JOptionPane.showMessageDialog(null, "You won 32000£");System.exit(0);
-				case 11: JOptionPane.showMessageDialog(null, "You won 64000£");System.exit(0);
-				case 12: JOptionPane.showMessageDialog(null, "You won 125000£");System.exit(0);
-				case 13: JOptionPane.showMessageDialog(null, "You won 250000£");System.exit(0);
-				case 14: JOptionPane.showMessageDialog(null, "You won 500000£");System.exit(0);	
-				case 15: JOptionPane.showMessageDialog(null, "You won 1000000£");System.exit(0);}
+			public void actionPerformed(ActionEvent arg0) 
+			{
 
 			}
 		});
 
-		/*Changes the background of the current question's correct answer to yellow plus one other random button,
-		after the button is used the button becomes disabled*/
+		/*disables two wrong answer's buttons,after the button is used the button becomes disabled*/
 		FiftyFifty.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{	
 				audio.cameraSound2();
-				if (answerButtonOne.getText().equals(MTOM.correctAnswer))
+				if (answerButtonOne.getText().equals(MTMethods.correctAnswer))
 				{
-					answerButtonOne.setBackground(Color.YELLOW);
-					answerButtonFour.setBackground(Color.YELLOW);
+					answerButtonTwo.setEnabled(false);
+					answerButtonFour.setEnabled(false);
 				}
 
-				else if (answerButtonTwo.getText().equals(MTOM.correctAnswer))
+				else if (answerButtonTwo.getText().equals(MTMethods.correctAnswer))
 				{
-					answerButtonTwo.setBackground(Color.YELLOW);
-					answerButtonOne.setBackground(Color.YELLOW);
+					answerButtonThree.setEnabled(false);
+					answerButtonOne.setEnabled(false);
 				}
 
-				else if (answerButtonThree.getText().equals(MTOM.correctAnswer))
+				else if (answerButtonThree.getText().equals(MTMethods.correctAnswer))
 				{
-					answerButtonThree.setBackground(Color.YELLOW);
-					answerButtonFour.setBackground(Color.YELLOW);
+					answerButtonTwo.setEnabled(false);
+					answerButtonFour.setEnabled(false);
 				}
 
-				else if(answerButtonFour.getText().equals(MTOM.correctAnswer))
+				else if(answerButtonFour.getText().equals(MTMethods.correctAnswer))
 				{
-					answerButtonFour.setBackground(Color.YELLOW);
-					answerButtonTwo.setBackground(Color.YELLOW);
+					answerButtonOne.setEnabled(false);
+					answerButtonTwo.setEnabled(false);
 				}
 
 				FiftyFifty.setEnabled(false);
@@ -292,7 +271,7 @@ public class MTOnlineWindow implements ActionListener
 			public void actionPerformed(ActionEvent q) 
 			{
 				audio.cameraSound1();
-				MTOM.oneUpQuestion(answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
+				MTOMethods.oneUpQuestion(answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
 				oneUpQuestion.setEnabled(false);
 
 			}
@@ -321,6 +300,10 @@ public class MTOnlineWindow implements ActionListener
 		help.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 25));
 		help.setMnemonic(KeyEvent.VK_A);
 		
+		JMenu quit = new JMenu("Quit");
+		quit.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 25));
+		quit.setMnemonic(KeyEvent.VK_A);
+		
 		/*allows the user to return to the title screen where the user can chose
 		  to play either the online mode or the offline mode,MTM and MTOM are passed
 		  as arguments because they are required to open either the online or offline 
@@ -331,55 +314,38 @@ public class MTOnlineWindow implements ActionListener
 		titleScreen.setMnemonic(KeyEvent.VK_A);
 		titleScreen.addMenuListener(new MenuListener() {
 		        public void menuSelected(MenuEvent e){
-		        	MTOM.mistakeCounter = 5;
-					MTOM.questionCounter = 0;
-		        	new MTStartScreen(MTM,MTOM);
-		        	frame.dispose();}
+					MTOMethods.mistakeCounter = 5;
+					MTOMethods.questionCounter = 0;
+			    	new MTStartScreen();
+			    	frame.dispose();
+		        }
 		        public void menuDeselected(MenuEvent e){}
 		        public void menuCanceled(MenuEvent e){}
 		    });
-
-		/*When exit is clicked the game promotes a frame asking the user if he wants to quit or not
-		if the user chose yes the game will close and if the user chose no nothing will happen.*/
-		JMenu exit = new JMenu("Exit");
-		exit.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 25));
-		exit.setMnemonic(KeyEvent.VK_A);
-		exit.addMenuListener(new MenuListener() {
-			public void menuSelected(MenuEvent e) {
-				audio.buzzerSound2();
-				Object[] options = { "YES", "NO" };
-				int optionButton = JOptionPane.showOptionDialog(frame,
-						"Are you sure you wish to quit?", null,
-						JOptionPane.PLAIN_MESSAGE,
-						JOptionPane.QUESTION_MESSAGE, null, options,
-						options[1]);
-
-				if (optionButton == JOptionPane.YES_OPTION) {
-					System.exit(0);
-				}
-
-			}
-			public void menuDeselected(MenuEvent e){}
-			public void menuCanceled(MenuEvent e){}
-		});
+		
 		
 		JMenuItem easy = new JMenuItem("easy");
 		JMenuItem hard = new JMenuItem("Hard");
 		JMenuItem restart = new JMenuItem("Restart");
 		JMenuItem information = new JMenuItem("Information");
-
+		JMenuItem exit = new JMenuItem("Exit");
+		JMenuItem collect = new JMenuItem("Collect Cash");
 		//JMenuItemArray holds four  JMenuItem mentioned above to allow the following for loops to print the buttons using less repetitive code.
-		JMenuItem[] JMenuItemArray = new JMenuItem[4];
+		JMenuItem[] JMenuItemArray = new JMenuItem[6];
 		JMenuItemArray[0] = easy;
 		JMenuItemArray[1] = hard;
 		JMenuItemArray[2] = restart;
 		JMenuItemArray[3] = information;
+		JMenuItemArray[4] = exit;
+		JMenuItemArray[5] = collect;
+
 		//the following for loop prints the JMenuItems in the JMenuItemArray with the same font and accelerator but with different bounds.
-		for(int i=0;i<=3;i++){
+		for(int i=0;i<=5;i++){
 			JMenuItemArray[i].setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 20));
 			JMenuItemArray[i].setAccelerator(KeyStroke.getKeyStroke
 					(KeyEvent.VK_1,ActionEvent.ALT_MASK));	
 		}
+
 
 
 		/*The easy menuItem restarts the game with easier difficulty by assigning mistakeCounter to 10 and by
@@ -390,8 +356,8 @@ public class MTOnlineWindow implements ActionListener
 		easy.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
-				MTOM.mistakeCounter = 10;
-				MTOM.questionCounter = 0;
+				MTOMethods.mistakeCounter = 10;
+				MTOMethods.questionCounter = 0;
 				int randNum = MTOMethods.colorChanger("red",L100, L200, L300, L500,
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
@@ -413,8 +379,8 @@ public class MTOnlineWindow implements ActionListener
 		hard.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
-				MTOM.mistakeCounter = 3;
-				MTOM.questionCounter = 0;
+				MTOMethods.mistakeCounter = 3;
+				MTOMethods.questionCounter = 0;
 				int randNum = MTOMethods.colorChanger("red",L100, L200, L300, L500,
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
@@ -436,8 +402,8 @@ public class MTOnlineWindow implements ActionListener
 		restart.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
-				MTOM.questionCounter = 0;
-				MTOM.mistakeCounter = 5;
+				MTOMethods.questionCounter = 0;
+				MTOMethods.mistakeCounter = 5;
 				int randNum = MTOMethods.colorChanger("red",L100, L200, L300, L500,
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
@@ -463,15 +429,60 @@ public class MTOnlineWindow implements ActionListener
 			}
 
 		});
+		
+		/*When exit is clicked the game promotes a frame asking the user if he wants to quit or not
+		if the user chose yes the game will close and if the user chose no nothing will happen.*/
+		exit.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0)
+			{
+				audio.buzzerSound2();
+				Object[] options = { "YES", "NO" };
+				int optionButton = JOptionPane.showOptionDialog(frame,
+						"Are you sure you wish to quit?", null,
+						JOptionPane.PLAIN_MESSAGE,
+						JOptionPane.QUESTION_MESSAGE, null, options,
+						options[1]);
+
+				if (optionButton == JOptionPane.YES_OPTION) {System.exit(0);}
+
+			}
+		});
+
+		// Allows the user to exit the game with the current amount of money the user has gained using questionCounter
+		collect.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0)
+			{
+				audio.applauseSound2();
+				switch (MTOMethods.questionCounter){
+				case 1:	JOptionPane.showMessageDialog(null, "You won 100£");System.exit(0);
+				case 2:	JOptionPane.showMessageDialog(null, "You won 200£");System.exit(0);
+				case 3:	JOptionPane.showMessageDialog(null, "You won 300£");System.exit(0);
+				case 4: JOptionPane.showMessageDialog(null, "You won 500£");System.exit(0);
+				case 5:	JOptionPane.showMessageDialog(null, "You won 1000£");System.exit(0);
+				case 6:	JOptionPane.showMessageDialog(null, "You won 2000£");System.exit(0);
+				case 7:	JOptionPane.showMessageDialog(null, "You won 4000£");System.exit(0);
+				case 8:	JOptionPane.showMessageDialog(null, "You won 8000£");System.exit(0);
+				case 9:	JOptionPane.showMessageDialog(null, "You won 16000£");System.exit(0);
+				case 10: JOptionPane.showMessageDialog(null, "You won 32000£");System.exit(0);
+				case 11: JOptionPane.showMessageDialog(null, "You won 64000£");System.exit(0);
+				case 12: JOptionPane.showMessageDialog(null, "You won 125000£");System.exit(0);
+				case 13: JOptionPane.showMessageDialog(null, "You won 250000£");System.exit(0);
+				case 14: JOptionPane.showMessageDialog(null, "You won 500000£");System.exit(0);	
+				case 15: JOptionPane.showMessageDialog(null, "You won 1000000£");System.exit(0);
+				}
+			}
+		});
 
 		difficulty.add(easy);
 		difficulty.add(hard);
 		help.add(restart);
 		help.add(information);
+		quit.add(collect);
+		quit.add(exit);
 		menuBar.add(difficulty);
 		menuBar.add(help);
 		menuBar.add(titleScreen);
-		menuBar.add(exit);
+		menuBar.add(quit);
 		frame.setJMenuBar(menuBar);
 		frame.pack();
 	}
@@ -485,30 +496,29 @@ public class MTOnlineWindow implements ActionListener
 	  if the answer within the calling button does not equals the correct answer mistakeCounter is decreased to indicate the decrease in 
 	  attempts and then the ".mistakeAdujster" method rewrite the label to match the remaining attempts number. */
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals(MTOM.correctAnswer)){
-			if(MTOM.oneUp){
+		if (e.getActionCommand().equals(MTOMethods.correctAnswer)){
+			if(MTOMethods.oneUp){
 				System.out.println("yeah");
-				MTOM.mistakeCounter++;
-				MTOM.mistakeAdujster(lblmistakeCounter);
-				int randNum = MTOM.colorChanger("yellow",L100, L200, L300, L500,
+				MTOMethods.mistakeCounter++;
+				MTOMethods.mistakeAdujster(lblmistakeCounter);
+				int randNum = MTOMethods.colorChanger("yellow",L100, L200, L300, L500,
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
-				MTOM.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
-				MTOM.oneUp = false;
+				MTOMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
+				MTOMethods.oneUp = false;
 			}
 			else{
-			MTOM.questionCounter++;		
-			int randNum = MTOM.colorChanger("yellow",L100, L200, L300, L500,
+				MTOMethods.questionCounter++;		
+			int randNum = MTOMethods.colorChanger("yellow",L100, L200, L300, L500,
 					L1000, L2000, L4000, L8000, L16000, L32000
 					,L64000,L125000,L250000, L500000, L1000000);
-			MTOM.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);}
+			MTOMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);}
 		}
 		else{
 			audio.losingSound();
-			MTOM.mistakeCounter--;
-			MTOM.mistakeAdujster(lblmistakeCounter);
+			MTOMethods.mistakeCounter--;
+			MTOMethods.mistakeAdujster(lblmistakeCounter);
 		}
 	}
-	
 	
 }

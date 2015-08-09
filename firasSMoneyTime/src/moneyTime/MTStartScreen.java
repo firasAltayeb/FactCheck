@@ -4,10 +4,11 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 public class MTStartScreen
 {
-	MTStartScreen(final MTMethods MTM,final MTOMethods MTOM)
+	MTStartScreen()
 	{
 		final MTAudio audio = new MTAudio();
 		final JFrame frame = new JFrame();
@@ -28,7 +29,8 @@ public class MTStartScreen
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				audio.enteringSound();
-				new MTOfflineWindow(MTM,MTOM);
+				new MTMethods();
+				new MTOfflineWindow();
 				frame.dispose();
 			}
 		});
@@ -45,7 +47,12 @@ public class MTStartScreen
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				audio.enteringSound();
-				new MTOnlineWindow(MTOM,MTM);
+				try {
+					new onlineLink();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				new MTOnlineWindow();
 				frame.dispose();
 			}
 		});
