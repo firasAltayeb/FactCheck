@@ -7,9 +7,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class onlineLink {
+public class MTOnlineLink {
 
-	public onlineLink() throws IOException {
+	public MTOnlineLink() throws IOException {
 
 		URL kclLink = new URL("http://www.gamefaqs.com/gba/582399-who-wants-to-be-a-millionaire/faqs/40043");
 		Scanner in = new Scanner(new BufferedReader(new InputStreamReader(kclLink.openStream(), "ISO-8859-1")));

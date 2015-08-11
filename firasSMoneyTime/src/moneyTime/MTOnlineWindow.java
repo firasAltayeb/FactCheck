@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.util.Random;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -31,18 +32,8 @@ public class MTOnlineWindow implements ActionListener
 	JLabel L1000000;JLabel LC;JLabel LA;JLabel QuestionLabel;JLabel lblmistakeCounter;JLabel LD;JLabel LB;
 	JButton answerButtonOne;JButton answerButtonTwo;JButton answerButtonThree;JButton answerButtonFour;		
 
-	public MTOnlineWindow(){
-
-		//---------------------------- JFrame Implementation  -------------------------------------------
-		final JFrame frame = new JFrame();
-		frame.setVisible(true);
-		frame.setMinimumSize(new Dimension(1900, 1000));
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-
-
-		//-----------------------------  Jlabels --------------------------------------------------------
-
+	public MTOnlineWindow(final JFrame frame){
+		
 		//JlabelArray holds all the labels used in the class to allow the following for loops to print the labels using less repetitive code.
 		JLabel[] JlabelArray = new JLabel[22];
 		copyRight = new JLabel("@FirasAltayeb");JlabelArray[0]=copyRight;
@@ -134,7 +125,8 @@ public class MTOnlineWindow implements ActionListener
 
 		//------------------------------  Extra buttons -----------------------------------------------------
 
-		JButton CollectCashButton = new JButton("Collect Cash");
+
+		final JButton RockPaperScissor = new JButton("Rock.Paper.Scissor");
 		final JButton FiftyFifty = new JButton("50/50");
 		final JButton Audience = new JButton("Audience");
 		final JButton oneUpQuestion = new JButton("1-UP Question");
@@ -142,7 +134,7 @@ public class MTOnlineWindow implements ActionListener
 		xAxis=0;
 		//JButtonArray2 holds the four similar buttons mentioned above to allow the following for loops to print the buttons using less repetitive code.
 		JButton[] JButtonArray2 = new JButton[4];
-		JButtonArray2[0] = CollectCashButton;
+		JButtonArray2[0] = RockPaperScissor;
 		JButtonArray2[1] = FiftyFifty;
 		JButtonArray2[2] = Audience;
 		JButtonArray2[3] = oneUpQuestion;
@@ -153,10 +145,16 @@ public class MTOnlineWindow implements ActionListener
 			frame.getContentPane().add(JButtonArray2[i]);
 			xAxis+=468;
 		}
-		// Allows the user to exit the game with the current amount of money the user has gained using questionCounter
-		CollectCashButton.addActionListener(new ActionListener() {
+		
+		RockPaperScissor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
+				JFrame RPSFrame = new JFrame();
+				RPSFrame.setSize(700, 500);
+				RPSFrame.setVisible(true);
+
+				RPSFrame.getContentPane().add(new MTRockPaperScissor(answerButtonOne,
+									answerButtonTwo,answerButtonThree,answerButtonFour));
 
 			}
 		});

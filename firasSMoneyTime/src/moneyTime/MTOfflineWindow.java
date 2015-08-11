@@ -1,7 +1,6 @@
 package moneyTime;
 import java.awt.Color;
 import java.awt.Desktop;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -32,17 +31,7 @@ public class MTOfflineWindow implements ActionListener
 	JLabel L1000000;JLabel LC;JLabel LA;JLabel QuestionLabel;JLabel lblmistakeCounter;JLabel LD;JLabel LB;
 	JButton answerButtonOne;JButton answerButtonTwo;JButton answerButtonThree;JButton answerButtonFour;		
 
-	public MTOfflineWindow(){
-
-		//---------------------------- JFrame Implementation  -------------------------------------------
-		final JFrame frame = new JFrame();
-		frame.setVisible(true);
-		frame.setMinimumSize(new Dimension(1900, 1000));
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-
-
-		//-----------------------------  Jlabels --------------------------------------------------------
+	public MTOfflineWindow(final JFrame frame){
 
 		//JlabelArray holds all the labels used in the class to allow the following for loops to print the labels using less repetitive code.
 		JLabel[] JlabelArray = new JLabel[22];
@@ -135,7 +124,7 @@ public class MTOfflineWindow implements ActionListener
 
 		//------------------------------  Extra buttons -----------------------------------------------------
 
-		JButton CollectCashButton = new JButton("Collect Cash");
+		final JButton RockPaperScissor = new JButton("Rock.Paper.Scissor");
 		final JButton FiftyFifty = new JButton("50/50");
 		final JButton Audience = new JButton("Audience");
 		final JButton oneUpQuestion = new JButton("1-UP Question");
@@ -143,7 +132,7 @@ public class MTOfflineWindow implements ActionListener
 		xAxis=0;
 		//JButtonArray2 holds the four similar buttons mentioned above to allow the following for loops to print the buttons using less repetitive code.
 		JButton[] JButtonArray2 = new JButton[4];
-		JButtonArray2[0] = CollectCashButton;
+		JButtonArray2[0] = RockPaperScissor;
 		JButtonArray2[1] = FiftyFifty;
 		JButtonArray2[2] = Audience;
 		JButtonArray2[3] = oneUpQuestion;
@@ -154,13 +143,19 @@ public class MTOfflineWindow implements ActionListener
 			frame.getContentPane().add(JButtonArray2[i]);
 			xAxis+=468;
 		}
-		
-		/*CollectCashButton.addActionListener(new ActionListener() {
+
+		RockPaperScissor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-		
+				JFrame RPSFrame = new JFrame();
+				RPSFrame.setSize(700, 500);
+				RPSFrame.setVisible(true);
+
+				RPSFrame.getContentPane().add(new MTRockPaperScissor(answerButtonOne,
+									answerButtonTwo,answerButtonThree,answerButtonFour));
+
 			}
-		});*/
+		});
 
 		/*disables two wrong answer's buttons,after the button is used the button becomes disabled*/
 		FiftyFifty.addActionListener(new ActionListener() {
@@ -324,7 +319,7 @@ public class MTOfflineWindow implements ActionListener
 			public void menuCanceled(MenuEvent e){}
 		});
 
-		
+
 		JMenuItem easy = new JMenuItem("easy");
 		JMenuItem hard = new JMenuItem("Hard");
 		JMenuItem restart = new JMenuItem("Restart");
