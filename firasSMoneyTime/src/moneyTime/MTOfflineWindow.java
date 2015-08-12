@@ -147,13 +147,9 @@ public class MTOfflineWindow implements ActionListener
 		RockPaperScissor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				JFrame RPSFrame = new JFrame();
-				RPSFrame.setSize(700, 500);
-				RPSFrame.setVisible(true);
-
-				RPSFrame.getContentPane().add(new MTRockPaperScissor(answerButtonOne,
-									answerButtonTwo,answerButtonThree,answerButtonFour));
-
+				audio.cameraSound4();
+				new MTRockPaperScissor(answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour);
+				RockPaperScissor.setEnabled(false);
 			}
 		});
 
@@ -361,6 +357,7 @@ public class MTOfflineWindow implements ActionListener
 				FiftyFifty.setEnabled(true);
 				Audience.setEnabled(true);
 				oneUpQuestion.setEnabled(true);
+				RockPaperScissor.setEnabled(true);
 			}
 
 		});
@@ -383,6 +380,7 @@ public class MTOfflineWindow implements ActionListener
 				FiftyFifty.setEnabled(true);
 				Audience.setEnabled(true);
 				oneUpQuestion.setEnabled(true);
+				RockPaperScissor.setEnabled(true);
 			}
 
 		});
@@ -405,6 +403,7 @@ public class MTOfflineWindow implements ActionListener
 				FiftyFifty.setEnabled(true);
 				Audience.setEnabled(true);
 				oneUpQuestion.setEnabled(true);
+				RockPaperScissor.setEnabled(true);
 			}
 
 		});

@@ -149,13 +149,9 @@ public class MTOnlineWindow implements ActionListener
 		RockPaperScissor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				JFrame RPSFrame = new JFrame();
-				RPSFrame.setSize(700, 500);
-				RPSFrame.setVisible(true);
-
-				RPSFrame.getContentPane().add(new MTRockPaperScissor(answerButtonOne,
-									answerButtonTwo,answerButtonThree,answerButtonFour));
-
+				audio.cameraSound4();
+				new MTRockPaperScissor(answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour);
+				RockPaperScissor.setEnabled(false);
 			}
 		});
 
@@ -364,6 +360,7 @@ public class MTOnlineWindow implements ActionListener
 				FiftyFifty.setEnabled(true);
 				Audience.setEnabled(true);
 				oneUpQuestion.setEnabled(true);
+				RockPaperScissor.setEnabled(true);
 
 			}
 
@@ -387,6 +384,7 @@ public class MTOnlineWindow implements ActionListener
 				FiftyFifty.setEnabled(true);
 				Audience.setEnabled(true);
 				oneUpQuestion.setEnabled(true);
+				RockPaperScissor.setEnabled(true);
 
 			}
 
@@ -410,6 +408,7 @@ public class MTOnlineWindow implements ActionListener
 				FiftyFifty.setEnabled(true);
 				Audience.setEnabled(true);
 				oneUpQuestion.setEnabled(true);
+				RockPaperScissor.setEnabled(true);
 
 			}
 
@@ -496,7 +495,6 @@ public class MTOnlineWindow implements ActionListener
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals(MTOMethods.correctAnswer)){
 			if(MTOMethods.oneUp){
-				System.out.println("yeah");
 				MTOMethods.mistakeCounter++;
 				MTOMethods.mistakeAdujster(lblmistakeCounter);
 				int randNum = MTOMethods.colorChanger("yellow",L100, L200, L300, L500,

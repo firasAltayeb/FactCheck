@@ -90,7 +90,7 @@ public class MTAudio
 		catch (LineUnavailableException f) {f.printStackTrace();}
 	}
 	
-	//camera2 is played when the user clicks the 1-up question button
+	//camera1 is played when the user clicks the 1-up question button
 		public void cameraSound1()
 		{try {
 				URL url1 = this.getClass().getClassLoader().getResource("camera1.wav");
@@ -107,6 +107,19 @@ public class MTAudio
 	public void cameraSound2()
 	{try {
 			URL url1 = this.getClass().getClassLoader().getResource("camera2.wav");
+			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url1);
+			Clip clip = AudioSystem.getClip();
+			clip.open(audioIn);
+			clip.start();
+		} catch (UnsupportedAudioFileException f) {f.printStackTrace();} 
+		catch (IOException f) {f.printStackTrace();} 
+		catch (LineUnavailableException f) {f.printStackTrace();}
+	}
+	
+	//camer4 is played when the user clicks the rock.paper.scissor button
+	public void cameraSound4()
+	{try {
+			URL url1 = this.getClass().getClassLoader().getResource("camera4.wav");
 			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url1);
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioIn);
