@@ -160,25 +160,25 @@ public class MTOnlineWindow implements ActionListener
 			public void actionPerformed(ActionEvent arg0) 
 			{	
 				audio.cameraSound2();
-				if (answerButtonOne.getText().equals(MTMethods.correctAnswer))
+				if (answerButtonOne.getText().equals(MTOMethods.correctAnswer))
 				{
 					answerButtonTwo.setEnabled(false);
 					answerButtonFour.setEnabled(false);
 				}
 
-				else if (answerButtonTwo.getText().equals(MTMethods.correctAnswer))
+				else if (answerButtonTwo.getText().equals(MTOMethods.correctAnswer))
 				{
 					answerButtonThree.setEnabled(false);
 					answerButtonOne.setEnabled(false);
 				}
 
-				else if (answerButtonThree.getText().equals(MTMethods.correctAnswer))
+				else if (answerButtonThree.getText().equals(MTOMethods.correctAnswer))
 				{
 					answerButtonTwo.setEnabled(false);
 					answerButtonFour.setEnabled(false);
 				}
 
-				else if(answerButtonFour.getText().equals(MTMethods.correctAnswer))
+				else if(answerButtonFour.getText().equals(MTOMethods.correctAnswer))
 				{
 					answerButtonOne.setEnabled(false);
 					answerButtonTwo.setEnabled(false);

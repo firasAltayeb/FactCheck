@@ -17,9 +17,9 @@ public class MTOnlineLink {
 		/*UMData stands for unmodified Data, the unmodified data is the data which
 		  contains all the lines in the URL*/
 		ArrayList<String> UMData = new ArrayList<String>();
-		for(int i=0;i<1934;i++)
+		for(int i=0;i<1932;i++)
 		{
-			if(i<305)
+			if(i<315)
 			{
 				in.nextLine();
 			}
@@ -32,7 +32,7 @@ public class MTOnlineLink {
 		in.close();
 		
 		/*MQuestions stands for "modified questions", modified questions are the question
-		  that do not have the "#####" code in their start */
+		  that do not have the "#####" code in their start*/ 
 		ArrayList<String> MQuestions = new ArrayList<String>();
 		for(int i=0;i<=UMData.size();i+=10)
 		{
