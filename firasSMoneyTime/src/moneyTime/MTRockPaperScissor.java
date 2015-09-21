@@ -1,5 +1,7 @@
 package moneyTime;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +24,6 @@ public class MTRockPaperScissor extends JFrame implements ActionListener
 	
 	public MTRockPaperScissor(JButton one,JButton two,JButton three,JButton four)
 	{
-		setSize(700, 550);
 		setVisible(true);
 		setLayout(null);
 		
@@ -31,9 +32,26 @@ public class MTRockPaperScissor extends JFrame implements ActionListener
 		answerButtonThree = three;
 		answerButtonFour = four;
 		
+		JLabel instruction = new JLabel("Please choose a hand you want to play with!!");
+		instruction.setFont(new Font("Tahoma", Font.BOLD| Font.ITALIC, 20));
+		instruction.setForeground(Color.WHITE);
+		instruction.setBounds(25,25,800,50);
+		add(instruction);
+		
+		JLabel Player = new JLabel("Player");
+		Player.setFont(new Font("Tahoma", Font.BOLD| Font.ITALIC, 20));
+		Player.setForeground(Color.WHITE);
+		Player.setBounds(150,100,400,50);
+		add(Player);
+		
+		JLabel computer = new JLabel("computer");
+		computer.setFont(new Font("Tahoma", Font.BOLD| Font.ITALIC, 20));
+		computer.setForeground(Color.WHITE);
+		computer.setBounds(400,100,400,50);
+		add(computer);
 
 		rockB = new JButton("rock");
-		rockB.setBounds(150,25,140,140);
+		rockB.setBounds(150,200,140,140);
 		Image rockImg = new ImageIcon(this.getClass().getResource("/rock.png")).getImage();
 		rockB.setIcon(new ImageIcon(rockImg));	
 		rockB.setOpaque(false);
@@ -42,7 +60,7 @@ public class MTRockPaperScissor extends JFrame implements ActionListener
 		add(rockB);
 
 		paperB = new JButton("paper");
-		paperB.setBounds(150,175,140,140);
+		paperB.setBounds(150,350,140,140);
 		Image paperImg = new ImageIcon(this.getClass().getResource("/paper.png")).getImage();
 		paperB.setIcon(new ImageIcon(paperImg));	
 		paperB.setOpaque(false);
@@ -51,7 +69,7 @@ public class MTRockPaperScissor extends JFrame implements ActionListener
 		add(paperB);
 
 		scissorB = new JButton("scissor");
-		scissorB.setBounds(150,325,140,140);
+		scissorB.setBounds(150,500,140,140);
 		Image scissorImg = new ImageIcon(this.getClass().getResource("/scissor.png")).getImage();
 		scissorB.setIcon(new ImageIcon(scissorImg));	
 		scissorB.setOpaque(false);
@@ -64,17 +82,17 @@ public class MTRockPaperScissor extends JFrame implements ActionListener
 		scissorB.addActionListener(this);
 
 		rockL = new  JLabel("rock");
-		rockL.setBounds(400,25,140,140);
+		rockL.setBounds(400,200,140,140);
 		rockL.setIcon(new ImageIcon(rockImg));	
 		add(rockL);
 
 		paperL = new  JLabel("paper");
-		paperL.setBounds(400,175,140,140);
+		paperL.setBounds(400,350,140,140);
 		paperL.setIcon(new ImageIcon(paperImg));	
 		add(paperL);
 
 		scissorL = new  JLabel("scissor");
-		scissorL.setBounds(400,325,140,140);
+		scissorL.setBounds(400,500,140,140);
 		scissorL.setIcon(new ImageIcon(scissorImg));
 		add(scissorL);
 
@@ -84,7 +102,7 @@ public class MTRockPaperScissor extends JFrame implements ActionListener
 		pictureLabel.setIcon(new ImageIcon(img)); 
 		pictureLabel.setBounds(0, 0, 1900, 1100); 
 		add(pictureLabel); 
-		setSize(700,550);
+		setSize(700,700);
 	}
 
 	public void actionPerformed(ActionEvent e) 

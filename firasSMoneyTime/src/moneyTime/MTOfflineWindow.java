@@ -262,6 +262,10 @@ public class MTOfflineWindow implements ActionListener
 		oneUpQuestion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent q) 
 			{
+				answerButtonOne.setEnabled(true);
+				answerButtonTwo.setEnabled(true);
+				answerButtonThree.setEnabled(true);
+				answerButtonFour.setEnabled(true);
 				audio.cameraSound1();
 				MTMethods.oneUpQuestion(answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
 				oneUpQuestion.setEnabled(false);
