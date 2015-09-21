@@ -16,23 +16,34 @@ public class MTOnlineLink {
 
 		/*UMData stands for unmodified Data, the unmodified data is the data which
 		  contains all the lines in the URL*/
-		ArrayList<String> UMData = new ArrayList<String>();
-		for(int i=0;i<1932;i++)
+		int beginningLine = 0;
+		ArrayList<String> startFinder = new ArrayList<String>();
+		for(int i=0;i<1926;i++)
 		{
-			if(i<315)
+			startFinder.add(in.nextLine());
+		}
+		for(int i=0;i<startFinder.size();i++)
+		{	
+			if(!(startFinder.get(i).isEmpty()||startFinder.get(i).length()<5))
 			{
-				in.nextLine();
-			}
-			else
-			{
-				UMData.add(in.nextLine());
+				//System.out.println(i+" "+startFinder.get(i));
+				if(startFinder.get(i).substring(0,3).equals("---"))
+				{
+					beginningLine = i+1;
+					break;
+				}
 			}
 		}
-
 		in.close();
 		
+		ArrayList<String> UMData = new ArrayList<String>();
+		for(int i=beginningLine;i<startFinder.size();i++)
+		{	
+			UMData.add(startFinder.get(i));
+		}
+		
 		/*MQuestions stands for "modified questions", modified questions are the question
-		  that do not have the "#####" code in their start*/ 
+		  that do not have the "#####" code in their start*/
 		ArrayList<String> MQuestions = new ArrayList<String>();
 		for(int i=0;i<=UMData.size();i+=10)
 		{
@@ -46,7 +57,7 @@ public class MTOnlineLink {
 				i++;
 			}
 
-		}
+		} 
 
 		/*MCorreectAnswers stands for "modified CorreectAnswers", modified CorreectAnswers are the CorreectAnswers
 		  that do not have the "Answer: " String in their start */
@@ -78,7 +89,11 @@ public class MTOnlineLink {
 
 		}
 
-		/*for(int i=0;i<MQuestions.size();i++)
+		/*for(int i=0;i<UMData.size();i++)
+		{
+			System.out.println(i+" "+UMData.get(i));
+		}
+		for(int i=0;i<MQuestions.size();i++)
 		{
 			System.out.println(i+" "+MQuestions.get(i));
 		}
