@@ -14,14 +14,19 @@ public class MTOnlineLink {
 		URL kclLink = new URL("http://www.gamefaqs.com/gba/582399-who-wants-to-be-a-millionaire/faqs/40043");
 		Scanner in = new Scanner(new BufferedReader(new InputStreamReader(kclLink.openStream(), "ISO-8859-1")));
 
-		/*UMData stands for unmodified Data, the unmodified data is the data which
-		  contains all the lines in the URL*/
+		/* "startFinder" arrayList and "beginningLine" are going to be used in order to find the beginning 
+		 of the the questions in the provided URL and then store the beginning Line in the int variable.*/
 		int beginningLine = 0;
 		ArrayList<String> startFinder = new ArrayList<String>();
+		// the following for loop stores all the lines provided from the URl in an arrayList
 		for(int i=0;i<1926;i++)
 		{
 			startFinder.add(in.nextLine());
 		}
+		/*the following for loop goes through all the lines in the startFinder arrayList
+		 except for the lines which are empty and the lines which do not have at least have 5 characters.  
+		 After finding the beginning line which starts with "---" the result will be stored in an int variable.
+		  */
 		for(int i=0;i<startFinder.size();i++)
 		{	
 			if(!(startFinder.get(i).isEmpty()||startFinder.get(i).length()<5))
@@ -34,16 +39,20 @@ public class MTOnlineLink {
 				}
 			}
 		}
+
 		in.close();
 		
+		/*Using the following for loop UMData will contain all the questions and answers
+		  provided by the URL, UMData stands for unmodified Data.*/
 		ArrayList<String> UMData = new ArrayList<String>();
 		for(int i=beginningLine;i<startFinder.size();i++)
 		{	
 			UMData.add(startFinder.get(i));
 		}
 		
-		/*MQuestions stands for "modified questions", modified questions are the question
-		  that do not have the "#####" code in their start*/
+		
+		/*Using the following for loop MQuestions array list will contain all the modified questions which do not 
+		  have the "#####" simple in their start, MQuestions stands for "modified questions".*/ 
 		ArrayList<String> MQuestions = new ArrayList<String>();
 		for(int i=0;i<=UMData.size();i+=10)
 		{
@@ -59,8 +68,8 @@ public class MTOnlineLink {
 
 		} 
 
-		/*MCorreectAnswers stands for "modified CorreectAnswers", modified CorreectAnswers are the CorreectAnswers
-		  that do not have the "Answer: " String in their start */
+		/*Using the following for loop MCorreectAnswers will contain all the modified CorreectAnswers that do not have the
+		 "Answer: " String in their start, MCorreectAnswers stands for "modified CorreectAnswers".*/
 		ArrayList<String> MCorreectAnswers = new ArrayList<String>();
 		for(int i=7;i<=UMData.size();i+=10)
 		{
@@ -75,8 +84,8 @@ public class MTOnlineLink {
 			}
 		}
 
-		/*MAnswersOptions stands for "modified answersOptions", modified answersOptions arrayList contains
-		  the answersOptions which are taken from the UNData arrayList */
+		/*Using the following for loop MAnswersOptions will contain all the modified answersOptions
+		  which are taken from the UNData arrayList, MAnswersOptions stands for "modified answersOptions".*/
 		ArrayList<String> MAnswersOptions = new ArrayList<String>();
 		for(int i=0;i<=UMData.size()-1;i++)
 		{
@@ -89,6 +98,7 @@ public class MTOnlineLink {
 
 		}
 
+		
 		/*for(int i=0;i<UMData.size();i++)
 		{
 			System.out.println(i+" "+UMData.get(i));
