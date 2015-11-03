@@ -1,5 +1,5 @@
 #firasSMoneyTime project
-Money time is a clone of “Who wants to be a millionaire” game that contains multiple scenes, a difficulty selection tap, a rock-paper-scissors mini game and a choice to play the game in offline mode using the hard coded data or online mode which fetch data from an online source.
+Money time project is a clone of “Who wants to be a millionaire” classic game. The project contains multiple scenes, a difficulty selection tap, a rock-paper-scissors mini game and a choice to play the game in offline mode using the hard coded data or online mode using data which is fetched from an online source.
 
 
 #License
