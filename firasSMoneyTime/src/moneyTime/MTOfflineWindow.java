@@ -1,7 +1,10 @@
 package moneyTime;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +20,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
@@ -32,7 +36,21 @@ public class MTOfflineWindow implements ActionListener
 	JButton answerButtonOne;JButton answerButtonTwo;JButton answerButtonThree;JButton answerButtonFour;		
 
 	public MTOfflineWindow(final JFrame frame){
-
+		
+		JLabel pictureLabel = new JLabel(""); 
+		Image img = new ImageIcon(this.getClass().getResource("/offlineM.jpg")).getImage(); 
+		pictureLabel.setIcon(new ImageIcon(img)); 
+		
+		frame.setContentPane(pictureLabel);
+		frame.setLayout(new BorderLayout());
+		
+		
+		JPanel jWest = new JPanel(new GridLayout(16,1));
+		JPanel jSouth = new JPanel(new GridLayout(2,4));
+		JPanel jCenter = new JPanel(new FlowLayout());
+		JPanel jNorth = new JPanel(new FlowLayout());
+		
+		
 		//JlabelArray holds all the labels used in the class to allow the following for loops to print the labels using less repetitive code.
 		JLabel[] JlabelArray = new JLabel[22];
 		copyRight = new JLabel("@FirasAltayeb");JlabelArray[0]=copyRight;
@@ -51,40 +69,20 @@ public class MTOfflineWindow implements ActionListener
 		L250000 = new JLabel("250000\u00A3");JlabelArray[13]=L250000;
 		L500000 = new JLabel("500000\u00A3");JlabelArray[14]=L500000;
 		L1000000 = new JLabel("1000000\u00A3");JlabelArray[15]=L1000000;
-		LC= new JLabel("c.");JlabelArray[16]=LC;
-		LA = new JLabel("a.");JlabelArray[17]=LA;
-		QuestionLabel = new JLabel(MTMethods.currentQuestion);JlabelArray[18]=QuestionLabel;
-		lblmistakeCounter = new JLabel("MISTAKE COUNTER = 5 ");JlabelArray[19]=lblmistakeCounter;
-		LD = new JLabel("d.");JlabelArray[20]=LD;
-		LB = new JLabel("b.");JlabelArray[21]=LB;
-
-		int yAxis = 650;
-		int xAxis;
+		QuestionLabel = new JLabel(MTMethods.currentQuestion);JlabelArray[16]=QuestionLabel;
+		lblmistakeCounter = new JLabel("MISTAKE COUNTER = 5 ");JlabelArray[17]=lblmistakeCounter;
+		LA = new JLabel("a.");JlabelArray[18]=LA;
+		LB = new JLabel("b.");JlabelArray[19]=LB;
+		LC= new JLabel("c.");JlabelArray[20]=LC;
+		LD = new JLabel("d.");JlabelArray[21]=LD;
+	
 		//the following for loop prints the first 16 labels in the JlabelArray with the same font and foreground but with different bounds.
-		for(int i=0;i<=16;i++)
-		{	
+		for(int i=15;i>=0;i--) {	
 			JlabelArray[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 30));
 			JlabelArray[i].setForeground(Color.RED);
-			JlabelArray[i].setBounds(0, yAxis, 500, 500);
-			frame.getContentPane().add(JlabelArray[i]);
-			yAxis-=55;
-
+			jWest.add(JlabelArray[i]);
 		}
-
-		yAxis = 600;
-		xAxis = 400;
-		//the following for loop prints the last 5 labels in the JlabelArray with the same font and foreground but with different bounds.
-		for(int i=16;i<=21;i++)
-		{	
-			JlabelArray[i].setFont(new Font("Tahoma", Font.BOLD| Font.ITALIC, 30));
-			JlabelArray[i].setForeground(Color.WHITE);
-			JlabelArray[i].setBounds(xAxis, yAxis, 1500, 300);
-			frame.getContentPane().add(JlabelArray[i]);
-			yAxis-=220;
-			if(i==19)
-			{yAxis=600;
-			xAxis=1000;}	
-		}
+		
 
 		//------------------------ Answer buttons variables  ------------------------------------------------
 
@@ -93,8 +91,8 @@ public class MTOfflineWindow implements ActionListener
 		answerButtonThree = new JButton(MTMethods.answerOptionArray[2]);
 		answerButtonFour = new JButton(MTMethods.answerOptionArray[3]);
 
-		yAxis=480;
-		xAxis=440;
+		
+		int labelNumber = 18;
 		//JButtonArray holds the four similar buttons mentioned above to allow the following for loops to print the buttons using less repetitive code.
 		JButton[] JButtonArray = new JButton[4];
 		JButtonArray[0] = answerButtonOne;
@@ -104,17 +102,14 @@ public class MTOfflineWindow implements ActionListener
 		//the following for loop prints the buttons in the JButtonArray with the same background,foreground  and font but with different bounds.
 		for(int i=0;i<=3;i++)
 		{
+			JlabelArray[labelNumber].setFont(new Font("Tahoma", Font.BOLD| Font.ITALIC, 30));
+			JlabelArray[labelNumber].setForeground(Color.WHITE);
 			JButtonArray[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
-			JButtonArray[i].setBounds(xAxis, yAxis, 400, 75);
 			JButtonArray[i].setForeground(Color.BLACK);
 			JButtonArray[i].setBackground(Color.RED);
-			frame.getContentPane().add(JButtonArray[i]);
-			if(i==0){xAxis=1040;}
-			if(i==1)
-			{xAxis=440;
-			yAxis=700;}
-			if(i==2){xAxis=1040;}
-
+			jSouth.add(JlabelArray[labelNumber]);
+			jSouth.add(JButtonArray[i]);
+			labelNumber++;
 		}
 
 		answerButtonOne.addActionListener(this);
@@ -129,7 +124,7 @@ public class MTOfflineWindow implements ActionListener
 		final JButton Audience = new JButton("Audience");
 		final JButton oneUpQuestion = new JButton("1-UP Question");
 
-		xAxis=0;
+		
 		//JButtonArray2 holds the four similar buttons mentioned above to allow the following for loops to print the buttons using less repetitive code.
 		JButton[] JButtonArray2 = new JButton[4];
 		JButtonArray2[0] = RockPaperScissor;
@@ -139,9 +134,6 @@ public class MTOfflineWindow implements ActionListener
 		//the following for loop prints the buttons in the JButtonArray2 with the same background and foreground but with different bounds.
 		for(int i=0;i<=3;i++){
 			JButtonArray2[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
-			JButtonArray2[i].setBounds(xAxis, 0, 480, 40);
-			frame.getContentPane().add(JButtonArray2[i]);
-			xAxis+=468;
 		}
 
 		RockPaperScissor.addActionListener(new ActionListener() {
@@ -272,19 +264,17 @@ public class MTOfflineWindow implements ActionListener
 
 			}
 		});
-
-
-		/*JLabel img = new JLabel( new ImageIcon("WM2.jpg"));
-		img.setBounds(0, 0, 1900, 1100);
-		frame.getContentPane().add(img);*/
-		//pictureLabel stores the background picture of the game and prints it.
-		JLabel pictureLabel = new JLabel(""); 
-		Image img = new ImageIcon(this.getClass().getResource("/offlineM.jpg")).getImage(); 
-		pictureLabel.setIcon(new ImageIcon(img)); 
-		pictureLabel.setBounds(0, 0, 1900, 1100); 
-		frame.getContentPane().add(pictureLabel); 
-
-
+		
+		frame.add(jWest, BorderLayout.WEST);
+		//frame.add(jCenter, BorderLayout.CENTER);
+		//frame.add(jSouth, BorderLayout.SOUTH);
+		frame.setSize(1900,1000);
+		
+	
+		
+		
+		
+		
 		//-------------------------- JMenuBar --------------------------------------------------------------
 
 		JMenuBar menuBar = new JMenuBar();

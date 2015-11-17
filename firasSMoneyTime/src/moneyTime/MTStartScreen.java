@@ -10,20 +10,29 @@ public class MTStartScreen extends JFrame
 {
 	MTStartScreen()
 	{
+	
 		final MTAudio audio = new MTAudio();
+		
+		JLabel pictureLabel = new JLabel(""); 
+		Image img = new ImageIcon(this.getClass().getResource("/titleScreen.jpg")).getImage(); 
+		pictureLabel.setIcon(new ImageIcon(img)); 
+		
+		setContentPane(pictureLabel);
+		setLayout(new GridLayout(1,2));
+		
 		setVisible(true);
-		setMinimumSize(new Dimension(1900, 1100));
+		setSize(500,500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(null);
+		
 		
 		JButton offlineMode = new JButton("Offline Mode");
 		offlineMode.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
-		offlineMode.setBounds(130, 100, 200, 50);
+		add(offlineMode);
 		offlineMode.setForeground(Color.WHITE);
 		offlineMode.setOpaque(false);
 		offlineMode.setContentAreaFilled(false);
 		offlineMode.setBorderPainted(false);
-		getContentPane().add(offlineMode);
+		add(offlineMode);
 		offlineMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
@@ -31,9 +40,7 @@ public class MTStartScreen extends JFrame
 				new MTMethods();
 				JFrame frame = new JFrame();
 				frame.setVisible(true);
-				frame.setMinimumSize(new Dimension(1900, 1000));
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.setLayout(null);
 				new MTOfflineWindow(frame);
 				dispose();
 			}
@@ -41,12 +48,12 @@ public class MTStartScreen extends JFrame
 		
 		JButton onlineMode = new JButton("Online Mode");
 		onlineMode.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
-		onlineMode.setBounds(130, 200, 200, 50);
+		add(onlineMode);
 		onlineMode.setForeground(Color.WHITE);
 		onlineMode.setOpaque(false);
 		onlineMode.setContentAreaFilled(false);
 		onlineMode.setBorderPainted(false);
-		getContentPane().add(onlineMode);
+		add(onlineMode);
 		onlineMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
@@ -58,20 +65,13 @@ public class MTStartScreen extends JFrame
 				}
 				JFrame frame = new JFrame();
 				frame.setVisible(true);
-				frame.setMinimumSize(new Dimension(1900, 1000));
+				frame.setSize(1900, 1000);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.setLayout(null);
 				new MTOnlineWindow(frame);
 				dispose();
 			}
 		});
-		
-		JLabel pictureLabel = new JLabel(""); 
-		Image img = new ImageIcon(this.getClass().getResource("/titleScreen.jpg")).getImage(); 
-		pictureLabel.setIcon(new ImageIcon(img)); 
-		pictureLabel.setBounds(0, 0, 1900, 1100); 
-		getContentPane().add(pictureLabel); 
-		setSize(500,500);
 		
 
 	}
