@@ -34,7 +34,7 @@ public class MTOnlineWindow implements ActionListener
 	JLabel L8000;JLabel L16000;JLabel L32000;JLabel L64000;JLabel L125000;JLabel L250000;JLabel L500000;
 	JLabel L1000000;JLabel LC;JLabel LA;JLabel QuestionLabel;JLabel lblmistakeCounter;JLabel LD;JLabel LB;
 	JButton answerButtonOne;JButton answerButtonTwo;JButton answerButtonThree;JButton answerButtonFour;	
-	JButton RockPaperScissor;JButton FiftyFifty;JButton Audience;JButton oneUpQuestion;
+	JButton RockPaperScissor;JButton FiftyFifty;JButton Audience;JButton oneUpQuestion;JButton rescueOptions;
 
 	public MTOnlineWindow(final JFrame frame){
 		
@@ -98,6 +98,7 @@ public class MTOnlineWindow implements ActionListener
 			JlabelArray[i].setForeground(Color.WHITE);
 			gbc.gridy = gridy;
 			frame.add(JlabelArray[i],gbc);
+			//the following push labels 16-21 one cell to the right 
 			if(i==16){
 				gridy+=2;
 			} else{
@@ -110,6 +111,7 @@ public class MTOnlineWindow implements ActionListener
 		answerButtonTwo = new JButton(MTOMethods.answerOptionArray[1]);
 		answerButtonThree = new JButton(MTOMethods.answerOptionArray[2]);
 		answerButtonFour = new JButton(MTOMethods.answerOptionArray[3]);
+		rescueOptions = new JButton("rescue options");
 		RockPaperScissor = new JButton("Rock.Paper.Scissor");
 		FiftyFifty = new JButton("50/50");
 		Audience = new JButton("Audience");
@@ -120,35 +122,27 @@ public class MTOnlineWindow implements ActionListener
 		gridy = 3;
 		gbc.fill = GridBagConstraints.BOTH;
 		//JButtonArray holds the buttons mentioned above to allow the following for loop to print the buttons using less repetitive code.
-		JButton[] JButtonArray = new JButton[8];
+		JButton[] JButtonArray = new JButton[9];
 		JButtonArray[0] = answerButtonOne;
 		JButtonArray[1] = answerButtonTwo;
 		JButtonArray[2] = answerButtonThree;
 		JButtonArray[3] = answerButtonFour;	
-		JButtonArray[4] = RockPaperScissor;
-		JButtonArray[5] = FiftyFifty;
-		JButtonArray[6] = Audience;
-		JButtonArray[7] = oneUpQuestion;
+		JButtonArray[4] = rescueOptions;
+		JButtonArray[5] = RockPaperScissor;
+		JButtonArray[6] = FiftyFifty;
+		JButtonArray[7] = Audience;
+		JButtonArray[8] = oneUpQuestion;
 		
 		//the following for loop prints the buttons in the JButtonArray with the same background,foreground  and font but with different bounds.
 		for(int i=0;i<JButtonArray.length;i++)
 		{
-			if(i == 4){
-				JLabel rescue = new JLabel("rescue options");
-				rescue.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 30));
-				rescue.setForeground(Color.WHITE);
-				gbc.gridy = gridy;
-				frame.add(rescue,gbc);
-				gridy++;
-			} 
-			else {
 			JButtonArray[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
 			JButtonArray[i].setForeground(Color.BLACK);
 			JButtonArray[i].setBackground(Color.RED);
 			gbc.gridy = gridy;
 			frame.add(JButtonArray[i],gbc);
 			gridy++;
-			}
+			
 		}
 		answerButtonOne.addActionListener(this);
 		answerButtonTwo.addActionListener(this);
