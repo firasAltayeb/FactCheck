@@ -125,19 +125,19 @@ public class MTMethods
 			audio.buzzerSound2();
 		}
 		switch (mistakeCounter){	
-		case 0: lblmistakeCounter.setText("MISTAKE COUNTER =0 ");JOptionPane.showMessageDialog
+		case 0: lblmistakeCounter.setText("<html>MISTAKE COUNTER = 0</html>");JOptionPane.showMessageDialog
 		(null, "You have reached the maxium amount of mistakes");System.exit(0);
-		case 1: lblmistakeCounter.setText("MISTAKE COUNTER =1 ");break;
-		case 2: lblmistakeCounter.setText("MISTAKE COUNTER =2 ");break;
-		case 3: lblmistakeCounter.setText("MISTAKE COUNTER =3 ");break;
-		case 4: lblmistakeCounter.setText("MISTAKE COUNTER =4 ");break;
-		case 5: lblmistakeCounter.setText("MISTAKE COUNTER =5 ");break;
-		case 6: lblmistakeCounter.setText("MISTAKE COUNTER =6 ");break;
-		case 7: lblmistakeCounter.setText("MISTAKE COUNTER =7 ");break;
-		case 8: lblmistakeCounter.setText("MISTAKE COUNTER =8 ");break;
-		case 9: lblmistakeCounter.setText("MISTAKE COUNTER =9 ");break;
-		case 10:lblmistakeCounter.setText("MISTAKE COUNTER =10 ");break;
-		case 11:lblmistakeCounter.setText("MISTAKE COUNTER =11 ");}
+		case 1: lblmistakeCounter.setText("<html>MISTAKE COUNTER = 1</html>");break;
+		case 2: lblmistakeCounter.setText("<html>MISTAKE COUNTER = 2</html>");break;
+		case 3: lblmistakeCounter.setText("<html>MISTAKE COUNTER = 3</html>");break;
+		case 4: lblmistakeCounter.setText("<html>MISTAKE COUNTER = 4</html>");break;
+		case 5: lblmistakeCounter.setText("<html>MISTAKE COUNTER = 5</html>");break;
+		case 6: lblmistakeCounter.setText("<html>MISTAKE COUNTER = 6</html>");break;
+		case 7: lblmistakeCounter.setText("<html>MISTAKE COUNTER = 7</html>");break;
+		case 8: lblmistakeCounter.setText("<html>MISTAKE COUNTER = 8</html>");break;
+		case 9: lblmistakeCounter.setText("<html>MISTAKE COUNTER = 9</html>");break;
+		case 10:lblmistakeCounter.setText("<html>MISTAKE COUNTER = 10</html>");break;
+		case 11:lblmistakeCounter.setText("<html>MISTAKE COUNTER = 11</html>");}
 	}
 	
 	/*Sets one up as true to indicate that "1-up question" button is pressed and assigns currentQuestion 
