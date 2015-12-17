@@ -21,7 +21,7 @@ public class MTStartScreen extends JFrame
 		setLayout(new GridLayout(1,2));
 		
 		setVisible(true);
-		setSize(800,500);
+		setSize(500,500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
@@ -65,7 +65,9 @@ public class MTStartScreen extends JFrame
 				}
 				JFrame frame = new JFrame();
 				frame.setVisible(true);
+				frame.setSize(1900, 1000);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.setLayout(null);
 				new MTOnlineWindow(frame);
 				dispose();
 			}

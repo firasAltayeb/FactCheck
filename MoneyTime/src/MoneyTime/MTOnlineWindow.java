@@ -66,7 +66,7 @@ public class MTOnlineWindow implements ActionListener
 		L500000 = new JLabel("500000\u00A3");JlabelArray[14]=L500000;
 		L1000000 = new JLabel("1000000\u00A3");JlabelArray[15]=L1000000;
 		QuestionLabel = new JLabel(MTOMethods.currentQuestion);JlabelArray[16]=QuestionLabel;
-		lblmistakeCounter = new JLabel("<html>MISTAKE COUNTER = 5</html>");JlabelArray[17]=lblmistakeCounter;
+		lblmistakeCounter = new JLabel("MISTAKE COUNTER = 5 ");JlabelArray[17]=lblmistakeCounter;
 		LA = new JLabel("a.");JlabelArray[18]=LA;
 		LB = new JLabel("b.");JlabelArray[19]=LB;
 		LC= new JLabel("c.");JlabelArray[20]=LC;
@@ -279,6 +279,8 @@ public class MTOnlineWindow implements ActionListener
 
 			}
 		});
+		
+		frame.setSize(1900,1000);
 		//-------------------------- JMenuBar --------------------------------------------------------------
 
 		JMenuBar menuBar = new JMenuBar();
@@ -353,7 +355,7 @@ public class MTOnlineWindow implements ActionListener
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
 				MTOMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
-				lblmistakeCounter.setText("<html>MISTAKE COUNTER = 10</html>");
+				lblmistakeCounter.setText("MISTAKE COUNTER = 10 ");
 				FiftyFifty.setEnabled(true);
 				Audience.setEnabled(true);
 				oneUpQuestion.setEnabled(true);
@@ -377,7 +379,7 @@ public class MTOnlineWindow implements ActionListener
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
 				MTOMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
-				lblmistakeCounter.setText("<html>MISTAKE COUNTER = 3</html>");
+				lblmistakeCounter.setText("MISTAKE COUNTER =3  ");
 				FiftyFifty.setEnabled(true);
 				Audience.setEnabled(true);
 				oneUpQuestion.setEnabled(true);
@@ -401,7 +403,7 @@ public class MTOnlineWindow implements ActionListener
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
 				MTOMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
-				lblmistakeCounter.setText("<html>MISTAKE COUNTER = 5</html>");
+				lblmistakeCounter.setText("MISTAKE COUNTER = 5 ");
 				FiftyFifty.setEnabled(true);
 				Audience.setEnabled(true);
 				oneUpQuestion.setEnabled(true);

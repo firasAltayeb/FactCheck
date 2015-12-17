@@ -11,8 +11,8 @@ public class MTOnlineLink {
 
 	public MTOnlineLink() throws IOException {
 
-		URL dataLink = new URL("http://www.gamefaqs.com/gba/582399-who-wants-to-be-a-millionaire/faqs/40043");
-		Scanner in = new Scanner(new BufferedReader(new InputStreamReader(dataLink.openStream(), "ISO-8859-1")));
+		URL kclLink = new URL("http://www.gamefaqs.com/gba/582399-who-wants-to-be-a-millionaire/faqs/40043");
+		Scanner in = new Scanner(new BufferedReader(new InputStreamReader(kclLink.openStream(), "ISO-8859-1")));
 
 		/* "startFinder" arrayList and "beginningLine" are going to be used in order to find the beginning 
 		 of the the questions in the provided URL and then store the beginning Line in the int variable.*/
@@ -58,11 +58,11 @@ public class MTOnlineLink {
 		{
 			try
 			{
-				MQuestions.add("<html>"+UMData.get(i).substring(7,UMData.get(i).indexOf("?")+1)+"</html>");
+				MQuestions.add(UMData.get(i).substring(7,UMData.get(i).indexOf("?")+1));
 			}
 			catch(Exception e)
 			{
-				MQuestions.add("<html>"+UMData.get(i).substring(7,UMData.get(i).length())+UMData.get(i+1).substring(6, UMData.get(i+1).indexOf("?")+1)+"</html>");
+				MQuestions.add(UMData.get(i).substring(7,UMData.get(i).length())+UMData.get(i+1).substring(6, UMData.get(i+1).indexOf("?")+1));
 				i++;
 			}
 
