@@ -1,12 +1,8 @@
 package MoneyTime;
 import java.awt.Color;
 import java.awt.Desktop;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.Image;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -29,25 +25,14 @@ import javax.swing.event.MenuListener;
 public class OfflineWindow implements ActionListener
 {
 
-	Random random = new Random();final AudioList audio = new AudioList();
+	Random random = new Random();final Audio audio = new Audio();
 	JLabel copyRight;JLabel L100;JLabel L200;JLabel L300;JLabel L500;JLabel L1000;JLabel L2000;JLabel L4000;
 	JLabel L8000;JLabel L16000;JLabel L32000;JLabel L64000;JLabel L125000;JLabel L250000;JLabel L500000;
 	JLabel L1000000;JLabel LC;JLabel LA;JLabel QuestionLabel;JLabel lblmistakeCounter;JLabel LD;JLabel LB;
-	JButton answerButtonOne;JButton answerButtonTwo;JButton answerButtonThree;JButton answerButtonFour;	
-	JButton RockPaperScissor;JButton FiftyFifty;JButton Audience;JButton oneUpQuestion;JButton rescueOptions;
+	JButton answerButtonOne;JButton answerButtonTwo;JButton answerButtonThree;JButton answerButtonFour;		
 
 	public OfflineWindow(final JFrame frame){
-		
-		JLabel pictureLabel = new JLabel(""); 
-		Image img = new ImageIcon(this.getClass().getResource("/offlineM.jpg")).getImage(); 
-		pictureLabel.setIcon(new ImageIcon(img)); 
-		
-		GridBagConstraints gbc = new GridBagConstraints();
-		frame.setContentPane(pictureLabel);
-		frame.setLayout(new GridBagLayout());
-		frame.setMinimumSize(new Dimension(1100, 1100));
-		
-		
+
 		//JlabelArray holds all the labels used in the class to allow the following for loops to print the labels using less repetitive code.
 		JLabel[] JlabelArray = new JLabel[22];
 		copyRight = new JLabel("@FirasAltayeb");JlabelArray[0]=copyRight;
@@ -66,97 +51,102 @@ public class OfflineWindow implements ActionListener
 		L250000 = new JLabel("250000\u00A3");JlabelArray[13]=L250000;
 		L500000 = new JLabel("500000\u00A3");JlabelArray[14]=L500000;
 		L1000000 = new JLabel("1000000\u00A3");JlabelArray[15]=L1000000;
-		QuestionLabel = new JLabel(OnlineWindowMethods.currentQuestion);JlabelArray[16]=QuestionLabel;
-		lblmistakeCounter = new JLabel("<html>MISTAKE COUNTER = 5</html>");JlabelArray[17]=lblmistakeCounter;
-		LA = new JLabel("a.");JlabelArray[18]=LA;
-		LB = new JLabel("b.");JlabelArray[19]=LB;
-		LC= new JLabel("c.");JlabelArray[20]=LC;
-		LD = new JLabel("d.");JlabelArray[21]=LD;
-		
-		gbc.gridx = 0;
-		int gridy = 0;
-		gbc.weighty = 1;
-		gbc.weightx = 1;
-		gbc.insets = new Insets(10,10,10,10);
-		gbc.anchor = GridBagConstraints.LINE_START;
-		
+		LC= new JLabel("c.");JlabelArray[16]=LC;
+		LA = new JLabel("a.");JlabelArray[17]=LA;
+		QuestionLabel = new JLabel(Methods.currentQuestion);JlabelArray[18]=QuestionLabel;
+		lblmistakeCounter = new JLabel("MISTAKE COUNTER = 5 ");JlabelArray[19]=lblmistakeCounter;
+		LD = new JLabel("d.");JlabelArray[20]=LD;
+		LB = new JLabel("b.");JlabelArray[21]=LB;
+
+		int yAxis = 250;
+		int xAxis;
 		//the following for loop prints the first 16 labels in the JlabelArray with the same font and foreground but with different bounds.
-		for(int i=15;i>=0;i--) {	
+		for(int i=0;i<=16;i++)
+		{	
 			JlabelArray[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 30));
 			JlabelArray[i].setForeground(Color.RED);
-			gbc.gridy = gridy;
-			frame.add(JlabelArray[i],gbc);
-			gridy++;
+			JlabelArray[i].setBounds(0, yAxis, 500, 500);
+			frame.getContentPane().add(JlabelArray[i]);
+			yAxis-=30;
+
 		}
-		
-		gbc.gridx = 1;
-		gridy = 0;
-		gbc.anchor = GridBagConstraints.LINE_END;
-		
-		//the following for loop prints the remaining labels in the JlabelArray with the same font and foreground but with different bounds.
-		for(int i=16;i<JlabelArray.length;i++) {	
-			JlabelArray[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 30));
+
+		yAxis=200;
+		xAxis=250;
+		//the following for loop prints the last 5 labels in the JlabelArray with the same font and foreground but with different bounds.
+		for(int i=16;i<=21;i++)
+		{	
+			JlabelArray[i].setFont(new Font("Tahoma", Font.BOLD| Font.ITALIC, 20));
 			JlabelArray[i].setForeground(Color.WHITE);
-			gbc.gridy = gridy;
-			frame.add(JlabelArray[i],gbc);
-			//the following push labels 16-21 one cell to the right 
-			if(i==16){
-				gridy+=2;
-			} else{
-			gridy++;}
+			JlabelArray[i].setBounds(xAxis, yAxis, 800, 500);
+			frame.getContentPane().add(JlabelArray[i]);
+			yAxis-=120;
+			if(i==19){yAxis=200; xAxis = 600;}	
 		}
-	
+
 		//------------------------ Answer buttons variables  ------------------------------------------------
 
-		answerButtonOne = new JButton(OnlineWindowMethods.answerOptionArray[0]);
-		answerButtonTwo = new JButton(OnlineWindowMethods.answerOptionArray[1]);
-		answerButtonThree = new JButton(OnlineWindowMethods.answerOptionArray[2]);
-		answerButtonFour = new JButton(OnlineWindowMethods.answerOptionArray[3]);
-		rescueOptions = new JButton("rescue options");
-		RockPaperScissor = new JButton("Rock.Paper.Scissor");
-		FiftyFifty = new JButton("50/50");
-		Audience = new JButton("Audience");
-		oneUpQuestion = new JButton("1-UP Question");
+		answerButtonOne = new JButton(Methods.answerOptionArray[0]);
+		answerButtonTwo = new JButton(Methods.answerOptionArray[1]);
+		answerButtonThree = new JButton(Methods.answerOptionArray[2]);
+		answerButtonFour = new JButton(Methods.answerOptionArray[3]);
 
-		
-		gbc.gridx = 2;
-		gridy = 3;
-		gbc.fill = GridBagConstraints.BOTH;
-		//JButtonArray holds the buttons mentioned above to allow the following for loop to print the buttons using less repetitive code.
-		JButton[] JButtonArray = new JButton[9];
+		//JButtonArray holds the four similar buttons mentioned above to allow the following for loops to print the buttons using less repetitive code.
+		JButton[] JButtonArray = new JButton[4];
 		JButtonArray[0] = answerButtonOne;
 		JButtonArray[1] = answerButtonTwo;
 		JButtonArray[2] = answerButtonThree;
 		JButtonArray[3] = answerButtonFour;	
-		JButtonArray[4] = rescueOptions;
-		JButtonArray[5] = RockPaperScissor;
-		JButtonArray[6] = FiftyFifty;
-		JButtonArray[7] = Audience;
-		JButtonArray[8] = oneUpQuestion;
 		
+		yAxis=430;
+		xAxis=280;
 		//the following for loop prints the buttons in the JButtonArray with the same background,foreground  and font but with different bounds.
-		for(int i=0;i<JButtonArray.length;i++)
+		for(int i=0;i<=3;i++)
 		{
 			JButtonArray[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
+			JButtonArray[i].setBounds(xAxis, yAxis, 300, 50);
 			JButtonArray[i].setForeground(Color.BLACK);
 			JButtonArray[i].setBackground(Color.RED);
-			gbc.gridy = gridy;
-			frame.add(JButtonArray[i],gbc);
-			gridy++;
-			
+			frame.getContentPane().add(JButtonArray[i]);
+			if(i==0){xAxis=640;}
+			if(i==1){xAxis=280; yAxis=300;}
+			if(i==2){xAxis=640;}
+
 		}
+
 		answerButtonOne.addActionListener(this);
 		answerButtonTwo.addActionListener(this);
 		answerButtonThree.addActionListener(this);
 		answerButtonFour.addActionListener(this);
 
 		//------------------------------  Extra buttons -----------------------------------------------------
+
+		final JButton RockPaperScissor = new JButton("Rock.Paper.Scissor");
+		final JButton FiftyFifty = new JButton("50/50");
+		final JButton Audience = new JButton("Audience");
+		final JButton oneUpQuestion = new JButton("1-UP Question");
+	
+		//JButtonArray2 holds the four similar buttons mentioned above to allow the following for loops to print the buttons using less repetitive code.
+		JButton[] JButtonArray2 = new JButton[4];
+		JButtonArray2[0] = RockPaperScissor;
+		JButtonArray2[1] = FiftyFifty;
+		JButtonArray2[2] = Audience;
+		JButtonArray2[3] = oneUpQuestion;
 		
+		xAxis=0;
+		//the following for loop prints the buttons in the JButtonArray2 with the same background and foreground but with different bounds.
+		for(int i=0;i<=3;i++){
+			JButtonArray2[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
+			JButtonArray2[i].setBounds(xAxis, 0, 250, 30);
+			frame.getContentPane().add(JButtonArray2[i]);
+			xAxis+=250;
+		}
+
 		RockPaperScissor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				audio.cameraSound4();
-				new RockPaperScissorWindow(answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour);
+				new RockPaperScissor(answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour);
 				RockPaperScissor.setEnabled(false);
 			}
 		});
@@ -166,25 +156,25 @@ public class OfflineWindow implements ActionListener
 			public void actionPerformed(ActionEvent arg0) 
 			{	
 				audio.cameraSound2();
-				if (answerButtonOne.getText().equals(OnlineWindowMethods.correctAnswer))
+				if (answerButtonOne.getText().equals(Methods.correctAnswer))
 				{
 					answerButtonTwo.setEnabled(false);
 					answerButtonFour.setEnabled(false);
 				}
 
-				else if (answerButtonTwo.getText().equals(OnlineWindowMethods.correctAnswer))
+				else if (answerButtonTwo.getText().equals(Methods.correctAnswer))
 				{
 					answerButtonThree.setEnabled(false);
 					answerButtonOne.setEnabled(false);
 				}
 
-				else if (answerButtonThree.getText().equals(OnlineWindowMethods.correctAnswer))
+				else if (answerButtonThree.getText().equals(Methods.correctAnswer))
 				{
 					answerButtonTwo.setEnabled(false);
 					answerButtonFour.setEnabled(false);
 				}
 
-				else if(answerButtonFour.getText().equals(OnlineWindowMethods.correctAnswer))
+				else if(answerButtonFour.getText().equals(Methods.correctAnswer))
 				{
 					answerButtonOne.setEnabled(false);
 					answerButtonTwo.setEnabled(false);
@@ -211,22 +201,22 @@ public class OfflineWindow implements ActionListener
 				names[1] = "B";
 				names[2] = "C";
 				names[3] = "D";
-				if(OnlineWindowMethods.questionCounter<=8)
+				if(Methods.questionCounter<=8)
 				{
 					values[0] = random.nextInt(5);
 					values[1] = random.nextInt(5);
 					values[2] = random.nextInt(5);
 					values[3] = random.nextInt(5);
 
-					if(OnlineWindowMethods.correctAnswer.equals(OnlineWindowMethods.answerOptionArray[0]))
+					if(Methods.correctAnswer.equals(Methods.answerOptionArray[0]))
 					{
 						values[0] += 3;
 					}
-					else if(OnlineWindowMethods.correctAnswer.equals(OnlineWindowMethods.answerOptionArray[1]))
+					else if(Methods.correctAnswer.equals(Methods.answerOptionArray[1]))
 					{
 						values[1] += 3;
 					}
-					else if(OnlineWindowMethods.correctAnswer.equals(OnlineWindowMethods.answerOptionArray[2]))
+					else if(Methods.correctAnswer.equals(Methods.answerOptionArray[2]))
 					{
 						values[2] += 3;
 					}
@@ -243,15 +233,15 @@ public class OfflineWindow implements ActionListener
 					values[2] = random.nextInt(5);
 					values[3] = random.nextInt(5);
 
-					if(OnlineWindowMethods.correctAnswer.equals(OnlineWindowMethods.answerOptionArray[0]))
+					if(Methods.correctAnswer.equals(Methods.answerOptionArray[0]))
 					{
 						values[0] += 2;
 					}
-					else if(OnlineWindowMethods.correctAnswer.equals(OnlineWindowMethods.answerOptionArray[1]))
+					else if(Methods.correctAnswer.equals(Methods.answerOptionArray[1]))
 					{
 						values[1] += 2;
 					}
-					else if(OnlineWindowMethods.correctAnswer.equals(OnlineWindowMethods.answerOptionArray[2]))
+					else if(Methods.correctAnswer.equals(Methods.answerOptionArray[2]))
 					{
 						values[2] += 2;
 					}
@@ -261,7 +251,7 @@ public class OfflineWindow implements ActionListener
 					}
 
 				}
-				AudienceFrame.getContentPane().add(new AudienceWindow(values, names, "Audience"));
+				AudienceFrame.getContentPane().add(new AudienceFrame(values, names, "Audience"));
 				Audience.setEnabled(false);
 			}
 		});
@@ -275,11 +265,23 @@ public class OfflineWindow implements ActionListener
 				answerButtonThree.setEnabled(true);
 				answerButtonFour.setEnabled(true);
 				audio.cameraSound1();
-				OnlineWindowMethods.oneUpQuestion(answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
+				Methods.oneUpQuestion(answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
 				oneUpQuestion.setEnabled(false);
 
 			}
 		});
+
+
+		/*JLabel img = new JLabel( new ImageIcon("WM2.jpg"));
+		img.setBounds(0, 0, 1900, 1100);
+		frame.getContentPane().add(img);*/
+		//pictureLabel stores the background picture of the game and prints it.
+		JLabel pictureLabel = new JLabel(""); 
+		Image img = new ImageIcon(this.getClass().getResource("/offlineM.jpg")).getImage(); 
+		pictureLabel.setIcon(new ImageIcon(img)); 
+		pictureLabel.setBounds(0, 0, 1000, 1000); 
+		frame.getContentPane().add(pictureLabel); 
+
 
 		//-------------------------- JMenuBar --------------------------------------------------------------
 
@@ -307,9 +309,9 @@ public class OfflineWindow implements ActionListener
 		titleScreen.setMnemonic(KeyEvent.VK_A);
 		titleScreen.addMenuListener(new MenuListener() {
 			public void menuSelected(MenuEvent e) {
-				OnlineWindowMethods.mistakeCounter = 5;
-				OnlineWindowMethods.questionCounter = 0;
-				new StartWindow();
+				Methods.mistakeCounter = 5;
+				Methods.questionCounter = 0;
+				new StartScreen();
 				frame.dispose();}
 			public void menuDeselected(MenuEvent e){}
 			public void menuCanceled(MenuEvent e){}
@@ -347,13 +349,13 @@ public class OfflineWindow implements ActionListener
 		easy.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
-				OnlineWindowMethods.mistakeCounter = 10;
-				OnlineWindowMethods.questionCounter = 0;
-				int randNum = OnlineWindowMethods.colorChanger("red",L100, L200, L300, L500,
+				Methods.mistakeCounter = 10;
+				Methods.questionCounter = 0;
+				int randNum = Methods.colorChanger("red",L100, L200, L300, L500,
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
-				OnlineWindowMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
-				lblmistakeCounter.setText("<html>MISTAKE COUNTER = 10</html>");
+				Methods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
+				lblmistakeCounter.setText("MISTAKE COUNTER = 10 ");
 				FiftyFifty.setEnabled(true);
 				Audience.setEnabled(true);
 				oneUpQuestion.setEnabled(true);
@@ -370,13 +372,13 @@ public class OfflineWindow implements ActionListener
 		hard.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
-				OnlineWindowMethods.mistakeCounter = 3;
-				OnlineWindowMethods.questionCounter = 0;
-				int randNum = OnlineWindowMethods.colorChanger("red",L100, L200, L300, L500,
+				Methods.mistakeCounter = 3;
+				Methods.questionCounter = 0;
+				int randNum = Methods.colorChanger("red",L100, L200, L300, L500,
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
-				OnlineWindowMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
-				lblmistakeCounter.setText("<html>MISTAKE COUNTER = 3</html>");
+				Methods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
+				lblmistakeCounter.setText("MISTAKE COUNTER =3  ");
 				FiftyFifty.setEnabled(true);
 				Audience.setEnabled(true);
 				oneUpQuestion.setEnabled(true);
@@ -393,13 +395,13 @@ public class OfflineWindow implements ActionListener
 		restart.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
-				OnlineWindowMethods.questionCounter = 0;
-				OnlineWindowMethods.mistakeCounter = 5;
-				int randNum = OnlineWindowMethods.colorChanger("red",L100, L200, L300, L500,
+				Methods.questionCounter = 0;
+				Methods.mistakeCounter = 5;
+				int randNum = Methods.colorChanger("red",L100, L200, L300, L500,
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
-				OnlineWindowMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
-				lblmistakeCounter.setText("<html>MISTAKE COUNTER = 5</html>");
+				Methods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
+				lblmistakeCounter.setText("MISTAKE COUNTER = 5 ");
 				FiftyFifty.setEnabled(true);
 				Audience.setEnabled(true);
 				oneUpQuestion.setEnabled(true);
@@ -444,7 +446,7 @@ public class OfflineWindow implements ActionListener
 			public void actionPerformed(ActionEvent arg0)
 			{
 				audio.applauseSound2();
-				switch (OnlineWindowMethods.questionCounter){
+				switch (Methods.questionCounter){
 				case 1:	JOptionPane.showMessageDialog(null, "You won 100£");System.exit(0);
 				case 2:	JOptionPane.showMessageDialog(null, "You won 200£");System.exit(0);
 				case 3:	JOptionPane.showMessageDialog(null, "You won 300£");System.exit(0);
@@ -488,27 +490,27 @@ public class OfflineWindow implements ActionListener
  	  if the answer within the calling button does not equals the correct answer mistakeCounter is decreased to indicate the decrease in 
  	  attempts and then the ".mistakeAdujster" method rewrite the label to match the remaining attempts number. */
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals(OnlineWindowMethods.correctAnswer)){
-			if(OnlineWindowMethods.oneUp){
-				OnlineWindowMethods.mistakeCounter++;
-				OnlineWindowMethods.mistakeAdujster(lblmistakeCounter);
-				int randNum = OnlineWindowMethods.colorChanger("yellow",L100, L200, L300, L500,
+		if (e.getActionCommand().equals(Methods.correctAnswer)){
+			if(Methods.oneUp){
+				Methods.mistakeCounter++;
+				Methods.mistakeAdujster(lblmistakeCounter);
+				int randNum = Methods.colorChanger("yellow",L100, L200, L300, L500,
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
-				OnlineWindowMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
-				OnlineWindowMethods.oneUp = false;
+				Methods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
+				Methods.oneUp = false;
 			}
 			else{
-				OnlineWindowMethods.questionCounter++;		
-				int randNum = OnlineWindowMethods.colorChanger("yellow",L100, L200, L300, L500,
+				Methods.questionCounter++;		
+				int randNum = Methods.colorChanger("yellow",L100, L200, L300, L500,
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
-				OnlineWindowMethods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);}
+				Methods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);}
 		}
 		else{
 			audio.losingSound();
-			OnlineWindowMethods.mistakeCounter--;
-			OnlineWindowMethods.mistakeAdujster(lblmistakeCounter);
+			Methods.mistakeCounter--;
+			Methods.mistakeAdujster(lblmistakeCounter);
 		}
 	}
 
