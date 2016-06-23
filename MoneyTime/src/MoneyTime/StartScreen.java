@@ -13,8 +13,8 @@ public class StartScreen extends JFrame
 		final Audio audio = new Audio();
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(null);
-		
+		setLayout(null);
+
 		JButton offlineMode = new JButton("Offline Mode");
 		offlineMode.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
 		offlineMode.setBounds(130, 100, 200, 50);
@@ -43,7 +43,7 @@ public class StartScreen extends JFrame
 		
 		JButton onlineMode = new JButton("Online Mode");
 		onlineMode.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
-		onlineMode.setBounds(130, 200, 200, 50);
+		onlineMode.setBounds(130, 300, 200, 50);
 		onlineMode.setForeground(Color.WHITE);
 		onlineMode.setOpaque(false);
 		onlineMode.setContentAreaFilled(false);
@@ -71,15 +71,13 @@ public class StartScreen extends JFrame
 		});
 		
 		JLabel pictureLabel = new JLabel(""); 
-		Image img = new ImageIcon(this.getClass().getResource("/TitleScreen.jpg")).getImage(); 
+		Image img = new ImageIcon(this.getClass().getResource("/titleScreen.jpg")).getImage(); 
 		pictureLabel.setIcon(new ImageIcon(img)); 
 		pictureLabel.setBounds(0, 0, 1000, 1000); 
 		getContentPane().add(pictureLabel); 
-		
+	
 		setSize(500,500);
 		setResizable(false);
-		
-
 	}
 	
 	
