@@ -9,7 +9,7 @@ Money time project is a clone of “Who wants to be a millionaire” classic gam
 
 http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 
- ## Download
+- Download :
 **You can download the game for Windows or Mac by clicking below**
  - [MoneyTime.jar](https://github.com/firasAltayeb/MoneyTime/raw/master/MoneyTime/MoneyTime.jar
  
