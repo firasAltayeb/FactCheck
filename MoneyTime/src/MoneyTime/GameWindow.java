@@ -1,4 +1,5 @@
 package MoneyTime;
+
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Font;
@@ -8,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.util.Random;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,17 +21,20 @@ import javax.swing.KeyStroke;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
-
-public class OfflineWindow implements ActionListener
-{
+public class GameWindow implements ActionListener {
 
 	Random random = new Random();final Audio audio = new Audio();
 	JLabel copyRight;JLabel L100;JLabel L200;JLabel L300;JLabel L500;JLabel L1000;JLabel L2000;JLabel L4000;
 	JLabel L8000;JLabel L16000;JLabel L32000;JLabel L64000;JLabel L125000;JLabel L250000;JLabel L500000;
 	JLabel L1000000;JLabel LC;JLabel LA;JLabel QuestionLabel;JLabel lblmistakeCounter;JLabel LD;JLabel LB;
-	JButton answerButtonOne;JButton answerButtonTwo;JButton answerButtonThree;JButton answerButtonFour;		
+	JButton answerButtonOne;JButton answerButtonTwo;JButton answerButtonThree;JButton answerButtonFour;	
 
-	public OfflineWindow(final JFrame frame){
+	final JButton RockPaperScissor;
+	final JButton FiftyFifty;
+	final JButton Audience;
+	final JButton oneUpQuestion;
+
+	public GameWindow(final JFrame frame) {
 
 		//JlabelArray holds all the labels used in the class to allow the following for loops to print the labels using less repetitive code.
 		JLabel[] JlabelArray = new JLabel[22];
@@ -53,7 +56,7 @@ public class OfflineWindow implements ActionListener
 		L1000000 = new JLabel("1000000\u00A3");JlabelArray[15]=L1000000;
 		LC= new JLabel("c.");JlabelArray[16]=LC;
 		LA = new JLabel("a.");JlabelArray[17]=LA;
-		QuestionLabel = new JLabel(Methods.currentQuestion);JlabelArray[18]=QuestionLabel;
+		QuestionLabel = new JLabel(Utility.currentQuestion);JlabelArray[18]=QuestionLabel;
 		lblmistakeCounter = new JLabel("MISTAKE COUNTER = 5 ");JlabelArray[19]=lblmistakeCounter;
 		LD = new JLabel("d.");JlabelArray[20]=LD;
 		LB = new JLabel("b.");JlabelArray[21]=LB;
@@ -61,8 +64,7 @@ public class OfflineWindow implements ActionListener
 		int yAxis = 250;
 		int xAxis;
 		//the following for loop prints the first 16 labels in the JlabelArray with the same font and foreground but with different bounds.
-		for(int i=0;i<=16;i++)
-		{	
+		for(int i=0;i<=16;i++) {	
 			JlabelArray[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 30));
 			JlabelArray[i].setForeground(Color.RED);
 			JlabelArray[i].setBounds(0, yAxis, 500, 500);
@@ -74,8 +76,7 @@ public class OfflineWindow implements ActionListener
 		yAxis=200;
 		xAxis=250;
 		//the following for loop prints the last 5 labels in the JlabelArray with the same font and foreground but with different bounds.
-		for(int i=16;i<=21;i++)
-		{	
+		for(int i=16;i<=21;i++) {	
 			JlabelArray[i].setFont(new Font("Tahoma", Font.BOLD| Font.ITALIC, 20));
 			JlabelArray[i].setForeground(Color.WHITE);
 			JlabelArray[i].setBounds(xAxis, yAxis, 800, 500);
@@ -86,10 +87,10 @@ public class OfflineWindow implements ActionListener
 
 		//------------------------ Answer buttons variables  ------------------------------------------------
 
-		answerButtonOne = new JButton(Methods.answerOptionArray[0]);
-		answerButtonTwo = new JButton(Methods.answerOptionArray[1]);
-		answerButtonThree = new JButton(Methods.answerOptionArray[2]);
-		answerButtonFour = new JButton(Methods.answerOptionArray[3]);
+		answerButtonOne = new JButton(Utility.answerOptionArray[0]);
+		answerButtonTwo = new JButton(Utility.answerOptionArray[1]);
+		answerButtonThree = new JButton(Utility.answerOptionArray[2]);
+		answerButtonFour = new JButton(Utility.answerOptionArray[3]);
 
 		//JButtonArray holds the four similar buttons mentioned above to allow the following for loops to print the buttons using less repetitive code.
 		JButton[] JButtonArray = new JButton[4];
@@ -97,12 +98,11 @@ public class OfflineWindow implements ActionListener
 		JButtonArray[1] = answerButtonTwo;
 		JButtonArray[2] = answerButtonThree;
 		JButtonArray[3] = answerButtonFour;	
-		
+
 		yAxis=430;
 		xAxis=280;
 		//the following for loop prints the buttons in the JButtonArray with the same background,foreground  and font but with different bounds.
-		for(int i=0;i<=3;i++)
-		{
+		for(int i=0;i<=3;i++) {
 			JButtonArray[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
 			JButtonArray[i].setBounds(xAxis, yAxis, 300, 50);
 			JButtonArray[i].setForeground(Color.BLACK);
@@ -121,18 +121,18 @@ public class OfflineWindow implements ActionListener
 
 		//------------------------------  Extra buttons -----------------------------------------------------
 
-		final JButton RockPaperScissor = new JButton("Rock.Paper.Scissor");
-		final JButton FiftyFifty = new JButton("50/50");
-		final JButton Audience = new JButton("Audience");
-		final JButton oneUpQuestion = new JButton("1-UP Question");
-	
+		RockPaperScissor = new JButton("Rock.Paper.Scissor");
+		FiftyFifty = new JButton("50/50");
+		Audience = new JButton("Audience");
+		oneUpQuestion = new JButton("1-UP Question");
+
 		//JButtonArray2 holds the four similar buttons mentioned above to allow the following for loops to print the buttons using less repetitive code.
 		JButton[] JButtonArray2 = new JButton[4];
 		JButtonArray2[0] = RockPaperScissor;
 		JButtonArray2[1] = FiftyFifty;
 		JButtonArray2[2] = Audience;
 		JButtonArray2[3] = oneUpQuestion;
-		
+
 		xAxis=0;
 		//the following for loop prints the buttons in the JButtonArray2 with the same background and foreground but with different bounds.
 		for(int i=0;i<=3;i++){
@@ -156,25 +156,25 @@ public class OfflineWindow implements ActionListener
 			public void actionPerformed(ActionEvent arg0) 
 			{	
 				audio.cameraSound2();
-				if (answerButtonOne.getText().equals(Methods.correctAnswer))
+				if (answerButtonOne.getText().equals(Utility.correctAnswer))
 				{
 					answerButtonTwo.setEnabled(false);
 					answerButtonFour.setEnabled(false);
 				}
 
-				else if (answerButtonTwo.getText().equals(Methods.correctAnswer))
+				else if (answerButtonTwo.getText().equals(Utility.correctAnswer))
 				{
 					answerButtonThree.setEnabled(false);
 					answerButtonOne.setEnabled(false);
 				}
 
-				else if (answerButtonThree.getText().equals(Methods.correctAnswer))
+				else if (answerButtonThree.getText().equals(Utility.correctAnswer))
 				{
 					answerButtonTwo.setEnabled(false);
 					answerButtonFour.setEnabled(false);
 				}
 
-				else if(answerButtonFour.getText().equals(Methods.correctAnswer))
+				else if(answerButtonFour.getText().equals(Utility.correctAnswer))
 				{
 					answerButtonOne.setEnabled(false);
 					answerButtonTwo.setEnabled(false);
@@ -201,22 +201,22 @@ public class OfflineWindow implements ActionListener
 				names[1] = "B";
 				names[2] = "C";
 				names[3] = "D";
-				if(Methods.questionCounter<=8)
+				if(Utility.questionCounter<=8)
 				{
 					values[0] = random.nextInt(5);
 					values[1] = random.nextInt(5);
 					values[2] = random.nextInt(5);
 					values[3] = random.nextInt(5);
 
-					if(Methods.correctAnswer.equals(Methods.answerOptionArray[0]))
+					if(Utility.correctAnswer.equals(Utility.answerOptionArray[0]))
 					{
 						values[0] += 3;
 					}
-					else if(Methods.correctAnswer.equals(Methods.answerOptionArray[1]))
+					else if(Utility.correctAnswer.equals(Utility.answerOptionArray[1]))
 					{
 						values[1] += 3;
 					}
-					else if(Methods.correctAnswer.equals(Methods.answerOptionArray[2]))
+					else if(Utility.correctAnswer.equals(Utility.answerOptionArray[2]))
 					{
 						values[2] += 3;
 					}
@@ -233,15 +233,15 @@ public class OfflineWindow implements ActionListener
 					values[2] = random.nextInt(5);
 					values[3] = random.nextInt(5);
 
-					if(Methods.correctAnswer.equals(Methods.answerOptionArray[0]))
+					if(Utility.correctAnswer.equals(Utility.answerOptionArray[0]))
 					{
 						values[0] += 2;
 					}
-					else if(Methods.correctAnswer.equals(Methods.answerOptionArray[1]))
+					else if(Utility.correctAnswer.equals(Utility.answerOptionArray[1]))
 					{
 						values[1] += 2;
 					}
-					else if(Methods.correctAnswer.equals(Methods.answerOptionArray[2]))
+					else if(Utility.correctAnswer.equals(Utility.answerOptionArray[2]))
 					{
 						values[2] += 2;
 					}
@@ -265,7 +265,7 @@ public class OfflineWindow implements ActionListener
 				answerButtonThree.setEnabled(true);
 				answerButtonFour.setEnabled(true);
 				audio.cameraSound1();
-				Methods.oneUpQuestion(answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
+				Utility.oneUpQuestion(answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
 				oneUpQuestion.setEnabled(false);
 
 			}
@@ -299,32 +299,12 @@ public class OfflineWindow implements ActionListener
 		quit.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 25));
 		quit.setMnemonic(KeyEvent.VK_A);
 
-		/*allows the user to return to the title screen where the user can chose
-		  to play either the online mode or the offline mode,MTM and MTOM are passed
-		  as arguments because they are required to open either the online or offline 
-		  modes and then the current frame is disposed to not allow multiple frame to
-		  be open in the same time.*/
-		JMenu titleScreen = new JMenu("TitleScreen");
-		titleScreen.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 25));
-		titleScreen.setMnemonic(KeyEvent.VK_A);
-		titleScreen.addMenuListener(new MenuListener() {
-			public void menuSelected(MenuEvent e) {
-				Methods.mistakeCounter = 5;
-				Methods.questionCounter = 0;
-				new StartScreen();
-				frame.dispose();}
-			public void menuDeselected(MenuEvent e){}
-			public void menuCanceled(MenuEvent e){}
-		});
-
-
 		JMenuItem easy = new JMenuItem("easy");
 		JMenuItem hard = new JMenuItem("Hard");
 		JMenuItem restart = new JMenuItem("Restart");
 		JMenuItem information = new JMenuItem("Information");
 		JMenuItem exit = new JMenuItem("Exit");
 		JMenuItem collect = new JMenuItem("Collect Cash");
-		//JMenuItemArray holds four  JMenuItem mentioned above to allow the following for loops to print the buttons using less repetitive code.
 		JMenuItem[] JMenuItemArray = new JMenuItem[6];
 		JMenuItemArray[0] = easy;
 		JMenuItemArray[1] = hard;
@@ -333,82 +313,36 @@ public class OfflineWindow implements ActionListener
 		JMenuItemArray[4] = exit;
 		JMenuItemArray[5] = collect;
 
-		//the following for loop prints the JMenuItems in the JMenuItemArray with the same font and accelerator but with different bounds.
 		for(int i=0;i<=5;i++){
 			JMenuItemArray[i].setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 20));
 			JMenuItemArray[i].setAccelerator(KeyStroke.getKeyStroke
 					(KeyEvent.VK_1,ActionEvent.ALT_MASK));	
 		}
 
-
-		/*The easy menuItem restarts the game with easier difficulty by assigning mistakeCounter to 10 and by
-		 assigning the questionCounter to 0, all the labels which are recoloured to yellow return to
-		 normal by sending them as an argument to the colorChanger method which will colour all
-		 the labels to red and assign randNum to either 0 or 1 or 2 which will be used to assign a new
-		 question to questionLabel and options to the answer buttons  */
-		easy.addActionListener(new ActionListener(){
+		easy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0)
 			{
-				Methods.mistakeCounter = 10;
-				Methods.questionCounter = 0;
-				int randNum = Methods.colorChanger("red",L100, L200, L300, L500,
-						L1000, L2000, L4000, L8000, L16000, L32000
-						,L64000,L125000,L250000, L500000, L1000000);
-				Methods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
-				lblmistakeCounter.setText("MISTAKE COUNTER = 10 ");
-				FiftyFifty.setEnabled(true);
-				Audience.setEnabled(true);
-				oneUpQuestion.setEnabled(true);
-				RockPaperScissor.setEnabled(true);
+				restartGame(10);
 			}
 
 		});
 
-		/*The hard menuItem restarts the game with harder difficulty by assigning mistakeCounter to 3 and by
-		 assigning the questionCounter to 0, all the labels which are recoloured to yellow return to
-		 normal by sending them as an argument to the colorChanger method which will colour all
-		 the labels to red and assign randNum to either 0 or 1 or 2 which will be used to assign a new
-		 question to questionLabel and options to the answer buttons  */
-		hard.addActionListener(new ActionListener(){
+		hard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0)
 			{
-				Methods.mistakeCounter = 3;
-				Methods.questionCounter = 0;
-				int randNum = Methods.colorChanger("red",L100, L200, L300, L500,
-						L1000, L2000, L4000, L8000, L16000, L32000
-						,L64000,L125000,L250000, L500000, L1000000);
-				Methods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
-				lblmistakeCounter.setText("MISTAKE COUNTER =3  ");
-				FiftyFifty.setEnabled(true);
-				Audience.setEnabled(true);
-				oneUpQuestion.setEnabled(true);
-				RockPaperScissor.setEnabled(true);
+				restartGame(3);
 			}
 
 		});
 
-		/*The restart menuItem restarts the game with the same difficulty by assigning mistakeCounter to 5 and by
-		 assigning the questionCounter to 0, all the labels which are recoloured to yellow return to
-		 normal by sending them as an argument to the colorChanger method which will colour all
-		 the labels to red and assign randNum to either 0 or 1 or 2 which will be used to assign a new
-		 question to questionLabel and options to the answer buttons  */
-		restart.addActionListener(new ActionListener(){
+		restart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0)
 			{
-				Methods.questionCounter = 0;
-				Methods.mistakeCounter = 5;
-				int randNum = Methods.colorChanger("red",L100, L200, L300, L500,
-						L1000, L2000, L4000, L8000, L16000, L32000
-						,L64000,L125000,L250000, L500000, L1000000);
-				Methods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
-				lblmistakeCounter.setText("MISTAKE COUNTER = 5 ");
-				FiftyFifty.setEnabled(true);
-				Audience.setEnabled(true);
-				oneUpQuestion.setEnabled(true);
-				RockPaperScissor.setEnabled(true);
+				restartGame(5);
 			}
 
 		});
+
 		// Opens the user's browser to a URL page which shows general information about the game.
 		information.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
@@ -445,27 +379,31 @@ public class OfflineWindow implements ActionListener
 		collect.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
-				audio.applauseSound2();
-				switch (Methods.questionCounter){
-				case 1:	JOptionPane.showMessageDialog(null, "You won 100£");System.exit(0);
-				case 2:	JOptionPane.showMessageDialog(null, "You won 200£");System.exit(0);
-				case 3:	JOptionPane.showMessageDialog(null, "You won 300£");System.exit(0);
-				case 4: JOptionPane.showMessageDialog(null, "You won 500£");System.exit(0);
-				case 5:	JOptionPane.showMessageDialog(null, "You won 1000£");System.exit(0);
-				case 6:	JOptionPane.showMessageDialog(null, "You won 2000£");System.exit(0);
-				case 7:	JOptionPane.showMessageDialog(null, "You won 4000£");System.exit(0);
-				case 8:	JOptionPane.showMessageDialog(null, "You won 8000£");System.exit(0);
-				case 9:	JOptionPane.showMessageDialog(null, "You won 16000£");System.exit(0);
-				case 10: JOptionPane.showMessageDialog(null, "You won 32000£");System.exit(0);
-				case 11: JOptionPane.showMessageDialog(null, "You won 64000£");System.exit(0);
-				case 12: JOptionPane.showMessageDialog(null, "You won 125000£");System.exit(0);
-				case 13: JOptionPane.showMessageDialog(null, "You won 250000£");System.exit(0);
-				case 14: JOptionPane.showMessageDialog(null, "You won 500000£");System.exit(0);	
-				case 15: JOptionPane.showMessageDialog(null, "You won 1000000£");System.exit(0);
+				if(Utility.questionCounter >= 1) {
+					audio.applauseSound2();
+					switch (Utility.questionCounter){
+					case 1:	JOptionPane.showMessageDialog(null, "You won 100£");System.exit(0);
+					case 2:	JOptionPane.showMessageDialog(null, "You won 200£");System.exit(0);
+					case 3:	JOptionPane.showMessageDialog(null, "You won 300£");System.exit(0);
+					case 4: JOptionPane.showMessageDialog(null, "You won 500£");System.exit(0);
+					case 5:	JOptionPane.showMessageDialog(null, "You won 1000£");System.exit(0);
+					case 6:	JOptionPane.showMessageDialog(null, "You won 2000£");System.exit(0);
+					case 7:	JOptionPane.showMessageDialog(null, "You won 4000£");System.exit(0);
+					case 8:	JOptionPane.showMessageDialog(null, "You won 8000£");System.exit(0);
+					case 9:	JOptionPane.showMessageDialog(null, "You won 16000£");System.exit(0);
+					case 10: JOptionPane.showMessageDialog(null, "You won 32000£");System.exit(0);
+					case 11: JOptionPane.showMessageDialog(null, "You won 64000£");System.exit(0);
+					case 12: JOptionPane.showMessageDialog(null, "You won 125000£");System.exit(0);
+					case 13: JOptionPane.showMessageDialog(null, "You won 250000£");System.exit(0);
+					case 14: JOptionPane.showMessageDialog(null, "You won 500000£");System.exit(0);	
+					case 15: JOptionPane.showMessageDialog(null, "You won 1000000£");System.exit(0);
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "You have no cash to collect");
 				}
 			}
 		});
-
 
 		difficulty.add(easy);
 		difficulty.add(hard);
@@ -475,7 +413,6 @@ public class OfflineWindow implements ActionListener
 		quit.add(exit);
 		menuBar.add(difficulty);
 		menuBar.add(help);
-		menuBar.add(titleScreen);
 		menuBar.add(quit);
 		frame.setJMenuBar(menuBar);
 		frame.pack();
@@ -490,28 +427,46 @@ public class OfflineWindow implements ActionListener
  	  if the answer within the calling button does not equals the correct answer mistakeCounter is decreased to indicate the decrease in 
  	  attempts and then the ".mistakeAdujster" method rewrite the label to match the remaining attempts number. */
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals(Methods.correctAnswer)){
-			if(Methods.oneUp){
-				Methods.mistakeCounter++;
-				Methods.mistakeAdujster(lblmistakeCounter);
-				int randNum = Methods.colorChanger("yellow",L100, L200, L300, L500,
+		if (e.getActionCommand().equals(Utility.correctAnswer)) {
+			if(Utility.oneUpQus) {
+				Utility.mistakeCounter++;
+				lblmistakeCounter.setText("MISTAKE COUNTER = " + Utility.mistakeCounter);
+				int randNum = Utility.colorChanger("yellow",L100, L200, L300, L500,
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
-				Methods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
-				Methods.oneUp = false;
+				Utility.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
+				Utility.oneUpQus = false;
 			}
-			else{
-				Methods.questionCounter++;		
-				int randNum = Methods.colorChanger("yellow",L100, L200, L300, L500,
+			else {
+				Utility.questionCounter++;		
+				int randNum = Utility.colorChanger("yellow",L100, L200, L300, L500,
 						L1000, L2000, L4000, L8000, L16000, L32000
 						,L64000,L125000,L250000, L500000, L1000000);
-				Methods.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);}
+				Utility.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);}
 		}
-		else{
+		else {
 			audio.losingSound();
-			Methods.mistakeCounter--;
-			Methods.mistakeAdujster(lblmistakeCounter);
+			Utility.mistakeCounter--;
+			lblmistakeCounter.setText("MISTAKE COUNTER = " + Utility.mistakeCounter);
+			if(Utility.mistakeCounter == 0){
+				JOptionPane.showMessageDialog(null, "You have reached the maxium amount of mistakes");
+				audio.buzzerSound2();
+				restartGame(5);
+			} 
 		}
 	}
 
+	public void restartGame(int counter) {
+		Utility.mistakeCounter = counter;
+		Utility.questionCounter = 0;
+		int randNum = Utility.colorChanger("red",L100, L200, L300, L500,
+				L1000, L2000, L4000, L8000, L16000, L32000
+				,L64000,L125000,L250000, L500000, L1000000);
+		Utility.newQuestion(randNum,answerButtonOne,answerButtonTwo,answerButtonThree,answerButtonFour,QuestionLabel);
+		lblmistakeCounter.setText("MISTAKE COUNTER = " + counter);
+		FiftyFifty.setEnabled(true);
+		Audience.setEnabled(true);
+		oneUpQuestion.setEnabled(true);
+		RockPaperScissor.setEnabled(true);
+	}
 }

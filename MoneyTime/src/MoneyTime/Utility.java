@@ -7,8 +7,7 @@ import javax.swing.JOptionPane;
 
 import java.util.Random;
 
-public class Methods 
-{
+public class Utility {
 
 	static Audio audio = new Audio();
 	static Random random = new Random();
@@ -23,10 +22,9 @@ public class Methods
 	static int questionCounter = 0;
 	//mistakeCounter determine the difficulty of the game, the lower the mistakeCounter becomes the harder the game gets. 
 	static int mistakeCounter = 5;
-	static boolean oneUp;
+	static boolean oneUpQus;
 
-	public Methods()
-	{
+	public Utility() {
 		int r = random.nextInt(3);
 		// currentQuestion is assign a random question from the three first questions
 		currentQuestion = qusListArray[r];
@@ -36,14 +34,12 @@ public class Methods
 		correctAnswer = currentQuestionAnswers.getCorrectAnswer(currentQuestion);
 	}
 
-
 	/*The  colorChanger method  initialises randNum to be either 0,1 or 2 and then multiplies it with the questionCounter so that new
 	  answer options, questions and correct answers will be assigned to the frame using the new question method The colorChanger method
 	  also changes all the JLabels which were received as an arguments to the colour which was received as an argument*/
 	public static int colorChanger(String color,JLabel L100,JLabel L200,JLabel L300,JLabel L500,
 			JLabel L1000,JLabel L2000,JLabel L4000,JLabel L8000,JLabel L16000,JLabel L32000
-			,JLabel L64000,JLabel L125000,JLabel L250000,JLabel L500000,JLabel L1000000)
-	{
+			,JLabel L64000,JLabel L125000,JLabel L250000,JLabel L500000,JLabel L1000000){
 		int randNum = random.nextInt(3);
 		if(color.equalsIgnoreCase("yellow"))
 		{
@@ -100,8 +96,7 @@ public class Methods
 	 The newQuestion method also assigns the options to the four answer buttons and colours their 
 	 background to red to clear the effect of the 50/50 button   */
 	public static void newQuestion(int r,JButton answerButtonOne,JButton answerButtonTwo,JButton answerButtonThree,
-			JButton answerButtonFour,JLabel questionLabel)
-	{
+			JButton answerButtonFour,JLabel questionLabel){
 		currentQuestion = qusListArray[r];
 		answerOptionArray = currentQuestionAnswers.getOptions(currentQuestion);
 		correctAnswer = currentQuestionAnswers.getCorrectAnswer(currentQuestion);
@@ -115,39 +110,14 @@ public class Methods
 		answerButtonThree.setEnabled(true);
 		answerButtonFour.setEnabled(true);
 	}
-
-	/*The mistakeAdujster method sets lblmistakeCounter text based on the mistakeCounter,
-	  The mistakeAdujster method also exits the game once the mistakeCounter integers reaches 0*/
-	public static void mistakeAdujster(JLabel lblmistakeCounter)
-	{
-		if(mistakeCounter == 0)
-		{
-			audio.buzzerSound2();
-		}
-		switch (mistakeCounter){	
-		case 0: lblmistakeCounter.setText("MISTAKE COUNTER =0 ");JOptionPane.showMessageDialog
-		(null, "You have reached the maxium amount of mistakes");System.exit(0);
-		case 1: lblmistakeCounter.setText("MISTAKE COUNTER =1 ");break;
-		case 2: lblmistakeCounter.setText("MISTAKE COUNTER =2 ");break;
-		case 3: lblmistakeCounter.setText("MISTAKE COUNTER =3 ");break;
-		case 4: lblmistakeCounter.setText("MISTAKE COUNTER =4 ");break;
-		case 5: lblmistakeCounter.setText("MISTAKE COUNTER =5 ");break;
-		case 6: lblmistakeCounter.setText("MISTAKE COUNTER =6 ");break;
-		case 7: lblmistakeCounter.setText("MISTAKE COUNTER =7 ");break;
-		case 8: lblmistakeCounter.setText("MISTAKE COUNTER =8 ");break;
-		case 9: lblmistakeCounter.setText("MISTAKE COUNTER =9 ");break;
-		case 10:lblmistakeCounter.setText("MISTAKE COUNTER =10 ");break;
-		case 11:lblmistakeCounter.setText("MISTAKE COUNTER =11 ");}
-	}
 	
 	/*Sets one up as true to indicate that "1-up question" button is pressed and assigns currentQuestion 
 	 to one of the last five  questions and then assigns answerOptionArray and correctAnswer based on the 
 	 currentQuestion's question, The newQuestion method also assigns the options to the four answer buttons
 	 and colours their background to red to clear the effect of the 50/50 button  */
 	public static void oneUpQuestion(JButton answerButtonOne,JButton answerButtonTwo,JButton answerButtonThree,
-			JButton answerButtonFour,JLabel questionLabel)
-	{
-		oneUp = true;
+			JButton answerButtonFour,JLabel questionLabel){
+		oneUpQus = true;
 		int r = random.nextInt(5)+43;
 		currentQuestion = qusListArray[r];
 		answerOptionArray = currentQuestionAnswers.getOptions(currentQuestion);
@@ -162,5 +132,6 @@ public class Methods
 		answerButtonThree.setBackground(Color.RED);
 		answerButtonFour.setBackground(Color.RED);
 	}
-	
+
+
 }

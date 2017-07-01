@@ -24,7 +24,6 @@ public class RockPaperScissor extends JFrame implements ActionListener
 	
 	public RockPaperScissor(JButton one,JButton two,JButton three,JButton four)
 	{
-		
 		setVisible(true);
 		setLayout(null);
 		
@@ -36,23 +35,23 @@ public class RockPaperScissor extends JFrame implements ActionListener
 		JLabel instruction = new JLabel("Please choose a hand you want to play with!!");
 		instruction.setFont(new Font("Tahoma", Font.BOLD| Font.ITALIC, 20));
 		instruction.setForeground(Color.WHITE);
-		instruction.setBounds(15,15,800,30);
+		instruction.setBounds(25,25,800,50);
 		add(instruction);
 		
 		JLabel Player = new JLabel("Player");
 		Player.setFont(new Font("Tahoma", Font.BOLD| Font.ITALIC, 20));
 		Player.setForeground(Color.WHITE);
-		Player.setBounds(60,60,400,30);
+		Player.setBounds(150,100,400,50);
 		add(Player);
 		
 		JLabel computer = new JLabel("computer");
 		computer.setFont(new Font("Tahoma", Font.BOLD| Font.ITALIC, 20));
 		computer.setForeground(Color.WHITE);
-		computer.setBounds(300,60,400,30);
+		computer.setBounds(400,100,400,50);
 		add(computer);
 
 		rockB = new JButton("rock");
-		rockB.setBounds(60,120,140,140);
+		rockB.setBounds(150,200,140,140);
 		Image rockImg = new ImageIcon(this.getClass().getResource("/rock.png")).getImage();
 		rockB.setIcon(new ImageIcon(rockImg));	
 		rockB.setOpaque(false);
@@ -61,7 +60,7 @@ public class RockPaperScissor extends JFrame implements ActionListener
 		add(rockB);
 
 		paperB = new JButton("paper");
-		paperB.setBounds(60,270,140,140);
+		paperB.setBounds(150,350,140,140);
 		Image paperImg = new ImageIcon(this.getClass().getResource("/paper.png")).getImage();
 		paperB.setIcon(new ImageIcon(paperImg));	
 		paperB.setOpaque(false);
@@ -70,7 +69,7 @@ public class RockPaperScissor extends JFrame implements ActionListener
 		add(paperB);
 
 		scissorB = new JButton("scissor");
-		scissorB.setBounds(60,420,140,140);
+		scissorB.setBounds(150,500,140,140);
 		Image scissorImg = new ImageIcon(this.getClass().getResource("/scissor.png")).getImage();
 		scissorB.setIcon(new ImageIcon(scissorImg));	
 		scissorB.setOpaque(false);
@@ -83,17 +82,17 @@ public class RockPaperScissor extends JFrame implements ActionListener
 		scissorB.addActionListener(this);
 
 		rockL = new  JLabel("rock");
-		rockL.setBounds(300,120,140,140);
+		rockL.setBounds(400,200,140,140);
 		rockL.setIcon(new ImageIcon(rockImg));	
 		add(rockL);
 
 		paperL = new  JLabel("paper");
-		paperL.setBounds(300,270,140,140);
+		paperL.setBounds(400,350,140,140);
 		paperL.setIcon(new ImageIcon(paperImg));	
 		add(paperL);
 
 		scissorL = new  JLabel("scissor");
-		scissorL.setBounds(300,420,140,140);
+		scissorL.setBounds(400,500,140,140);
 		scissorL.setIcon(new ImageIcon(scissorImg));
 		add(scissorL);
 
@@ -101,10 +100,9 @@ public class RockPaperScissor extends JFrame implements ActionListener
 		JLabel pictureLabel = new JLabel(""); 
 		Image img = new ImageIcon(this.getClass().getResource("/titleScreen.jpg")).getImage();
 		pictureLabel.setIcon(new ImageIcon(img)); 
-		pictureLabel.setBounds(0, 0, 1000, 1000); 
+		pictureLabel.setBounds(0, 0, 1900, 1100); 
 		add(pictureLabel); 
-		setSize(500,600);
-		setResizable(false);
+		setSize(700,700);
 	}
 
 	public void actionPerformed(ActionEvent e) 
@@ -207,16 +205,14 @@ public class RockPaperScissor extends JFrame implements ActionListener
 	
 	public void enabler() 
 	{	
-		if (answerButtonOne.getText().equals(Methods.correctAnswer)
-			|| answerButtonOne.getText().equals(OnlineMethods.correctAnswer))
+		if (answerButtonOne.getText().equals(Utility.correctAnswer))
 		{
 			answerButtonTwo.setEnabled(false);
 			answerButtonThree.setEnabled(false);
 			answerButtonFour.setEnabled(false);
 		}
 
-		else if (answerButtonTwo.getText().equals(Methods.correctAnswer)
-				|| answerButtonTwo.getText().equals(OnlineMethods.correctAnswer))
+		else if (answerButtonTwo.getText().equals(Utility.correctAnswer))
 		{
 			answerButtonOne.setEnabled(false);
 			answerButtonThree.setEnabled(false);
@@ -224,16 +220,14 @@ public class RockPaperScissor extends JFrame implements ActionListener
 			
 		}
 
-		else if (answerButtonThree.getText().equals(Methods.correctAnswer)
-				|| answerButtonThree.getText().equals(OnlineMethods.correctAnswer))
+		else if (answerButtonThree.getText().equals(Utility.correctAnswer))
 		{
 			answerButtonOne.setEnabled(false);
 			answerButtonTwo.setEnabled(false);
 			answerButtonFour.setEnabled(false);
 		}
 
-		else if(answerButtonFour.getText().equals(Methods.correctAnswer)
-				|| answerButtonFour.getText().equals(OnlineMethods.correctAnswer))
+		else if(answerButtonFour.getText().equals(Utility.correctAnswer))
 		{
 			answerButtonOne.setEnabled(false);
 			answerButtonTwo.setEnabled(false);
