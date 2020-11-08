@@ -1,5 +1,5 @@
-#  MoneyTime
-Money time is a project made in an attempt to replicate the “Who wants to be a millionaire” game. The project contains a difficulty selection tap, a rock-paper-scissors mini game and a choice to play the game offline using the hard coded data or online using data which is fetched from an online source.
+# FactCheck
+FactCheck is a project made in an attempt to replicate the “Who wants to be a millionaire” game. The project contains a difficulty selection tap, a rock-paper-scissors mini game and a choice to play the game offline using the hard coded data or online using data which is fetched from an online source.
 
 
 ***This game requires Java to be installed in order to run.*** 
