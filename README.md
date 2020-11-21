@@ -1,4 +1,4 @@
-# FactCheck
+# Fact_check
 FactCheck is a project made in an attempt to replicate the “Who wants to be a millionaire” game. The game includes a difficulty selection, a rock-paper-scissors mini game and a choice to play the game offline using hard coded data or online using data which is fetched from an online source.
 
 
