@@ -1,6 +1,6 @@
-
 package app;
-public class Greeting {
+
+public class Greeter {
     public String getGreeting() {
         return "hello!";
     }

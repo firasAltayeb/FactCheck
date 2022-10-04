@@ -2,7 +2,7 @@ package app;
 
 import java.util.Scanner;
 
-public class Challenge_three {
+public class ChallengeThree {
 
     public static int numberOfCycles = 0;
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class invertedIndex {
+public class InvertedIndex {
 
 	private static ArrayList<Integer> documentsWithBothTerms;
 
