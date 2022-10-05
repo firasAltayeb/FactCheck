@@ -6,6 +6,8 @@ public class HelloWorld {
     public static int number;
 
     public static void main(String[] args) {
+        System.out.println(new Greeter().getGreeting());
+
         reader = new Scanner(System.in);
         System.out.print("Enter a number: ");
 
