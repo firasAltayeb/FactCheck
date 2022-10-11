@@ -12,12 +12,13 @@ public class Mathematics {
         float product = 1.5f * 2.0f;
 
         System.out.println("The product is: " + product);
+        System.out.printf("%.2f", product);
 
         int dividend = 25, divisor = 4;
 
         int quotient = dividend / divisor;
         int remainder = dividend % divisor;
-        System.out.println("Quotient = " + quotient);
+        System.out.println(Integer.valueOf(quotient));
         System.out.println("Remainder = " + remainder);
 
         Scanner reader = new Scanner(System.in);
