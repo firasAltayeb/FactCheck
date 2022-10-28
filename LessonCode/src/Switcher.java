@@ -36,19 +36,34 @@ public class Switcher {
                 break;
         }
 
-        System.out.println("Enter your birth month: ");
+        System.out.println("Enter your birth month to find its horoscope: ");
         String birthMonth = sc.nextLine().toLowerCase();
         Month currentMonth = LocalDate.now().getMonth();
         String shortName = currentMonth.getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
-        boolean value = birthMonth.equals(currentMonth.toString()) ||
+        boolean isBirthDayMonth = birthMonth.equals(currentMonth.toString()) ||
                 birthMonth.equals(currentMonth.getValue() + "") ||
                 birthMonth.equals(shortName.toLowerCase());
         switch (birthMonth) {
             case "october":
             case "oct":
             case "10":
-                if (value)
-                    System.out.println("Your birth day is in October!");
+                System.out.println("October horoscope is Libra and Scorpio!");
+                if (isBirthDayMonth)
+                    System.out.println("Your birth day is in this month, happy birthday!");
+                break;
+            case "november":
+            case "nov":
+            case "11":
+                System.out.println("November horoscope is Scorpio and Sagittarius!");
+                if (isBirthDayMonth)
+                    System.out.println("Your birth day is in this month, happy birthday!");
+                break;
+            case "december":
+            case "dec":
+            case "12":
+                System.out.println("December horoscope is Sagittarius and Capricorn!");
+                if (isBirthDayMonth)
+                    System.out.println("Your birth day is in this month, happy birthday!");
                 break;
             default:
                 System.out.println("it is not your birth month!");
