@@ -1,4 +1,4 @@
-# Fact_check
+# MoneyTime
 This project is made in an attempt to replicate the “Who wants to be a millionaire” game. It includes a difficulty selection, a rock-paper-scissors mini game. You need Java to run the game.
 
 **You can install jave by following the instructions in the below link:-**
