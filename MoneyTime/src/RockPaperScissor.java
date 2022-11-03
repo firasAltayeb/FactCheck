@@ -1,5 +1,3 @@
-package MoneyTime;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -21,9 +19,11 @@ public class RockPaperScissor extends JFrame implements ActionListener
 	JButton answerButtonThree;JButton answerButtonFour;		
 	JButton rockB;JButton paperB;JButton scissorB;
 	JLabel rockL;JLabel paperL;JLabel scissorL;
+	Utility utility;
 	
-	public RockPaperScissor(JButton one,JButton two,JButton three,JButton four)
+	public RockPaperScissor(JButton one,JButton two,JButton three,JButton four, Utility utility)
 	{
+		this.utility = utility;
 		setVisible(true);
 		setLayout(null);
 		
@@ -52,7 +52,7 @@ public class RockPaperScissor extends JFrame implements ActionListener
 
 		rockB = new JButton("rock");
 		rockB.setBounds(150,200,140,140);
-		Image rockImg = new ImageIcon(this.getClass().getResource("/rock.png")).getImage();
+		Image rockImg = new ImageIcon(this.getClass().getResource("/assets/rock.png")).getImage();
 		rockB.setIcon(new ImageIcon(rockImg));	
 		rockB.setOpaque(false);
 		rockB.setContentAreaFilled(false);
@@ -61,7 +61,7 @@ public class RockPaperScissor extends JFrame implements ActionListener
 
 		paperB = new JButton("paper");
 		paperB.setBounds(150,350,140,140);
-		Image paperImg = new ImageIcon(this.getClass().getResource("/paper.png")).getImage();
+		Image paperImg = new ImageIcon(this.getClass().getResource("/assets/paper.png")).getImage();
 		paperB.setIcon(new ImageIcon(paperImg));	
 		paperB.setOpaque(false);
 		paperB.setContentAreaFilled(false);
@@ -70,7 +70,7 @@ public class RockPaperScissor extends JFrame implements ActionListener
 
 		scissorB = new JButton("scissor");
 		scissorB.setBounds(150,500,140,140);
-		Image scissorImg = new ImageIcon(this.getClass().getResource("/scissor.png")).getImage();
+		Image scissorImg = new ImageIcon(this.getClass().getResource("/assets/scissor.png")).getImage();
 		scissorB.setIcon(new ImageIcon(scissorImg));	
 		scissorB.setOpaque(false);
 		scissorB.setContentAreaFilled(false);
@@ -98,9 +98,9 @@ public class RockPaperScissor extends JFrame implements ActionListener
 
 		
 		JLabel pictureLabel = new JLabel(""); 
-		Image img = new ImageIcon(this.getClass().getResource("/titleScreen.jpg")).getImage();
+		Image img = new ImageIcon(this.getClass().getResource("/assets/offlineM.jpg")).getImage();
 		pictureLabel.setIcon(new ImageIcon(img)); 
-		pictureLabel.setBounds(0, 0, 1900, 1100); 
+		pictureLabel.setBounds(0, 0, 1900, 1100);
 		add(pictureLabel); 
 		setSize(700,700);
 	}
@@ -205,14 +205,14 @@ public class RockPaperScissor extends JFrame implements ActionListener
 	
 	public void enabler() 
 	{	
-		if (answerButtonOne.getText().equals(Utility.correctAnswer))
+		if (answerButtonOne.getText().equals(utility.correctAnswer))
 		{
 			answerButtonTwo.setEnabled(false);
 			answerButtonThree.setEnabled(false);
 			answerButtonFour.setEnabled(false);
 		}
 
-		else if (answerButtonTwo.getText().equals(Utility.correctAnswer))
+		else if (answerButtonTwo.getText().equals(utility.correctAnswer))
 		{
 			answerButtonOne.setEnabled(false);
 			answerButtonThree.setEnabled(false);
@@ -220,14 +220,14 @@ public class RockPaperScissor extends JFrame implements ActionListener
 			
 		}
 
-		else if (answerButtonThree.getText().equals(Utility.correctAnswer))
+		else if (answerButtonThree.getText().equals(utility.correctAnswer))
 		{
 			answerButtonOne.setEnabled(false);
 			answerButtonTwo.setEnabled(false);
 			answerButtonFour.setEnabled(false);
 		}
 
-		else if(answerButtonFour.getText().equals(Utility.correctAnswer))
+		else if(answerButtonFour.getText().equals(utility.correctAnswer))
 		{
 			answerButtonOne.setEnabled(false);
 			answerButtonTwo.setEnabled(false);

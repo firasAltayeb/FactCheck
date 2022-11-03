@@ -1,5 +1,3 @@
-package MoneyTime;
-
 import java.io.IOException;
 import java.net.URL;
 
@@ -14,7 +12,7 @@ public class Audio
 	//losingSound is played when you answer incorrectly.
 	public void losingSound()
 	{try {
-			URL url1 = this.getClass().getClassLoader().getResource("losingSound.wav");
+			URL url1 = this.getClass().getClassLoader().getResource("assets/losingSound.wav");
 			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url1);
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioIn);
@@ -27,7 +25,7 @@ public class Audio
 	//enteringSound is played when the user clicks on either online mode or offline mode buttons
 	public void enteringSound()
 	{try {
-			URL url1 = this.getClass().getClassLoader().getResource("enteringSound.wav");
+			URL url1 = this.getClass().getClassLoader().getResource("assets/enteringSound.wav");
 			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url1);
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioIn);
@@ -40,7 +38,7 @@ public class Audio
 	//appaluseSound is played when the user answers the given question correctly.
 	public void applauseSound1()
 	{try {
-			URL url1 = this.getClass().getClassLoader().getResource("applause1.wav");
+			URL url1 = this.getClass().getClassLoader().getResource("assets/applause1.wav");
 			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url1);
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioIn);
@@ -54,7 +52,7 @@ public class Audio
 	  or when the user answers the final question correctly*/
 	public void applauseSound2()
 	{try {
-			URL url1 = this.getClass().getClassLoader().getResource("applause3.wav");
+			URL url1 = this.getClass().getClassLoader().getResource("assets/applause3.wav");
 			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url1);
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioIn);
@@ -67,7 +65,7 @@ public class Audio
 	//buzzerSound2 is played when the user exhaust all his attempts
 	public void buzzerSound2()
 	{try {
-			URL url1 = this.getClass().getClassLoader().getResource("buzzer2.wav");
+			URL url1 = this.getClass().getClassLoader().getResource("assets/buzzer2.wav");
 			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url1);
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioIn);
@@ -80,7 +78,7 @@ public class Audio
 	//chargeSound is played when the user clicks the audience button
 	public void chargeSound()
 	{try {
-			URL url1 = this.getClass().getClassLoader().getResource("charge.wav");
+			URL url1 = this.getClass().getClassLoader().getResource("assets/charge.wav");
 			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url1);
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioIn);
@@ -93,7 +91,7 @@ public class Audio
 	//camera1 is played when the user clicks the 1-up question button
 		public void cameraSound1()
 		{try {
-				URL url1 = this.getClass().getClassLoader().getResource("camera1.wav");
+				URL url1 = this.getClass().getClassLoader().getResource("assets/camera1.wav");
 				AudioInputStream audioIn = AudioSystem.getAudioInputStream(url1);
 				Clip clip = AudioSystem.getClip();
 				clip.open(audioIn);
@@ -106,7 +104,7 @@ public class Audio
 	//camera2 is played when the user clicks the 50/50 button
 	public void cameraSound2()
 	{try {
-			URL url1 = this.getClass().getClassLoader().getResource("camera2.wav");
+			URL url1 = this.getClass().getClassLoader().getResource("assets/camera2.wav");
 			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url1);
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioIn);
@@ -119,7 +117,7 @@ public class Audio
 	//camer4 is played when the user clicks the rock.paper.scissor button
 	public void cameraSound4()
 	{try {
-			URL url1 = this.getClass().getClassLoader().getResource("camera4.wav");
+			URL url1 = this.getClass().getClassLoader().getResource("assets/camera4.wav");
 			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url1);
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioIn);

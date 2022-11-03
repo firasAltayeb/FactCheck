@@ -1,5 +1,3 @@
-package MoneyTime;
-
 public class Questions {
 	// Assigns QuestionsList to all the questions used for the game as strings.
 	public String[] createArray(){

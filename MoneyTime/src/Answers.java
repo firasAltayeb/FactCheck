@@ -1,5 +1,3 @@
-package MoneyTime;
-
 public class Answers {
 	Questions qusListClass = new Questions();
 	String[] qusList = qusListClass.createArray();
