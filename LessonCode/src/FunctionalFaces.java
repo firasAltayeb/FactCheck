@@ -2,39 +2,44 @@ public class FunctionalFaces {
 
     @FunctionalInterface
     interface MyInterface {
-        double getPiValue();
+        double getPi();
     }
+
+    // @FunctionalInterface
+    // interface StringInterface {
+    //     String reverse(String input);
+    // }
 
     @FunctionalInterface
     interface GenericInterface<T> {
-        T func(T t);
+        T function(T t);
     }
-
-    //@FunctionalInterface
-    //interface MyInterface {
-    //    // abstract method
-    //    String reverse(String n);
-    //}
 
     public static void main(String[] args) {
-        MyInterface ref = () -> 3.1415;
-        System.out.println("Value of Pi = " + ref.getPiValue());
+        MyInterface ref = () -> 3.14159;
+        System.out.println("Value of pi is equal to: " + ref.getPi());
+        ref = () -> 3.1415926535897932384626433832795028841971;
+        System.out.println(ref.getPi());
 
-        GenericInterface<String> reverse = (str) -> {
+        GenericInterface<String> strRef = (input) -> {
             String result = "";
-            for (int i = str.length() - 1; i >= 0; i--)
-                result += str.charAt(i);
+            for (int i = input.length()-1; i >= 0; i--)
+                result += input.charAt(i);
             return result;
         };
-        System.out.println("Lambda reversed = " + reverse.func("Lambda"));
+        String exStr = "Lambda";
+        System.out.println(exStr + " reversed = " + strRef.function(exStr));
 
-        GenericInterface<Integer> factorial = (n) -> {
+        int exInt = 5;
+        int exIntTwo = 9;
+        GenericInterface<Integer> factorial = (n)
+                -> {
             int result = 1;
             for (int i = 1; i <= n; i++)
-                result = i * result;
+                result *= i;
             return result;
         };
-        System.out.println("factorial of 5 = " + factorial.func(5));
+        System.out.println("Factorial of " + exInt + " = " + factorial.function(exInt));
+        System.out.println("Factorial of " + exIntTwo + " = " + factorial.function(exIntTwo));
     }
 }
-
