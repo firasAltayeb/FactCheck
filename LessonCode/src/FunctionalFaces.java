@@ -15,6 +15,21 @@ public class FunctionalFaces {
         T function(T t);
     }
 
+    static <T> void displayInput(T input) {
+        System.out.println(input.getClass().getName() + " = " + input);
+    }
+
+    static <T> T returnAsType(String type){
+        if (type == "java.lang.String") {
+            return (T) "Hello World";
+        }
+        if (type == "java.lang.Character") {
+            return (T) "j";
+        }
+        return (T) "Josh";
+    }
+
+
     public static void main(String[] args) {
         MyInterface ref = () -> 3.14159;
         System.out.println("Value of pi is equal to: " + ref.getPi());
@@ -41,5 +56,10 @@ public class FunctionalFaces {
         };
         System.out.println("Factorial of " + exInt + " = " + factorial.function(exInt));
         System.out.println("Factorial of " + exIntTwo + " = " + factorial.function(exIntTwo));
+
+        displayInput(14);
+        displayInput("Josh");
+        System.out.println((String) returnAsType("java.lang.String"));
+        System.out.println((String) returnAsType("java.lang.Character"));
     }
 }
