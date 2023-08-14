@@ -415,11 +415,12 @@ public class GameWindow implements ActionListener {
 
 
 	public void actionPerformed(ActionEvent e) {
-		if (utility.questionCounter <= 15)
-			audio.applauseSound1();
-		else
-			audio.applauseSound2();
 		if (e.getActionCommand().equals(utility.correctAnswer)) {
+			if (utility.questionCounter <= 15)
+				audio.applauseSound1();
+			else
+				audio.applauseSound2();
+
 			if (utility.oneUpQus) {
 				utility.mistakeCounter++;
 				mistakeCounter.setText("MISTAKE COUNTER = " + utility.mistakeCounter);
@@ -439,7 +440,7 @@ public class GameWindow implements ActionListener {
 			utility.mistakeCounter--;
 			mistakeCounter.setText("MISTAKE COUNTER = " + utility.mistakeCounter);
 			if (utility.mistakeCounter == 0) {
-				JOptionPane.showMessageDialog(null, "You have reached the maxium amount of mistakes");
+				JOptionPane.showMessageDialog(null, "You have reached the maximum amount of mistakes");
 				audio.buzzerSound2();
 				restartGame(5);
 			}

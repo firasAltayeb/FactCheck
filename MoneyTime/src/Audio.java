@@ -9,7 +9,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Audio 
 {
-	//losingSound is played when you answer incorrectly.
+	//played when you answer incorrectly.
 	public void losingSound()
 	{try {
 			URL url1 = this.getClass().getClassLoader().getResource("assets/losingSound.wav");
@@ -22,7 +22,7 @@ public class Audio
 		catch (LineUnavailableException f) {f.printStackTrace();}
 	}
 	
-	//enteringSound is played when the user clicks on either online mode or offline mode buttons
+	//played when the user clicks on either online mode or offline mode buttons
 	public void enteringSound()
 	{try {
 			URL url1 = this.getClass().getClassLoader().getResource("assets/enteringSound.wav");
@@ -35,7 +35,7 @@ public class Audio
 		catch (LineUnavailableException f) {f.printStackTrace();}
 	}
 	
-	//appaluseSound is played when the user answers the given question correctly.
+	//played when the user answers the given question correctly.
 	public void applauseSound1()
 	{try {
 			URL url1 = this.getClass().getClassLoader().getResource("assets/applause1.wav");
@@ -48,7 +48,7 @@ public class Audio
 		catch (LineUnavailableException f) {f.printStackTrace();}
 	}
 	
-	/*appaluseSound2 is played when the user clicks on collect money 
+	/*played when the user clicks on collect money
 	  or when the user answers the final question correctly*/
 	public void applauseSound2()
 	{try {
@@ -62,7 +62,7 @@ public class Audio
 		catch (LineUnavailableException f) {f.printStackTrace();}
 	}
 	
-	//buzzerSound2 is played when the user exhaust all his attempts
+	//played when the user exhaust all his attempts
 	public void buzzerSound2()
 	{try {
 			URL url1 = this.getClass().getClassLoader().getResource("assets/buzzer2.wav");
@@ -75,7 +75,7 @@ public class Audio
 		catch (LineUnavailableException f) {f.printStackTrace();}
 	}
 	
-	//chargeSound is played when the user clicks the audience button
+	//played when the user clicks the audience button
 	public void chargeSound()
 	{try {
 			URL url1 = this.getClass().getClassLoader().getResource("assets/charge.wav");
@@ -88,7 +88,7 @@ public class Audio
 		catch (LineUnavailableException f) {f.printStackTrace();}
 	}
 	
-	//camera1 is played when the user clicks the 1-up question button
+	//played when the user clicks the 1-up question button
 		public void cameraSound1()
 		{try {
 				URL url1 = this.getClass().getClassLoader().getResource("assets/camera1.wav");
@@ -101,7 +101,7 @@ public class Audio
 			catch (LineUnavailableException f) {f.printStackTrace();}
 		}
 		
-	//camera2 is played when the user clicks the 50/50 button
+	//played when the user clicks the 50/50 button
 	public void cameraSound2()
 	{try {
 			URL url1 = this.getClass().getClassLoader().getResource("assets/camera2.wav");
@@ -114,7 +114,7 @@ public class Audio
 		catch (LineUnavailableException f) {f.printStackTrace();}
 	}
 	
-	//camer4 is played when the user clicks the rock.paper.scissor button
+	//played when the user clicks the rock.paper.scissor button
 	public void cameraSound4()
 	{try {
 			URL url1 = this.getClass().getClassLoader().getResource("assets/camera4.wav");
