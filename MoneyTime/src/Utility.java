@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Random;
 
 public class Utility {
+    int[] amounts = {100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000,
+            32000, 64000, 125000, 250000, 500000, 1000000};
     Random random = new Random();
     int questionCounter = 0;
     int mistakeCounter = 5;
@@ -31,9 +33,10 @@ public class Utility {
     }
 
 
-    public void newQuestion(int r, JButton answerButtonOne, JButton answerButtonTwo, JButton answerButtonThree
+    public void newQuestion(JButton answerButtonOne, JButton answerButtonTwo, JButton answerButtonThree
             , JButton answerButtonFour, JLabel questionLabel) {
-        currentQuestion = allQuestions.get(r);
+        int randNum = random.nextInt(3) + (3 * questionCounter);
+        currentQuestion = allQuestions.get(randNum);
         optionArray = currentQuestion.getAnsList();
         questionLabel.setText(currentQuestion.getQusTxt());
         correctAnswer = currentQuestion.getCorrectAnswer().getAnsTxt();
@@ -65,6 +68,5 @@ public class Utility {
         answerButtonThree.setBackground(Color.RED);
         answerButtonFour.setBackground(Color.RED);
     }
-
 
 }

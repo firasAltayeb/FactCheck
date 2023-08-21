@@ -2,8 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.net.URL;
+import java.util.Objects;
 import java.util.Random;
 
 public class GameWindow implements ActionListener {
@@ -28,44 +30,28 @@ public class GameWindow implements ActionListener {
     public GameWindow(final JFrame frame) {
         audio.enteringSound();
         utility = new Utility();
+        labels = new JLabel[utility.amounts.length + 7];
         QuestionLabel = new JLabel(utility.currentQuestion.getQusTxt());
         mistakeCounter = new JLabel("MISTAKE COUNTER = 5 ");
-        labels = new JLabel[]{
-                new JLabel("@FirasAltayeb"),
-                new JLabel("100\u00A3"),
-                new JLabel("200\u00A3"),
-                new JLabel("300\u00A3"),
-                new JLabel("500\u00A3"),
-                new JLabel("1000\u00A3"),
-                new JLabel("2000\u00A3"),
-                new JLabel("4000\u00A3"),
-                new JLabel("8000\u00A3"),
-                new JLabel("16000\u00A3"),
-                new JLabel("32000\u00A3"),
-                new JLabel("64000\u00A3"),
-                new JLabel("125000\u00A3"),
-                new JLabel("250000\u00A3"),
-                new JLabel("500000\u00A3"),
-                new JLabel("1000000\u00A3"),
-                new JLabel("c."),
-                new JLabel("a."),
-                QuestionLabel,
-                mistakeCounter,
-                new JLabel("d."),
-                new JLabel("b."),
-        };
 
+        labels[0] = new JLabel("@FirasAltayeb");
+        for (int i = 0; i < utility.amounts.length; i++)
+            labels[i + 1] = new JLabel(utility.amounts[i] + "£");
+        labels[utility.amounts.length + 1] = new JLabel("c.");
+        labels[utility.amounts.length + 2] = new JLabel("a.");
+        labels[utility.amounts.length + 3] = QuestionLabel;
+        labels[utility.amounts.length + 4] = mistakeCounter;
+        labels[utility.amounts.length + 5] = new JLabel("d.");
+        labels[utility.amounts.length + 6] = new JLabel("b.");
 
-        int yAxis = 250;
         int xAxis;
-        //the following for loop prints the first 16 labels in the JlabelArray with the same font and foreground but with different bounds.
+        int yAxis = 250;
         for (int i = 0; i <= 16; i++) {
             labels[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 30));
             labels[i].setForeground(Color.RED);
             labels[i].setBounds(0, yAxis, 500, 500);
             frame.getContentPane().add(labels[i]);
             yAxis -= 30;
-
         }
 
         yAxis = 200;
@@ -146,98 +132,76 @@ public class GameWindow implements ActionListener {
             xAxis += 250;
         }
 
-        RockPaperScissor.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                audio.cameraSound4();
-                new RockPaperScissor(answerButton01, answerButton02, answerButton03, answerButton04, utility);
-                RockPaperScissor.setEnabled(false);
-            }
+        RockPaperScissor.addActionListener(arg0 -> {
+            audio.cameraSound4();
+            new RockPaperScissor(answerButton01, answerButton02, answerButton03, answerButton04, utility);
+            RockPaperScissor.setEnabled(false);
         });
 
-        /*disables two wrong answer's buttons,after the button is used the button becomes disabled*/
-        FiftyFifty.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                audio.cameraSound2();
-                if (answerButton01.getText().equals(utility.correctAnswer)) {
-                    answerButton02.setEnabled(false);
-                    answerButton04.setEnabled(false);
-                } else if (answerButton02.getText().equals(utility.correctAnswer)) {
-                    answerButton03.setEnabled(false);
-                    answerButton01.setEnabled(false);
-                } else if (answerButton03.getText().equals(utility.correctAnswer)) {
-                    answerButton02.setEnabled(false);
-                    answerButton04.setEnabled(false);
-                } else if (answerButton04.getText().equals(utility.correctAnswer)) {
-                    answerButton01.setEnabled(false);
-                    answerButton02.setEnabled(false);
-                }
-
-                FiftyFifty.setEnabled(false);
+        FiftyFifty.addActionListener(arg0 -> {
+            audio.cameraSound2();
+            if (answerButton01.getText().equals(utility.correctAnswer)) {
+                answerButton02.setEnabled(false);
+                answerButton04.setEnabled(false);
+            } else if (answerButton02.getText().equals(utility.correctAnswer)) {
+                answerButton03.setEnabled(false);
+                answerButton01.setEnabled(false);
+            } else if (answerButton03.getText().equals(utility.correctAnswer)) {
+                answerButton02.setEnabled(false);
+                answerButton04.setEnabled(false);
+            } else if (answerButton04.getText().equals(utility.correctAnswer)) {
+                answerButton01.setEnabled(false);
+                answerButton02.setEnabled(false);
             }
+
+            FiftyFifty.setEnabled(false);
         });
 
-		/*The Audience actions button opens a new frame with a chart indicating the possible answer,
-		  if the player has not reached the eighth question yet the chart has a 75% chance of providing
-		  the correct answer and if the player has passed the eighth question the chart has a 50%
-		  chance of providing the correct answer */
-        Audience.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                audio.chargeSound();
-                JFrame AudienceFrame = new JFrame();
-                AudienceFrame.setSize(700, 500);
-                AudienceFrame.setVisible(true);
-                double[] values = new double[4];
-                String[] names = new String[4];
-                names[0] = "A";
-                names[1] = "B";
-                names[2] = "C";
-                names[3] = "D";
+        Audience.addActionListener(arg0 -> {
+            audio.chargeSound();
+            JFrame AudienceFrame = new JFrame();
+            AudienceFrame.setSize(700, 500);
+            AudienceFrame.setVisible(true);
+            double[] values = new double[4];
+            String[] names = new String[4];
+            names[0] = "A";
+            names[1] = "B";
+            names[2] = "C";
+            names[3] = "D";
 
-                values[0] = random.nextInt(5);
-                values[1] = random.nextInt(5);
-                values[2] = random.nextInt(5);
-                values[3] = random.nextInt(5);
+            values[0] = random.nextInt(5);
+            values[1] = random.nextInt(5);
+            values[2] = random.nextInt(5);
+            values[3] = random.nextInt(5);
 
-                if (utility.correctAnswer.equals(utility.optionArray.get(0).getAnsTxt())) {
-                    values[0] += utility.questionCounter <= 8 ? 3 : 2;
-                } else if (utility.correctAnswer.equals(utility.optionArray.get(1).getAnsTxt())) {
-                    values[1] += utility.questionCounter <= 8 ? 3 : 2;
-                } else if (utility.correctAnswer.equals(utility.optionArray.get(2).getAnsTxt())) {
-                    values[2] += utility.questionCounter <= 8 ? 3 : 2;
-                } else {
-                    values[3] += utility.questionCounter <= 8 ? 3 : 2;
-                }
-
-                AudienceFrame.getContentPane().add(new AudienceFrame(values, names, "Audience"));
-                Audience.setEnabled(false);
+            if (utility.correctAnswer.equals(utility.optionArray.get(0).getAnsTxt())) {
+                values[0] += utility.questionCounter <= 8 ? 3 : 2;
+            } else if (utility.correctAnswer.equals(utility.optionArray.get(1).getAnsTxt())) {
+                values[1] += utility.questionCounter <= 8 ? 3 : 2;
+            } else if (utility.correctAnswer.equals(utility.optionArray.get(2).getAnsTxt())) {
+                values[2] += utility.questionCounter <= 8 ? 3 : 2;
+            } else {
+                values[3] += utility.questionCounter <= 8 ? 3 : 2;
             }
+
+            AudienceFrame.getContentPane().add(new AudienceFrame(values, names, "Audience"));
+            Audience.setEnabled(false);
         });
 
 
-        oneUpQuestion.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent q) {
-                answerButton01.setEnabled(true);
-                answerButton02.setEnabled(true);
-                answerButton03.setEnabled(true);
-                answerButton04.setEnabled(true);
-                audio.cameraSound1();
-                utility.oneUpQuestion(answerButton01,
-                        answerButton02,
-                        answerButton03,
-                        answerButton04,
-                        QuestionLabel);
-                oneUpQuestion.setEnabled(false);
+        oneUpQuestion.addActionListener(q -> {
+            answerButton01.setEnabled(true);
+            answerButton02.setEnabled(true);
+            answerButton03.setEnabled(true);
+            answerButton04.setEnabled(true);
+            audio.cameraSound1();
+            utility.oneUpQuestion(answerButton01, answerButton02, answerButton03, answerButton04, QuestionLabel);
+            oneUpQuestion.setEnabled(false);
 
-            }
         });
 
-
-		/*JLabel img = new JLabel( new ImageIcon("WM2.jpg"));
-		img.setBounds(0, 0, 1900, 1100);
-		frame.getContentPane().add(img);*/
-        //pictureLabel stores the background picture of the game and prints it.
         JLabel pictureLabel = new JLabel("");
-        Image img = new ImageIcon(this.getClass().getResource("/assets/offlineM.jpg")).getImage();
+        Image img = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/assets/offlineM.jpg"))).getImage();
         pictureLabel.setIcon(new ImageIcon(img));
         pictureLabel.setBounds(0, 0, 1000, 1000);
         frame.getContentPane().add(pictureLabel);
@@ -275,116 +239,43 @@ public class GameWindow implements ActionListener {
 
         for (int i = 0; i <= 5; i++) {
             JMenuItemArray[i].setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 20));
-            JMenuItemArray[i].setAccelerator(KeyStroke.getKeyStroke
-                    (KeyEvent.VK_1, ActionEvent.ALT_MASK));
+            JMenuItemArray[i].setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, InputEvent.ALT_MASK));
         }
 
-        easy.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                restartGame(10);
-            }
+        easy.addActionListener(arg0 -> restartGame(10));
 
-        });
+        hard.addActionListener(arg0 -> restartGame(3));
 
-        hard.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                restartGame(3);
-            }
-
-        });
-
-        restart.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                restartGame(5);
-            }
-
-        });
+        restart.addActionListener(arg0 -> restartGame(5));
 
         // Opens the user's browser to a URL page which shows general information about the game.
-        information.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                try {
-                    Desktop.getDesktop().browse(new URL("https://en.wikipedia.org/wiki/Who_Wants_to_Be_a_Millionaire%3F").toURI());
-                } catch (Exception e) {
-                }
+        information.addActionListener(arg0 -> {
+            try {
+                Desktop.getDesktop().browse(new URL("https://en.wikipedia.org/wiki/Who_Wants_to_Be_a_Millionaire%3F").toURI());
+            } catch (Exception e) {
+                System.out.println("exception" + e);
+            }
+        });
+
+        exit.addActionListener(arg0 -> {
+            audio.buzzerSound2();
+            Object[] options = {"YES", "NO"};
+            int optionButton = JOptionPane.showOptionDialog(frame, "Are you sure you wish to quit?", null, JOptionPane.PLAIN_MESSAGE, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+
+            if (optionButton == JOptionPane.YES_OPTION) {
+                System.exit(0);
             }
 
         });
 
-		/*When exit is clicked the game promotes a frame asking the user if he wants to quit or not
-		if the user chose yes the game will close and if the user chose no nothing will happen.*/
-        exit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                audio.buzzerSound2();
-                Object[] options = {"YES", "NO"};
-                int optionButton = JOptionPane.showOptionDialog(frame,
-                        "Are you sure you wish to quit?", null,
-                        JOptionPane.PLAIN_MESSAGE,
-                        JOptionPane.QUESTION_MESSAGE, null, options,
-                        options[1]);
-
-                if (optionButton == JOptionPane.YES_OPTION) {
-                    System.exit(0);
-                }
-
-            }
-        });
-
-        // Allows the user to exit the game with the current amount of money the user has gained using questionCounter
-        collect.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                if (utility.questionCounter >= 1) {
-                    audio.applauseSound2();
-                    switch (utility.questionCounter) {
-                        case 1:
-                            JOptionPane.showMessageDialog(null, "You won 100�");
-                            System.exit(0);
-                        case 2:
-                            JOptionPane.showMessageDialog(null, "You won 200�");
-                            System.exit(0);
-                        case 3:
-                            JOptionPane.showMessageDialog(null, "You won 300�");
-                            System.exit(0);
-                        case 4:
-                            JOptionPane.showMessageDialog(null, "You won 500�");
-                            System.exit(0);
-                        case 5:
-                            JOptionPane.showMessageDialog(null, "You won 1000�");
-                            System.exit(0);
-                        case 6:
-                            JOptionPane.showMessageDialog(null, "You won 2000�");
-                            System.exit(0);
-                        case 7:
-                            JOptionPane.showMessageDialog(null, "You won 4000�");
-                            System.exit(0);
-                        case 8:
-                            JOptionPane.showMessageDialog(null, "You won 8000�");
-                            System.exit(0);
-                        case 9:
-                            JOptionPane.showMessageDialog(null, "You won 16000�");
-                            System.exit(0);
-                        case 10:
-                            JOptionPane.showMessageDialog(null, "You won 32000�");
-                            System.exit(0);
-                        case 11:
-                            JOptionPane.showMessageDialog(null, "You won 64000�");
-                            System.exit(0);
-                        case 12:
-                            JOptionPane.showMessageDialog(null, "You won 125000�");
-                            System.exit(0);
-                        case 13:
-                            JOptionPane.showMessageDialog(null, "You won 250000�");
-                            System.exit(0);
-                        case 14:
-                            JOptionPane.showMessageDialog(null, "You won 500000�");
-                            System.exit(0);
-                        case 15:
-                            JOptionPane.showMessageDialog(null, "You won 1000000�");
-                            System.exit(0);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "You have no cash to collect");
-                }
+        collect.addActionListener(arg0 -> {
+            if (utility.questionCounter >= 1) {
+                audio.applauseSound2();
+                JOptionPane.showMessageDialog(null, "You won " +
+                        utility.amounts[utility.questionCounter-1]);
+                System.exit(0);
+            } else {
+                JOptionPane.showMessageDialog(null, "You have no cash to collect");
             }
         });
 
@@ -404,25 +295,22 @@ public class GameWindow implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals(utility.correctAnswer)) {
-            if (utility.questionCounter <= 15)
+            if (utility.questionCounter <= 15) {
                 audio.applauseSound1();
-            else
+            } else {
                 audio.applauseSound2();
-
+            }
             if (utility.oneUpQus) {
                 utility.mistakeCounter++;
                 mistakeCounter.setText("MISTAKE COUNTER = " + utility.mistakeCounter);
-                utility.colorChanger("yellow", labels);
-                int randNum = random.nextInt(3) + (3 * utility.questionCounter);
-                utility.newQuestion(randNum, answerButton01, answerButton02, answerButton03, answerButton04, QuestionLabel);
                 utility.oneUpQus = false;
             } else {
                 utility.questionCounter++;
-                int randNum = random.nextInt(3) + (3 * utility.questionCounter);
-                utility.colorChanger("yellow", labels);
-                utility.newQuestion(randNum, answerButton01, answerButton02, answerButton03, answerButton04, QuestionLabel);
             }
+            utility.colorChanger("yellow", labels);
+            utility.newQuestion(answerButton01, answerButton02, answerButton03, answerButton04, QuestionLabel);
         } else {
+            audio.losingSound();
             audio.losingSound();
             utility.mistakeCounter--;
             mistakeCounter.setText("MISTAKE COUNTER = " + utility.mistakeCounter);
@@ -438,9 +326,7 @@ public class GameWindow implements ActionListener {
         utility.mistakeCounter = counter;
         utility.questionCounter = 0;
         utility.colorChanger("red", labels);
-        int randNum = random.nextInt(3) + (3 * utility.questionCounter);
-        utility.newQuestion(randNum, answerButton01, answerButton02,
-                answerButton03, answerButton04, QuestionLabel);
+        utility.newQuestion(answerButton01, answerButton02, answerButton03, answerButton04, QuestionLabel);
         mistakeCounter.setText("MISTAKE COUNTER = " + counter);
         FiftyFifty.setEnabled(true);
         Audience.setEnabled(true);
