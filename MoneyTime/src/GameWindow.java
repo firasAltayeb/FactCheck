@@ -6,23 +6,13 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.util.Objects;
-import java.util.Random;
 
 public class GameWindow implements ActionListener {
-    final Random random = new Random();
     final Audio audio = new Audio();
     final Utility utility;
 
-    final JButton answerButton01;
-    final JButton answerButton02;
-    final JButton answerButton03;
-    final JButton answerButton04;
-
-    final JButton RockPaperScissor;
-    final JButton oneUpQuestion;
-    final JButton FiftyFifty;
-    final JButton Audience;
-
+    JButton[] optionBtnArray;
+    JButton[] topBtnArray;
     JLabel mistakeCounter;
     JLabel QuestionLabel;
     JLabel[] labels;
@@ -70,27 +60,25 @@ public class GameWindow implements ActionListener {
 
         //------------------------ Answer buttons variables  ------------------------------------------------
 
-        answerButton01 = new JButton(utility.optionArray.get(0).getAnsTxt());
-        answerButton02 = new JButton(utility.optionArray.get(1).getAnsTxt());
-        answerButton03 = new JButton(utility.optionArray.get(2).getAnsTxt());
-        answerButton04 = new JButton(utility.optionArray.get(3).getAnsTxt());
+        final JButton answerButton01 = new JButton(utility.optionArray.get(0).getAnsTxt());
+        final JButton answerButton02 = new JButton(utility.optionArray.get(1).getAnsTxt());
+        final JButton answerButton03 = new JButton(utility.optionArray.get(2).getAnsTxt());
+        final JButton answerButton04 = new JButton(utility.optionArray.get(3).getAnsTxt());
 
-        //JButtonArray holds the four similar buttons mentioned above to allow the following for loops to print the buttons using less repetitive code.
-        JButton[] JButtonArray = new JButton[4];
-        JButtonArray[0] = answerButton01;
-        JButtonArray[1] = answerButton02;
-        JButtonArray[2] = answerButton03;
-        JButtonArray[3] = answerButton04;
+        optionBtnArray = new JButton[4];
+        optionBtnArray[0] = answerButton01;
+        optionBtnArray[1] = answerButton02;
+        optionBtnArray[2] = answerButton03;
+        optionBtnArray[3] = answerButton04;
 
         yAxis = 430;
         xAxis = 280;
-        //the following for loop prints the buttons in the JButtonArray with the same background,foreground  and font but with different bounds.
         for (int i = 0; i <= 3; i++) {
-            JButtonArray[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
-            JButtonArray[i].setBounds(xAxis, yAxis, 300, 50);
-            JButtonArray[i].setForeground(Color.BLACK);
-            JButtonArray[i].setBackground(Color.RED);
-            frame.getContentPane().add(JButtonArray[i]);
+            optionBtnArray[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
+            optionBtnArray[i].setBounds(xAxis, yAxis, 300, 50);
+            optionBtnArray[i].setForeground(Color.BLACK);
+            optionBtnArray[i].setBackground(Color.RED);
+            frame.getContentPane().add(optionBtnArray[i]);
             if (i == 0) {
                 xAxis = 640;
             }
@@ -111,34 +99,32 @@ public class GameWindow implements ActionListener {
 
         //------------------------------  Extra buttons -----------------------------------------------------
 
-        RockPaperScissor = new JButton("Rock.Paper.Scissor");
-        FiftyFifty = new JButton("50/50");
-        Audience = new JButton("Audience");
-        oneUpQuestion = new JButton("1-UP Question");
+        final JButton rockPaperScissor = new JButton("Rock.Paper.Scissor");
+        final JButton fiftyFifty = new JButton("50/50");
+        final JButton Audience = new JButton("Audience");
+        final JButton oneUpQuestion = new JButton("1-UP Question");
 
-        //JButtonArray2 holds the four similar buttons mentioned above to allow the following for loops to print the buttons using less repetitive code.
-        JButton[] JButtonArray2 = new JButton[4];
-        JButtonArray2[0] = RockPaperScissor;
-        JButtonArray2[1] = FiftyFifty;
-        JButtonArray2[2] = Audience;
-        JButtonArray2[3] = oneUpQuestion;
+        topBtnArray = new JButton[4];
+        topBtnArray[0] = rockPaperScissor;
+        topBtnArray[1] = fiftyFifty;
+        topBtnArray[2] = Audience;
+        topBtnArray[3] = oneUpQuestion;
 
         xAxis = 0;
-        //the following for loop prints the buttons in the JButtonArray2 with the same background and foreground but with different bounds.
         for (int i = 0; i <= 3; i++) {
-            JButtonArray2[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
-            JButtonArray2[i].setBounds(xAxis, 0, 250, 30);
-            frame.getContentPane().add(JButtonArray2[i]);
+            topBtnArray[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
+            topBtnArray[i].setBounds(xAxis, 0, 250, 30);
+            frame.getContentPane().add(topBtnArray[i]);
             xAxis += 250;
         }
 
-        RockPaperScissor.addActionListener(arg0 -> {
+        rockPaperScissor.addActionListener(arg0 -> {
             audio.cameraSound4();
             new RockPaperScissor(answerButton01, answerButton02, answerButton03, answerButton04, utility);
-            RockPaperScissor.setEnabled(false);
+            rockPaperScissor.setEnabled(false);
         });
 
-        FiftyFifty.addActionListener(arg0 -> {
+        fiftyFifty.addActionListener(arg0 -> {
             audio.cameraSound2();
             if (answerButton01.getText().equals(utility.correctAnswer)) {
                 answerButton02.setEnabled(false);
@@ -154,7 +140,7 @@ public class GameWindow implements ActionListener {
                 answerButton02.setEnabled(false);
             }
 
-            FiftyFifty.setEnabled(false);
+            fiftyFifty.setEnabled(false);
         });
 
         Audience.addActionListener(arg0 -> {
@@ -169,10 +155,10 @@ public class GameWindow implements ActionListener {
             names[2] = "C";
             names[3] = "D";
 
-            values[0] = random.nextInt(5);
-            values[1] = random.nextInt(5);
-            values[2] = random.nextInt(5);
-            values[3] = random.nextInt(5);
+            values[0] = utility.random.nextInt(5);
+            values[1] = utility.random.nextInt(5);
+            values[2] = utility.random.nextInt(5);
+            values[3] = utility.random.nextInt(5);
 
             if (utility.correctAnswer.equals(utility.optionArray.get(0).getAnsTxt())) {
                 values[0] += utility.questionCounter <= 8 ? 3 : 2;
@@ -195,7 +181,7 @@ public class GameWindow implements ActionListener {
             answerButton03.setEnabled(true);
             answerButton04.setEnabled(true);
             audio.cameraSound1();
-            utility.oneUpQuestion(answerButton01, answerButton02, answerButton03, answerButton04, QuestionLabel);
+            utility.oneUpQuestion(optionBtnArray, QuestionLabel);
             oneUpQuestion.setEnabled(false);
 
         });
@@ -242,11 +228,9 @@ public class GameWindow implements ActionListener {
             JMenuItemArray[i].setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, InputEvent.ALT_MASK));
         }
 
-        easy.addActionListener(arg0 -> restartGame(10));
-
-        hard.addActionListener(arg0 -> restartGame(3));
-
-        restart.addActionListener(arg0 -> restartGame(5));
+        easy.addActionListener(arg0 -> utility.restartGame(10, labels, topBtnArray, mistakeCounter));
+        restart.addActionListener(arg0 -> utility.restartGame(5, labels, topBtnArray, mistakeCounter));
+        hard.addActionListener(arg0 -> utility.restartGame(3, labels, topBtnArray, mistakeCounter));
 
         // Opens the user's browser to a URL page which shows general information about the game.
         information.addActionListener(arg0 -> {
@@ -271,8 +255,7 @@ public class GameWindow implements ActionListener {
         collect.addActionListener(arg0 -> {
             if (utility.questionCounter >= 1) {
                 audio.applauseSound2();
-                JOptionPane.showMessageDialog(null, "You won " +
-                        utility.amounts[utility.questionCounter-1]);
+                JOptionPane.showMessageDialog(null, "You won " + utility.amounts[utility.questionCounter - 1]);
                 System.exit(0);
             } else {
                 JOptionPane.showMessageDialog(null, "You have no cash to collect");
@@ -308,7 +291,7 @@ public class GameWindow implements ActionListener {
                 utility.questionCounter++;
             }
             utility.colorChanger("yellow", labels);
-            utility.newQuestion(answerButton01, answerButton02, answerButton03, answerButton04, QuestionLabel);
+            utility.newQuestion(optionBtnArray, QuestionLabel);
         } else {
             audio.losingSound();
             audio.losingSound();
@@ -317,20 +300,9 @@ public class GameWindow implements ActionListener {
             if (utility.mistakeCounter == 0) {
                 JOptionPane.showMessageDialog(null, "You have reached the maximum amount of mistakes");
                 audio.buzzerSound2();
-                restartGame(5);
+                utility.restartGame(5, labels, topBtnArray, mistakeCounter);
+                utility.newQuestion(optionBtnArray, QuestionLabel);
             }
         }
-    }
-
-    public void restartGame(int counter) {
-        utility.mistakeCounter = counter;
-        utility.questionCounter = 0;
-        utility.colorChanger("red", labels);
-        utility.newQuestion(answerButton01, answerButton02, answerButton03, answerButton04, QuestionLabel);
-        mistakeCounter.setText("MISTAKE COUNTER = " + counter);
-        FiftyFifty.setEnabled(true);
-        Audience.setEnabled(true);
-        oneUpQuestion.setEnabled(true);
-        RockPaperScissor.setEnabled(true);
     }
 }

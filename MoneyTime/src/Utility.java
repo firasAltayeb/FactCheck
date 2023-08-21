@@ -33,40 +33,38 @@ public class Utility {
     }
 
 
-    public void newQuestion(JButton answerButtonOne, JButton answerButtonTwo, JButton answerButtonThree
-            , JButton answerButtonFour, JLabel questionLabel) {
+    public void newQuestion(JButton[] optionBtnArray, JLabel questionLabel) {
         int randNum = random.nextInt(3) + (3 * questionCounter);
         currentQuestion = allQuestions.get(randNum);
         optionArray = currentQuestion.getAnsList();
         questionLabel.setText(currentQuestion.getQusTxt());
         correctAnswer = currentQuestion.getCorrectAnswer().getAnsTxt();
-        answerButtonOne.setText(optionArray.get(0).getAnsTxt());
-        answerButtonTwo.setText(optionArray.get(1).getAnsTxt());
-        answerButtonThree.setText(optionArray.get(2).getAnsTxt());
-        answerButtonFour.setText(optionArray.get(3).getAnsTxt());
-        answerButtonOne.setEnabled(true);
-        answerButtonTwo.setEnabled(true);
-        answerButtonThree.setEnabled(true);
-        answerButtonFour.setEnabled(true);
+        for (int i = 0; i < optionBtnArray.length; i++) {
+            optionBtnArray[i].setText(optionArray.get(i).getAnsTxt());
+            optionBtnArray[i].setEnabled(true);
+        }
     }
 
 
-    public void oneUpQuestion(JButton answerButtonOne, JButton answerButtonTwo, JButton answerButtonThree,
-                              JButton answerButtonFour, JLabel questionLabel) {
+    public void oneUpQuestion(JButton[] optionBtnArray, JLabel questionLabel) {
         oneUpQus = true;
         int r = random.nextInt(5) + 43;
         currentQuestion = allQuestions.get(r);
         optionArray = currentQuestion.getAnsList();
         questionLabel.setText(currentQuestion.getQusTxt());
         correctAnswer = currentQuestion.getCorrectAnswer().getAnsTxt();
-        answerButtonOne.setText(optionArray.get(0).getAnsTxt());
-        answerButtonTwo.setText(optionArray.get(1).getAnsTxt());
-        answerButtonThree.setText(optionArray.get(2).getAnsTxt());
-        answerButtonFour.setText(optionArray.get(3).getAnsTxt());
-        answerButtonOne.setBackground(Color.RED);
-        answerButtonTwo.setBackground(Color.RED);
-        answerButtonThree.setBackground(Color.RED);
-        answerButtonFour.setBackground(Color.RED);
+        for (int i = 0; i < optionBtnArray.length; i++) {
+            optionBtnArray[i].setText(optionArray.get(i).getAnsTxt());
+            optionBtnArray[i].setBackground(Color.RED);
+        }
     }
 
+    public void restartGame(int difficulty, JLabel[] labels, JButton[] jButtonArray2, JLabel ms) {
+        questionCounter = 0;
+        mistakeCounter = difficulty;
+        colorChanger("red", labels);
+        ms.setText("MISTAKE COUNTER = " + difficulty);
+        for (JButton button : jButtonArray2)
+            button.setEnabled(true);
+    }
 }
