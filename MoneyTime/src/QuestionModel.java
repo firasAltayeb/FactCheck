@@ -13,6 +13,17 @@ public class QuestionModel {
         return ansList;
     }
 
+    public AnswerModel getCorrectAnswer() {
+        AnswerModel correctAnswer = null;
+        for (AnswerModel answer : ansList) {
+            if (answer.getAccuracy() ==1) {
+                correctAnswer = answer;
+                break;
+            }
+        }
+        return correctAnswer;
+    }
+
     public String getQusTxt() {
         return qusTxt;
     }
