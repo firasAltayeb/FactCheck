@@ -2,7 +2,7 @@ package app;
 
 import java.util.Scanner;
 
-public class ChallengeThree {
+public class CollatzSequence {
 
     public static int numberOfCycles = 0;
 

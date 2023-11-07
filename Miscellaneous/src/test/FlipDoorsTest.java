@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import app.*;
 
-public class FlipDoors_test {
+public class FlipDoorsTest {
 
 	public FlipDoors flipper;
 
