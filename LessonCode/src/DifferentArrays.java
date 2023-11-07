@@ -23,6 +23,7 @@ public class DifferentArrays {
         // vowelsArray[3] = 'o';
         // vowelsArray[4] = 'u';
         char[] vowelsArray = {'a', 'e', 'i', 'o', 'u'};
+
         boolean isVowel = false;
         for (char placeHolder : vowelsArray) {
             if (letter == placeHolder) {
