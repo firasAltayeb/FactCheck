@@ -1,59 +1,6 @@
 package app;
 
-
 import java.util.ArrayList;
-
-class ListNode {
-    int val;
-    ListNode next;
-
-
-    public ListNode() {
-    }
-
-    public ListNode(int val) {
-        this(val, null);
-    }
-
-    public ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
-    }
-
-    public ListNode reverseList(ListNode head) {
-        ListNode current = head;
-        ListNode previous = null;
-        ListNode nextCurrent = null;
-
-        while (current != null) {
-            nextCurrent = current.next;
-            current.next = previous;
-            previous = current;
-            current = nextCurrent;
-        }
-
-        return previous;
-    }
-
-    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        ListNode root = new ListNode();
-        ListNode tail = root;
-
-        while (list1 != null && list2 != null) {
-            if (list1.val < list2.val) {
-                tail.next = list1;
-                list1 = list1.next;
-            } else {
-                tail.next = list2;
-                list2 = list2.next;
-            }
-            tail = tail.next;
-        }
-
-        tail.next = list1 != null ? list1 : list2;
-        return root.next;
-    }
-}
 
 class SinglyLinkedList {
     private ListNode head;
@@ -92,8 +39,8 @@ class SinglyLinkedList {
 
     // Method to insert at the end
     public void insertTail(int val) {
-        this.tail.next = new ListNode(val);
-        this.tail = this.tail.next;
+        tail.next = new ListNode(val);
+        tail = tail.next;
     }
 
     // Method to remove at given index
@@ -107,8 +54,8 @@ class SinglyLinkedList {
 
         // Remove the node ahead of curr
         if (curr != null && curr.next != null) {
-            if (curr.next == this.tail) {
-                this.tail = curr;
+            if (curr.next == tail) {
+                tail = curr;
             }
             curr.next = curr.next.next;
             return true;
