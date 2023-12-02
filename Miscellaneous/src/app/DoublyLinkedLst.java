@@ -6,14 +6,13 @@ class ListNode {
     ListNode next;
 
     public ListNode(int val) {
-        this.val = val;
-        this.prev = null;
-        this.next = null;
+        this(val, null, null);
     }
 
-    public ListNode(int val, ListNode next) {
+    public ListNode(int val, ListNode next, ListNode prev) {
         this.val = val;
         this.next = next;
+        this.prev = prev;
     }
 
     public ListNode reverseList(ListNode head) {
