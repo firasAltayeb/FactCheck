@@ -6,29 +6,6 @@ public class CollatzSequence {
 
     public static int numberOfCycles = 0;
 
-    public static void main(String[] args) {
-        System.out.println("Enter your desired number: ");
-        Scanner scanner = new Scanner(System.in);
-        int number = scanner.nextInt();
-
-        long recursiveStart = System.nanoTime();
-        recursiveCollatz(number);
-        long recursiveEnd = System.nanoTime();
-
-        //this separates the two run's results 
-        numberOfCycles = 0;
-
-        long iterativeStart = System.nanoTime();
-        iterativeCollatz(number);
-        long iterativeEnd = System.nanoTime();
-
-        System.out.println("Recursive run took " +
-                (recursiveEnd - recursiveStart) / 1000 + " microseconds");
-        System.out.println("Iterative run took " +
-                (iterativeEnd - iterativeStart) / 1000 + " microseconds");
-
-        scanner.close();
-    }
 
     public static void recursiveCollatz(int n) {
         //Prints 5 results each line
@@ -65,5 +42,27 @@ public class CollatzSequence {
         System.out.println(result);
     }
 
+    public static void main(String[] args) {
+        System.out.println("Enter your desired number: ");
+        Scanner scanner = new Scanner(System.in);
+        int number = scanner.nextInt();
 
+        long recursiveStart = System.nanoTime();
+        recursiveCollatz(number);
+        long recursiveEnd = System.nanoTime();
+
+        //this separates the two run's results 
+        numberOfCycles = 0;
+
+        long iterativeStart = System.nanoTime();
+        iterativeCollatz(number);
+        long iterativeEnd = System.nanoTime();
+
+        System.out.println("Recursive run took " +
+                (recursiveEnd - recursiveStart) / 1000 + " microseconds");
+        System.out.println("Iterative run took " +
+                (iterativeEnd - iterativeStart) / 1000 + " microseconds");
+
+        scanner.close();
+    }
 }
